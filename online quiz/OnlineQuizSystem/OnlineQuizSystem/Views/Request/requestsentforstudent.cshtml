@@ -1,0 +1,57 @@
+﻿
+@{
+    ViewBag.Title = "requestsentforstudent";
+    Layout = "~/Views/Shared/_Layout2studentprofile.cshtml";
+}
+
+<h1 style="text-align:center;background-color:aliceblue">Friend list</h1>
+<h1 style="color:cornflowerblue">@TempData["msg"]</h1>
+
+<div style="overflow:scroll">
+
+    <table class="table table-responsive">
+
+        <thead>
+            <tr>
+                <th>Teacher ID</th>
+
+
+                <th>Teacher Name</th>
+
+                <th>Delete</th>
+
+            </tr>
+
+        </thead>
+        <tbody>
+
+            @foreach (var item in ViewData["jointabless"] as IEnumerable<OnlineQuizSystem.Models.friendlistforstudent>)
+            {
+                <tr>
+                    <td> @item.friendlist.teacherid </td>
+                    <td>@Html.ActionLink(item.teacherlist.TeacherName, "Teacherprofileforstudent", new { id = item.teacherlist.TeacherName })</td>
+
+                    <td>
+                        @using (Html.BeginForm("deleterequestsentforstudent", "Request", FormMethod.Post))
+
+                        {
+
+                            <input type="hidden" value="@item.friendlist.teacherid" name="tid" />
+                            <span class="glyphicon glyphicon-trash"></span>
+                            <button type="submit" value="1" name="delete">Delete</button>
+                        }
+                    </td>
+
+
+                </tr>
+
+            }
+        </tbody>
+
+
+    </table>
+
+
+
+</div>
+

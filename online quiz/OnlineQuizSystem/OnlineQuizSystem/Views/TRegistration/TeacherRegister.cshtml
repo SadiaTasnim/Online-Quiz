@@ -1,0 +1,106 @@
+﻿
+@model OnlineQuizSystem.Models.Teacher
+
+@{
+    Layout = null;
+}
+@{
+    ViewBag.Title = "TeacherRegister";
+}
+<style>
+    body {
+        background-image: url('../../Content/image/register.jpg');
+        background-size: cover;
+    }
+</style>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Teacher Registration Panel</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class=" col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                <div class="container" style="width:50%">
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+
+                    @using (@Html.BeginForm())
+                    {
+                        <h2>Teachers, Register here!</h2>
+                        <div class="form-group">
+                            <label for="email">Full Name:</label>
+
+                            @Html.TextBoxFor(x => x.FullName, htmlAttributes: new { @class = "form-control" })
+
+                        </div>
+                        <div class="form-group">
+                            <label for="email">User Name:</label>
+
+                            @Html.TextBoxFor(x => x.TeacherName, htmlAttributes: new { @class = "form-control" })
+
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email ID:</label>
+
+                            @Html.TextBoxFor(x => x.Email, htmlAttributes: new { @class = "form-control" })
+
+                        </div>
+
+                        <div class="form-group">
+                            <label for="pwd">Password:</label>
+                            @Html.PasswordFor(x => x.Passwords, htmlAttributes: new { @class = "form-control" })
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="email">Institution:</label>
+
+                            @Html.TextBoxFor(x => x.Institute, htmlAttributes: new { @class = "form-control" })
+
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Designation:</label>
+
+                            @Html.TextBoxFor(x => x.Designation, htmlAttributes: new { @class = "form-control" })
+
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Contact No.:</label>
+
+                            @Html.TextBoxFor(x => x.Contact, htmlAttributes: new { @class = "form-control" })
+
+                        </div>
+
+                        <input type="submit" value="Register" class="btn btn-success btn-block" />
+
+                    }
+                </div>
+
+            </div>
+
+            <div class=" col-lg-4 col-md-4 col-sm-4 col-xs-4">
+
+            </div>
+
+        </div>
+
+
+
+
+
+
+
+    </div>
+</body>
+</html>

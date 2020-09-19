@@ -1,0 +1,121 @@
+﻿@model OnlineQuizSystem.Models.Student
+
+@{
+    Layout = null;
+
+}
+<style>
+    body {
+        background-image: url('../../Content/image/student-bck.jpg');
+        background-size: cover;
+    }
+</style>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>StudentRegister</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class=" col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                <div class="container" style="width:60%">
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+
+                    @using (@Html.BeginForm("StudentRegister", "SRegistration", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        <h2>Students, Register here!</h2>
+
+                        <div class="form-group">
+                            <label for="email">Full Name:</label>
+
+                            @Html.TextBoxFor(x => x.StudentName, htmlAttributes: new { @class = "form-control" })
+
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Student ID:</label>
+
+                            @Html.TextBoxFor(x => x.ID, htmlAttributes: new { @class = "form-control" })
+
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email ID:</label>
+
+                            @Html.TextBoxFor(x => x.Email, htmlAttributes: new { @class = "form-control" })
+
+                        </div>
+
+                        <div class="form-group">
+                            <label for="pwd">Password:</label>
+                            @Html.PasswordFor(x => x.Passwords, htmlAttributes: new { @class = "form-control" })
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Institution:</label>
+
+                            @Html.TextBoxFor(x => x.Institute, htmlAttributes: new { @class = "form-control" })
+
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Department:</label>
+
+                            @Html.TextBoxFor(x => x.Department, htmlAttributes: new { @class = "form-control" })
+
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Semester:</label>
+
+                            @Html.TextBoxFor(x => x.Semester, htmlAttributes: new { @class = "form-control" })
+
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Contact No.:</label>
+
+                            @Html.TextBoxFor(x => x.Contact, htmlAttributes: new { @class = "form-control" })
+
+                        </div>
+
+
+
+                        @*<div class="form-group">
+                            <label for="pwd">Image:</label>
+                            <input type="file" class="form-control btn btn-default" id=" imageFile" name="imageFile" />
+                        </div>*@
+
+
+                        <input type="submit" value="Register" class="btn btn-success btn-block" />
+
+                    }
+                </div>
+
+            </div>
+
+            <div class=" col-lg-4 col-md-4 col-sm-4 col-xs-4">
+
+            </div>
+
+        </div>
+
+
+
+
+
+
+
+    </div>
+</body>
+</html>

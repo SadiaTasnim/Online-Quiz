@@ -1,0 +1,97 @@
+﻿
+@{
+    ViewBag.Title = "ExamStudent";
+    //Layout = "~/Views/Shared/_Layout2studentprofile.cshtml";
+}
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+
+<h2>ExamStudent</h2>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        LoadQuestion();
+        //$("#btnNext").click(function () {
+        //});
+    });
+
+    function SaveStudentAnswer() {
+        var answerText = "";
+        $.each($("#tblQuestionOption tr").find("td:eq(0) input[type=radio]:checked"),
+            function () {
+                answerText = $(this).val();
+                console.log("SaveStudentAnswer ", answerText)
+
+            });
+        var StudentAnswer = { QuestionID: $("#txtQuestionId").val(), AnswerText: answerText }
+
+        $.ajax({
+            async: true,
+            type: 'GET',
+            dataType: 'JSON',
+            contentType: 'application/json; charset= utf-8',
+            data: StudentAnswer,
+            url: '/Quiz/SaveStudentAnswer',
+            success: function (data) {
+                if (data.success === true) {
+                    alert(data.message);
+                    window.location.href = "/Quiz/GetFinalResult";
+                }
+            },
+            error: function (data) {
+                alert(data);
+            }
+
+
+        });
+    }
+
+    function LoadQuestion() {
+        var answerText = "";
+        $.each($("#tblQuestionOption tr").find("td:eq(0) input[type=radio]:checked"),
+            function () {
+                answerText = $(this).val();
+                console.log("LoadQuestion ", answerText)
+            });
+        var StudentAnswer = { QuestionID: $("#txtQuestionId").val(), AnswerText: answerText }
+
+        $.ajax({
+            async: true,
+            type: 'GET',
+            dataType: 'HTML',
+            contentType: 'application/json; charset= utf-8',
+            url: '/Quiz/UserQuestionAnswer',
+            data: StudentAnswer,
+            success: function (data) {
+                $("#divQuestionOption").html(data);
+
+            },
+            error: function (data) {
+                alert(data);
+            }
+
+
+        });
+    }
+
+
+
+</script>
+
+
+<script type="text/javascript">
+
+    //Disable Back Button In All Browsers.
+    function DisableBackButtonAllBrowsers() {
+        window.history.forward()
+    };
+    DisableBackButtonAllBrowsers();
+    window.onload = DisableBackButtonAllBrowsers;
+    window.onpageshow = function (evts) { if (evts.persisted) DisableBackButtonAllBrowsers(); };
+    window.onunload = function () { void (0) };
+</script>
+
+<div id="divQuestionOption">
+
+</div>
+

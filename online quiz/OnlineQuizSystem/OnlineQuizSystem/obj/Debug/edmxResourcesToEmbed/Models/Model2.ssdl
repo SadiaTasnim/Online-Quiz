@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ONLINEQUIZModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="CategoryId" />
+    </Key>
+    <Property Name="CategoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CategoryName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="CategoryTeacher" Type="int" />
+  </EntityType>
+  <EntityType Name="FriendListForStudnet">
+    <Key>
+      <PropertyRef Name="FID" />
+    </Key>
+    <Property Name="FID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="studentid" Type="int" />
+    <Property Name="teacherid" Type="int" />
+    <Property Name="timedate" Type="datetime" />
+    <Property Name="friendlist" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Question">
+    <Key>
+      <PropertyRef Name="QuestionID" />
+    </Key>
+    <Property Name="QuestionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Question_Text" Type="varchar(max)" Nullable="false" />
+    <Property Name="OptionA" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="OptionB" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="OptionC" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="OptionD" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="CorrectOption" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="quesCategoryTeacher" Type="int" />
+  </EntityType>
+  <EntityType Name="SetQuiz">
+    <Key>
+      <PropertyRef Name="ExamId" />
+    </Key>
+    <Property Name="ExamId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ExamName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="ExamDate" Type="datetime" />
+    <Property Name="Examinee" Type="int" />
+    <Property Name="Marks" Type="int" />
+  </EntityType>
+  <EntityType Name="Student">
+    <Key>
+      <PropertyRef Name="StudentID" />
+    </Key>
+    <Property Name="StudentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StudentName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Passwords" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="StudentImage" Type="varchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Teacher">
+    <Key>
+      <PropertyRef Name="TeacherID" />
+    </Key>
+    <Property Name="TeacherID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TeacherName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Passwords" Type="varchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__Category__Catego__1ED998B2">
+    <End Role="Teacher" Type="Self.Teacher" Multiplicity="0..1" />
+    <End Role="Category" Type="Self.Category" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Teacher">
+        <PropertyRef Name="TeacherID" />
+      </Principal>
+      <Dependent Role="Category">
+        <PropertyRef Name="CategoryTeacher" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__FriendLis__stude__2A4B4B5E">
+    <End Role="Student" Type="Self.Student" Multiplicity="0..1" />
+    <End Role="FriendListForStudnet" Type="Self.FriendListForStudnet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="StudentID" />
+      </Principal>
+      <Dependent Role="FriendListForStudnet">
+        <PropertyRef Name="studentid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__FriendLis__teach__2B3F6F97">
+    <End Role="Teacher" Type="Self.Teacher" Multiplicity="0..1" />
+    <End Role="FriendListForStudnet" Type="Self.FriendListForStudnet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Teacher">
+        <PropertyRef Name="TeacherID" />
+      </Principal>
+      <Dependent Role="FriendListForStudnet">
+        <PropertyRef Name="teacherid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Question__quesCa__182C9B23">
+    <End Role="Teacher" Type="Self.Teacher" Multiplicity="0..1" />
+    <End Role="Question" Type="Self.Question" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Teacher">
+        <PropertyRef Name="TeacherID" />
+      </Principal>
+      <Dependent Role="Question">
+        <PropertyRef Name="quesCategoryTeacher" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__SetQuiz__Examine__1B0907CE">
+    <End Role="Student" Type="Self.Student" Multiplicity="0..1" />
+    <End Role="SetQuiz" Type="Self.SetQuiz" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="StudentID" />
+      </Principal>
+      <Dependent Role="SetQuiz">
+        <PropertyRef Name="Examinee" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ONLINEQUIZModelStoreContainer">
+    <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FriendListForStudnet" EntityType="Self.FriendListForStudnet" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Question" EntityType="Self.Question" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SetQuiz" EntityType="Self.SetQuiz" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Teacher" EntityType="Self.Teacher" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Category__Catego__1ED998B2" Association="Self.FK__Category__Catego__1ED998B2">
+      <End Role="Teacher" EntitySet="Teacher" />
+      <End Role="Category" EntitySet="Category" />
+    </AssociationSet>
+    <AssociationSet Name="FK__FriendLis__stude__2A4B4B5E" Association="Self.FK__FriendLis__stude__2A4B4B5E">
+      <End Role="Student" EntitySet="Student" />
+      <End Role="FriendListForStudnet" EntitySet="FriendListForStudnet" />
+    </AssociationSet>
+    <AssociationSet Name="FK__FriendLis__teach__2B3F6F97" Association="Self.FK__FriendLis__teach__2B3F6F97">
+      <End Role="Teacher" EntitySet="Teacher" />
+      <End Role="FriendListForStudnet" EntitySet="FriendListForStudnet" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Question__quesCa__182C9B23" Association="Self.FK__Question__quesCa__182C9B23">
+      <End Role="Teacher" EntitySet="Teacher" />
+      <End Role="Question" EntitySet="Question" />
+    </AssociationSet>
+    <AssociationSet Name="FK__SetQuiz__Examine__1B0907CE" Association="Self.FK__SetQuiz__Examine__1B0907CE">
+      <End Role="Student" EntitySet="Student" />
+      <End Role="SetQuiz" EntitySet="SetQuiz" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,21 @@
+﻿@model OnlineQuizSystem.ViewModel.QuizCategoryViewModel
+@{
+    ViewBag.Title = "QuizStudent";
+    Layout = "~/Views/Shared/_Layout2studentprofile.cshtml";
+}
+
+<h2>QuizStudent</h2>
+@using (Html.BeginForm("QuizStudent", "Quiz", FormMethod.Post))
+{
+    @Html.ValidationSummary(excludePropertyErrors: true, message: null, htmlAttributes: new { @class = "text-danger" })
+<div class="container-fluid">
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.CategoryId)
+        @Html.DropDownListFor(model => model.CategoryId, Model.ListofCategory, new { @class = "form-control" })
+    </div>
+    <input type="submit" name="Submit" value="Submit" class="btn btn-primary" />
+</div>
+
+}
+

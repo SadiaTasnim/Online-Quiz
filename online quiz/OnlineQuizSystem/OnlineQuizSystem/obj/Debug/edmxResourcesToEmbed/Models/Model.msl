@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ONLINEQUIZModelStoreContainer" CdmEntityContainer="ONLINEQUIZEntities8">
+    <EntitySetMapping Name="Answers">
+      <EntityTypeMapping TypeName="ONLINEQUIZModel.Answer">
+        <MappingFragment StoreEntitySet="Answers">
+          <ScalarProperty Name="AnswerID" ColumnName="AnswerID" />
+          <ScalarProperty Name="AnsQuesId" ColumnName="AnsQuesId" />
+          <ScalarProperty Name="AnswerText" ColumnName="AnswerText" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Categories">
+      <EntityTypeMapping TypeName="ONLINEQUIZModel.Category">
+        <MappingFragment StoreEntitySet="Category">
+          <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+          <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+          <ScalarProperty Name="CategoryTeacher" ColumnName="CategoryTeacher" />
+          <ScalarProperty Name="available" ColumnName="available" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ExamStudents">
+      <EntityTypeMapping TypeName="ONLINEQUIZModel.ExamStudent">
+        <MappingFragment StoreEntitySet="ExamStudent">
+          <ScalarProperty Name="ExamineeID" ColumnName="ExamineeID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="StuCategoryId" ColumnName="StuCategoryId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FriendListForStudnets">
+      <EntityTypeMapping TypeName="ONLINEQUIZModel.FriendListForStudnet">
+        <MappingFragment StoreEntitySet="FriendListForStudnet">
+          <ScalarProperty Name="FID" ColumnName="FID" />
+          <ScalarProperty Name="studentid" ColumnName="studentid" />
+          <ScalarProperty Name="teacherid" ColumnName="teacherid" />
+          <ScalarProperty Name="timedate" ColumnName="timedate" />
+          <ScalarProperty Name="friendlist" ColumnName="friendlist" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Options">
+      <EntityTypeMapping TypeName="ONLINEQUIZModel.Option">
+        <MappingFragment StoreEntitySet="Options">
+          <ScalarProperty Name="OptionID" ColumnName="OptionID" />
+          <ScalarProperty Name="OptQuesId" ColumnName="OptQuesId" />
+          <ScalarProperty Name="OptionName" ColumnName="OptionName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Questions">
+      <EntityTypeMapping TypeName="ONLINEQUIZModel.Question">
+        <MappingFragment StoreEntitySet="Question">
+          <ScalarProperty Name="QuestionID" ColumnName="QuestionID" />
+          <ScalarProperty Name="QuesCategoryId" ColumnName="QuesCategoryId" />
+          <ScalarProperty Name="Question_Text" ColumnName="Question_Text" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Results">
+      <EntityTypeMapping TypeName="ONLINEQUIZModel.Result">
+        <MappingFragment StoreEntitySet="Results">
+          <ScalarProperty Name="ResultID" ColumnName="ResultID" />
+          <ScalarProperty Name="ResStudent" ColumnName="ResStudent" />
+          <ScalarProperty Name="ResQuesId" ColumnName="ResQuesId" />
+          <ScalarProperty Name="AnswerText" ColumnName="AnswerText" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Resultshows">
+      <EntityTypeMapping TypeName="ONLINEQUIZModel.Resultshow">
+        <MappingFragment StoreEntitySet="Resultshow">
+          <ScalarProperty Name="resultshowID" ColumnName="resultshowID" />
+          <ScalarProperty Name="studentID" ColumnName="studentID" />
+          <ScalarProperty Name="QuesCategoryId" ColumnName="QuesCategoryId" />
+          <ScalarProperty Name="totalmarks" ColumnName="totalmarks" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Students">
+      <EntityTypeMapping TypeName="ONLINEQUIZModel.Student">
+        <MappingFragment StoreEntitySet="Student">
+          <ScalarProperty Name="StudentID" ColumnName="StudentID" />
+          <ScalarProperty Name="StudentName" ColumnName="StudentName" />
+          <ScalarProperty Name="Passwords" ColumnName="Passwords" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Institute" ColumnName="Institute" />
+          <ScalarProperty Name="Department" ColumnName="Department" />
+          <ScalarProperty Name="Semester" ColumnName="Semester" />
+          <ScalarProperty Name="Contact" ColumnName="Contact" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Teachers">
+      <EntityTypeMapping TypeName="ONLINEQUIZModel.Teacher">
+        <MappingFragment StoreEntitySet="Teacher">
+          <ScalarProperty Name="TeacherID" ColumnName="TeacherID" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="TeacherName" ColumnName="TeacherName" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Passwords" ColumnName="Passwords" />
+          <ScalarProperty Name="Institute" ColumnName="Institute" />
+          <ScalarProperty Name="Designation" ColumnName="Designation" />
+          <ScalarProperty Name="Contact" ColumnName="Contact" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

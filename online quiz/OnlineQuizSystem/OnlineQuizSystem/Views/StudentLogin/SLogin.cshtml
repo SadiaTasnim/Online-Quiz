@@ -1,0 +1,164 @@
+﻿
+@model OnlineQuizSystem.Models.Student
+
+@{
+    ViewBag.Title = "SLogin";
+}
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        background-image: url('../../Content/image/login.png');
+        background-size: cover;
+        font-family: sans-serif;
+    }
+
+    .title {
+        text-align: center;
+        padding: 50px 0 20px;
+    }
+
+        .title h1 {
+            margin: 0;
+            padding: 0;
+            color: #f2e4f7;
+            text-transform: uppercase;
+            font-size: 36px;
+        }
+
+    .container-fluid {
+        width: 90%;
+        height: 500px;
+        background: #f2e4f7;
+        margin: 0 auto;
+        border: 2px solid #745775;
+        box-shadow: 0 15px 40px rgba(0,0,0,.5);
+    }
+
+        .container-fluid .left {
+            float: left;
+            width: 40%;
+            height: 390px;
+            background-image: url('../../Content/image/student.jpg');
+            background-size: cover;
+            box-sizing: border-box;
+        }
+
+        .container-fluid .right {
+            float: right;
+            width: 60%;
+            height: 390px;
+            box-sizing: border-box;
+        }
+
+    .formBox {
+        width: 100%;
+        padding: 80px 40px;
+        box-sizing: border-box;
+        height: 400px;
+        background: #f2e4f7;;
+    }
+</style>
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Login form</title>
+
+</head>
+<body>
+    <div class="title">
+        <h1>Login as Student</h1>
+        <h4>Please use your account details to log in</h4>
+        @if (ViewBag.msg != null)
+        {
+            <div class="alert alert-danger">
+                <strong>Error!</strong> @ViewBag.msg
+            </div>
+        }
+    </div>
+
+    <div class="container-fluid">
+        <div class="left"></div>
+        <div class="right">
+            <div class="formBox">
+
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-envelope"></span>
+                                </span>
+                                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ID, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-user"></span>
+                                </span>
+                                @Html.EditorFor(model => model.ID, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                            @Html.ValidationMessageFor(model => model.ID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Passwords, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-pencil"></span>
+                                </span>
+                                @Html.PasswordFor(model => model.Passwords, new { @class = "form-control" })
+                            </div>
+                            @Html.ValidationMessageFor(model => model.Passwords, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            
+                            <input type="submit" value="Log In" class="btn btn-default"/>
+                        </div>
+                    </div>
+                </div>
+                }
+                <div>
+                    </br>
+                    </br>
+                    @Html.ActionLink("Don't have an account? Register here", "StudentRegister", "SRegistration")
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+</html>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

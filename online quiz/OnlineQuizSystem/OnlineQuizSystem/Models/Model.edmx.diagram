@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a4af88252c814f42acb179e6d3741135" Name="Diagram1">
+        <EntityTypeShape EntityType="ONLINEQUIZModel.Answer" Width="1.5" PointX="7.5" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ONLINEQUIZModel.Category" Width="1.5" PointX="3" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ONLINEQUIZModel.ExamStudent" Width="1.5" PointX="5.25" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ONLINEQUIZModel.FriendListForStudnet" Width="1.5" PointX="3.625" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ONLINEQUIZModel.Option" Width="1.5" PointX="7.5" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ONLINEQUIZModel.Question" Width="1.5" PointX="5.25" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ONLINEQUIZModel.Result" Width="1.5" PointX="10.5" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ONLINEQUIZModel.Resultshow" Width="1.5" PointX="8.25" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ONLINEQUIZModel.Student" Width="1.5" PointX="0.75" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ONLINEQUIZModel.Teacher" Width="1.5" PointX="0.75" PointY="8" IsExpanded="true" />
+        <AssociationConnector Association="ONLINEQUIZModel.FK__Answers__AnsQues__25869641" ManuallyRouted="false" />
+        <AssociationConnector Association="ONLINEQUIZModel.FK__Category__Catego__1920BF5C" ManuallyRouted="false" />
+        <AssociationConnector Association="ONLINEQUIZModel.FK__ExamStude__StuCa__1CF15040" ManuallyRouted="false" />
+        <AssociationConnector Association="ONLINEQUIZModel.FK__Question__QuesCa__1FCDBCEB" ManuallyRouted="false" />
+        <AssociationConnector Association="ONLINEQUIZModel.FK__Resultsho__QuesC__2D27B809" ManuallyRouted="false" />
+        <AssociationConnector Association="ONLINEQUIZModel.FK__FriendLis__stude__145C0A3F" ManuallyRouted="false" />
+        <AssociationConnector Association="ONLINEQUIZModel.FK__FriendLis__teach__15502E78" ManuallyRouted="false" />
+        <AssociationConnector Association="ONLINEQUIZModel.FK__Options__OptQues__22AA2996" ManuallyRouted="false" />
+        <AssociationConnector Association="ONLINEQUIZModel.FK__Results__ResQues__29572725" ManuallyRouted="false" />
+        <AssociationConnector Association="ONLINEQUIZModel.FK__Results__ResStud__286302EC" ManuallyRouted="false" />
+        <AssociationConnector Association="ONLINEQUIZModel.FK__Resultsho__stude__2C3393D0" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

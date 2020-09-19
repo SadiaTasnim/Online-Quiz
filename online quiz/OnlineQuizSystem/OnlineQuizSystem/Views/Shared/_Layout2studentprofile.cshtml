@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width" />
+    <title>DashBoard</title>
+</head>
+<body>
+    <div class="row">
+        <div class="col-lg-2 col-md-2 col-sm-2 col-sm-2" style="height:800px;border:1px solid gray; background-color:cadetblue">
+            <div style="width:100%" class="container list-group">
+
+                @*///for linking the sidebar*@
+
+                <div class="list-group-item" style="width:180px;position:relative;left:15px; top:10px">
+                    <span class="glyphicon glyphicon-user"></span>
+                    @Html.ActionLink("Profile", "StudentProfile", "StudentProfile")
+                </div>
+
+                <div class="list-group-item" style="width:180px;position:relative;left:15px; top:10px">
+                    <span class="glyphicon glyphicon-search"></span>
+                    @Html.ActionLink("Find Teachers", "TeacherListForStudent", "Request")
+                </div>
+
+                <div class="list-group-item" style="width:180px;position:relative;left:15px; top:10px">
+                    <span class="glyphicon glyphicon-plus-sign"></span>
+                    @Html.ActionLink("Request Sent", "requestsentforstudent", "Request")
+                </div>
+
+                <div class="list-group-item" style="width:180px;position:relative;left:15px; top:10px">
+                    <span class="glyphicon glyphicon-list"></span>
+                    @Html.ActionLink("Teacher List", "FriendListForStudent", "Request")
+                </div>
+
+                <div class="list-group-item" style="width:180px;position:relative;left:15px; top:10px">
+                    <span class="glyphicon glyphicon-book"></span>
+                    @Html.ActionLink("Give an exam", "QuizStudent", "Quiz")
+                </div>
+                <div class="list-group-item" style="width: 180px;position: relative;left: 15px; top:10px">
+
+                    <span class="glyphicon glyphicon-education"></span>
+                    @Html.ActionLink("Reports", "SendResults", "Report")
+                </div>
+
+              
+
+                <div class="list-group-item" style="width:180px;position:relative;left:15px; top:10px">
+                    <span class="glyphicon glyphicon-log-out"></span>
+                    @Html.ActionLink("Logout", "Logout", "LogOut")
+                </div>
+
+
+
+            </div>
+
+
+
+        </div>
+        <div class="col-lg-10 col-md-10 col-sm-10 col-sm-10" style="height:800px;border:1px solid gray">
+            @RenderBody()
+
+        </div>
+
+
+
+    </div>
+
+</body>
+</html>

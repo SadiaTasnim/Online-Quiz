@@ -1,0 +1,55 @@
+﻿
+
+@{
+    ViewBag.Title = "showquestions";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+
+<div style="overflow:scroll">
+    <table class="table table-responsive">
+        <thead>
+            <tr>
+                <th>Ques No</th>
+                <th>Question</th>
+                <th>Answer</th>
+
+            </tr>
+
+        </thead>
+
+
+
+        <tbody>
+
+
+
+
+            @{int i = 1;}
+
+            @foreach (var item in ViewData["jointables"] as IEnumerable<OnlineQuizSystem.ViewModel.anstextViewModel>)
+            {
+
+
+                <tr>
+
+                    <td>
+                        <span>@(i++)</span>
+                    </td>
+
+
+
+                    <td>@item.questionText</td>
+                    <td>@item.answerText</td>
+
+
+
+                </tr>
+
+
+            }
+        </tbody>
+
+
+    </table>
+</div>

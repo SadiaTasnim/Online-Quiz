@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ONLINEQUIZModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Question">
+    <Key>
+      <PropertyRef Name="QuestionID" />
+    </Key>
+    <Property Name="QuestionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Question_Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="OptionA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="OptionB" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="OptionC" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="OptionD" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CorrectOption" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="quesCategoryTeacher" Type="Int32" />
+    <NavigationProperty Name="Category" Relationship="ONLINEQUIZModel.FK__Question__quesCa__2E1BDC42" FromRole="Question" ToRole="Category" />
+  </EntityType>
+  <EntityType Name="SetQuiz">
+    <Key>
+      <PropertyRef Name="ExamId" />
+    </Key>
+    <Property Name="ExamId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ExamName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ExamDate" Type="DateTime" Precision="3" />
+    <Property Name="Examinee" Type="Int32" />
+    <Property Name="Marks" Type="Int32" />
+    <NavigationProperty Name="Student" Relationship="Self.FK__SetQuiz__Examine__1A14E395" FromRole="SetQuiz" ToRole="Student" />
+  </EntityType>
+  <EntityType Name="Student">
+    <Key>
+      <PropertyRef Name="StudentID" />
+    </Key>
+    <Property Name="StudentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StudentName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Passwords" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="StudentImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="SetQuizs" Relationship="Self.FK__SetQuiz__Examine__1A14E395" FromRole="Student" ToRole="SetQuiz" />
+  </EntityType>
+  <EntityType Name="Teacher">
+    <Key>
+      <PropertyRef Name="TeacherID" />
+    </Key>
+    <Property Name="TeacherID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TeacherName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Passwords" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Categories" Relationship="ONLINEQUIZModel.FK__Category__Catego__276EDEB3" FromRole="Teacher" ToRole="Category" />
+  </EntityType>
+  <Association Name="FK__SetQuiz__Examine__1A14E395">
+    <End Role="Student" Type="Self.Student" Multiplicity="0..1" />
+    <End Role="SetQuiz" Type="Self.SetQuiz" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="StudentID" />
+      </Principal>
+      <Dependent Role="SetQuiz">
+        <PropertyRef Name="Examinee" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ONLINEQUIZEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Questions" EntityType="Self.Question" />
+    <EntitySet Name="SetQuizs" EntityType="Self.SetQuiz" />
+    <EntitySet Name="Students" EntityType="Self.Student" />
+    <EntitySet Name="Teachers" EntityType="Self.Teacher" />
+    <AssociationSet Name="FK__SetQuiz__Examine__1A14E395" Association="Self.FK__SetQuiz__Examine__1A14E395">
+      <End Role="Student" EntitySet="Students" />
+      <End Role="SetQuiz" EntitySet="SetQuizs" />
+    </AssociationSet>
+    <EntitySet Name="Categories" EntityType="ONLINEQUIZModel.Category" />
+    <AssociationSet Name="FK__Category__Catego__276EDEB3" Association="ONLINEQUIZModel.FK__Category__Catego__276EDEB3">
+      <End Role="Teacher" EntitySet="Teachers" />
+      <End Role="Category" EntitySet="Categories" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Question__quesCa__2E1BDC42" Association="ONLINEQUIZModel.FK__Question__quesCa__2E1BDC42">
+      <End Role="Category" EntitySet="Categories" />
+      <End Role="Question" EntitySet="Questions" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="CategoryId" />
+    </Key>
+    <Property Name="CategoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CategoryName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CategoryTeacher" Type="Int32" />
+    <NavigationProperty Name="Teacher" Relationship="ONLINEQUIZModel.FK__Category__Catego__276EDEB3" FromRole="Category" ToRole="Teacher" />
+    <NavigationProperty Name="Questions" Relationship="ONLINEQUIZModel.FK__Question__quesCa__2E1BDC42" FromRole="Category" ToRole="Question" />
+  </EntityType>
+  <Association Name="FK__Category__Catego__276EDEB3">
+    <End Type="ONLINEQUIZModel.Teacher" Role="Teacher" Multiplicity="0..1" />
+    <End Type="ONLINEQUIZModel.Category" Role="Category" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Teacher">
+        <PropertyRef Name="TeacherID" />
+      </Principal>
+      <Dependent Role="Category">
+        <PropertyRef Name="CategoryTeacher" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Question__quesCa__2E1BDC42">
+    <End Type="ONLINEQUIZModel.Category" Role="Category" Multiplicity="0..1" />
+    <End Type="ONLINEQUIZModel.Question" Role="Question" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="CategoryId" />
+      </Principal>
+      <Dependent Role="Question">
+        <PropertyRef Name="quesCategoryTeacher" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

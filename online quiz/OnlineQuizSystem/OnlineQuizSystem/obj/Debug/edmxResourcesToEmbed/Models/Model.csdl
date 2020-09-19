@@ -1,0 +1,309 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ONLINEQUIZModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Answer">
+    <Key>
+      <PropertyRef Name="AnswerID" />
+    </Key>
+    <Property Name="AnswerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AnsQuesId" Type="Int32" />
+    <Property Name="AnswerText" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Question" Relationship="Self.FK__Answers__AnsQues__25869641" FromRole="Answers" ToRole="Question" />
+  </EntityType>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="CategoryId" />
+    </Key>
+    <Property Name="CategoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CategoryTeacher" Type="Int32" />
+    <Property Name="available" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Teacher" Relationship="Self.FK__Category__Catego__1920BF5C" FromRole="Category" ToRole="Teacher" />
+    <NavigationProperty Name="ExamStudents" Relationship="Self.FK__ExamStude__StuCa__1CF15040" FromRole="Category" ToRole="ExamStudent" />
+    <NavigationProperty Name="Questions" Relationship="Self.FK__Question__QuesCa__1FCDBCEB" FromRole="Category" ToRole="Question" />
+    <NavigationProperty Name="Resultshows" Relationship="Self.FK__Resultsho__QuesC__2D27B809" FromRole="Category" ToRole="Resultshow" />
+  </EntityType>
+  <EntityType Name="ExamStudent">
+    <Key>
+      <PropertyRef Name="ExamineeID" />
+    </Key>
+    <Property Name="ExamineeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="StuCategoryId" Type="Int32" />
+    <NavigationProperty Name="Category" Relationship="Self.FK__ExamStude__StuCa__1CF15040" FromRole="ExamStudent" ToRole="Category" />
+  </EntityType>
+  <EntityType Name="FriendListForStudnet">
+    <Key>
+      <PropertyRef Name="FID" />
+    </Key>
+    <Property Name="FID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="studentid" Type="Int32" />
+    <Property Name="teacherid" Type="Int32" />
+    <Property Name="timedate" Type="DateTime" Precision="3" />
+    <Property Name="friendlist" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Student" Relationship="Self.FK__FriendLis__stude__145C0A3F" FromRole="FriendListForStudnet" ToRole="Student" />
+    <NavigationProperty Name="Teacher" Relationship="Self.FK__FriendLis__teach__15502E78" FromRole="FriendListForStudnet" ToRole="Teacher" />
+  </EntityType>
+  <EntityType Name="Option">
+    <Key>
+      <PropertyRef Name="OptionID" />
+    </Key>
+    <Property Name="OptionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OptQuesId" Type="Int32" />
+    <Property Name="OptionName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Question" Relationship="Self.FK__Options__OptQues__22AA2996" FromRole="Options" ToRole="Question" />
+  </EntityType>
+  <EntityType Name="Question">
+    <Key>
+      <PropertyRef Name="QuestionID" />
+    </Key>
+    <Property Name="QuestionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="QuesCategoryId" Type="Int32" />
+    <Property Name="Question_Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Answers" Relationship="Self.FK__Answers__AnsQues__25869641" FromRole="Question" ToRole="Answers" />
+    <NavigationProperty Name="Category" Relationship="Self.FK__Question__QuesCa__1FCDBCEB" FromRole="Question" ToRole="Category" />
+    <NavigationProperty Name="Options" Relationship="Self.FK__Options__OptQues__22AA2996" FromRole="Question" ToRole="Options" />
+    <NavigationProperty Name="Results" Relationship="Self.FK__Results__ResQues__29572725" FromRole="Question" ToRole="Results" />
+  </EntityType>
+  <EntityType Name="Result">
+    <Key>
+      <PropertyRef Name="ResultID" />
+    </Key>
+    <Property Name="ResultID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ResStudent" Type="Int32" />
+    <Property Name="ResQuesId" Type="Int32" />
+    <Property Name="AnswerText" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Question" Relationship="Self.FK__Results__ResQues__29572725" FromRole="Results" ToRole="Question" />
+    <NavigationProperty Name="Student" Relationship="Self.FK__Results__ResStud__286302EC" FromRole="Results" ToRole="Student" />
+  </EntityType>
+  <EntityType Name="Resultshow">
+    <Key>
+      <PropertyRef Name="resultshowID" />
+    </Key>
+    <Property Name="resultshowID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="studentID" Type="Int32" />
+    <Property Name="QuesCategoryId" Type="Int32" />
+    <Property Name="totalmarks" Type="Int32" />
+    <NavigationProperty Name="Category" Relationship="Self.FK__Resultsho__QuesC__2D27B809" FromRole="Resultshow" ToRole="Category" />
+    <NavigationProperty Name="Student" Relationship="Self.FK__Resultsho__stude__2C3393D0" FromRole="Resultshow" ToRole="Student" />
+  </EntityType>
+  <EntityType Name="Student">
+    <Key>
+      <PropertyRef Name="StudentID" />
+    </Key>
+    <Property Name="StudentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StudentName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Passwords" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Institute" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Department" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Semester" Type="String" />
+    <Property Name="Contact" Type="Int32" />
+    <Property Name="ID" Type="String" />
+    <NavigationProperty Name="FriendListForStudnets" Relationship="Self.FK__FriendLis__stude__145C0A3F" FromRole="Student" ToRole="FriendListForStudnet" />
+    <NavigationProperty Name="Results" Relationship="Self.FK__Results__ResStud__286302EC" FromRole="Student" ToRole="Results" />
+    <NavigationProperty Name="Resultshows" Relationship="Self.FK__Resultsho__stude__2C3393D0" FromRole="Student" ToRole="Resultshow" />
+  </EntityType>
+  <EntityType Name="Teacher">
+    <Key>
+      <PropertyRef Name="TeacherID" />
+    </Key>
+    <Property Name="TeacherID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FullName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="TeacherName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Passwords" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Institute" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Designation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Contact" Type="Int32" />
+    <NavigationProperty Name="Categories" Relationship="Self.FK__Category__Catego__1920BF5C" FromRole="Teacher" ToRole="Category" />
+    <NavigationProperty Name="FriendListForStudnets" Relationship="Self.FK__FriendLis__teach__15502E78" FromRole="Teacher" ToRole="FriendListForStudnet" />
+  </EntityType>
+  <Association Name="FK__Answers__AnsQues__25869641">
+    <End Role="Question" Type="Self.Question" Multiplicity="0..1" />
+    <End Role="Answers" Type="Self.Answer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Question">
+        <PropertyRef Name="QuestionID" />
+      </Principal>
+      <Dependent Role="Answers">
+        <PropertyRef Name="AnsQuesId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Category__Catego__1920BF5C">
+    <End Role="Teacher" Type="Self.Teacher" Multiplicity="0..1" />
+    <End Role="Category" Type="Self.Category" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Teacher">
+        <PropertyRef Name="TeacherID" />
+      </Principal>
+      <Dependent Role="Category">
+        <PropertyRef Name="CategoryTeacher" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ExamStude__StuCa__1CF15040">
+    <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+    <End Role="ExamStudent" Type="Self.ExamStudent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="CategoryId" />
+      </Principal>
+      <Dependent Role="ExamStudent">
+        <PropertyRef Name="StuCategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Question__QuesCa__1FCDBCEB">
+    <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+    <End Role="Question" Type="Self.Question" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="CategoryId" />
+      </Principal>
+      <Dependent Role="Question">
+        <PropertyRef Name="QuesCategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Resultsho__QuesC__2D27B809">
+    <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+    <End Role="Resultshow" Type="Self.Resultshow" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="CategoryId" />
+      </Principal>
+      <Dependent Role="Resultshow">
+        <PropertyRef Name="QuesCategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__FriendLis__stude__145C0A3F">
+    <End Role="Student" Type="Self.Student" Multiplicity="0..1" />
+    <End Role="FriendListForStudnet" Type="Self.FriendListForStudnet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="StudentID" />
+      </Principal>
+      <Dependent Role="FriendListForStudnet">
+        <PropertyRef Name="studentid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__FriendLis__teach__15502E78">
+    <End Role="Teacher" Type="Self.Teacher" Multiplicity="0..1" />
+    <End Role="FriendListForStudnet" Type="Self.FriendListForStudnet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Teacher">
+        <PropertyRef Name="TeacherID" />
+      </Principal>
+      <Dependent Role="FriendListForStudnet">
+        <PropertyRef Name="teacherid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Options__OptQues__22AA2996">
+    <End Role="Question" Type="Self.Question" Multiplicity="0..1" />
+    <End Role="Options" Type="Self.Option" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Question">
+        <PropertyRef Name="QuestionID" />
+      </Principal>
+      <Dependent Role="Options">
+        <PropertyRef Name="OptQuesId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Results__ResQues__29572725">
+    <End Role="Question" Type="Self.Question" Multiplicity="0..1" />
+    <End Role="Results" Type="Self.Result" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Question">
+        <PropertyRef Name="QuestionID" />
+      </Principal>
+      <Dependent Role="Results">
+        <PropertyRef Name="ResQuesId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Results__ResStud__286302EC">
+    <End Role="Student" Type="Self.Student" Multiplicity="0..1" />
+    <End Role="Results" Type="Self.Result" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="StudentID" />
+      </Principal>
+      <Dependent Role="Results">
+        <PropertyRef Name="ResStudent" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Resultsho__stude__2C3393D0">
+    <End Role="Student" Type="Self.Student" Multiplicity="0..1" />
+    <End Role="Resultshow" Type="Self.Resultshow" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="StudentID" />
+      </Principal>
+      <Dependent Role="Resultshow">
+        <PropertyRef Name="studentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ONLINEQUIZEntities8" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Answers" EntityType="Self.Answer" />
+    <EntitySet Name="Categories" EntityType="Self.Category" />
+    <EntitySet Name="ExamStudents" EntityType="Self.ExamStudent" />
+    <EntitySet Name="FriendListForStudnets" EntityType="Self.FriendListForStudnet" />
+    <EntitySet Name="Options" EntityType="Self.Option" />
+    <EntitySet Name="Questions" EntityType="Self.Question" />
+    <EntitySet Name="Results" EntityType="Self.Result" />
+    <EntitySet Name="Resultshows" EntityType="Self.Resultshow" />
+    <EntitySet Name="Students" EntityType="Self.Student" />
+    <EntitySet Name="Teachers" EntityType="Self.Teacher" />
+    <AssociationSet Name="FK__Answers__AnsQues__25869641" Association="Self.FK__Answers__AnsQues__25869641">
+      <End Role="Question" EntitySet="Questions" />
+      <End Role="Answers" EntitySet="Answers" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Category__Catego__1920BF5C" Association="Self.FK__Category__Catego__1920BF5C">
+      <End Role="Teacher" EntitySet="Teachers" />
+      <End Role="Category" EntitySet="Categories" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ExamStude__StuCa__1CF15040" Association="Self.FK__ExamStude__StuCa__1CF15040">
+      <End Role="Category" EntitySet="Categories" />
+      <End Role="ExamStudent" EntitySet="ExamStudents" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Question__QuesCa__1FCDBCEB" Association="Self.FK__Question__QuesCa__1FCDBCEB">
+      <End Role="Category" EntitySet="Categories" />
+      <End Role="Question" EntitySet="Questions" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Resultsho__QuesC__2D27B809" Association="Self.FK__Resultsho__QuesC__2D27B809">
+      <End Role="Category" EntitySet="Categories" />
+      <End Role="Resultshow" EntitySet="Resultshows" />
+    </AssociationSet>
+    <AssociationSet Name="FK__FriendLis__stude__145C0A3F" Association="Self.FK__FriendLis__stude__145C0A3F">
+      <End Role="Student" EntitySet="Students" />
+      <End Role="FriendListForStudnet" EntitySet="FriendListForStudnets" />
+    </AssociationSet>
+    <AssociationSet Name="FK__FriendLis__teach__15502E78" Association="Self.FK__FriendLis__teach__15502E78">
+      <End Role="Teacher" EntitySet="Teachers" />
+      <End Role="FriendListForStudnet" EntitySet="FriendListForStudnets" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Options__OptQues__22AA2996" Association="Self.FK__Options__OptQues__22AA2996">
+      <End Role="Question" EntitySet="Questions" />
+      <End Role="Options" EntitySet="Options" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Results__ResQues__29572725" Association="Self.FK__Results__ResQues__29572725">
+      <End Role="Question" EntitySet="Questions" />
+      <End Role="Results" EntitySet="Results" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Results__ResStud__286302EC" Association="Self.FK__Results__ResStud__286302EC">
+      <End Role="Student" EntitySet="Students" />
+      <End Role="Results" EntitySet="Results" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Resultsho__stude__2C3393D0" Association="Self.FK__Resultsho__stude__2C3393D0">
+      <End Role="Student" EntitySet="Students" />
+      <End Role="Resultshow" EntitySet="Resultshows" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

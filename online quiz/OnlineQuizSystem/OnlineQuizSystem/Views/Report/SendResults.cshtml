@@ -1,0 +1,46 @@
+﻿
+@{
+    ViewBag.Title = "SendResults";
+    Layout = "~/Views/Shared/_Layout2studentprofile.cshtml";
+}
+
+<div style="overflow:scroll">
+    <table class="table table-responsive">
+        <thead>
+            <tr>
+                <th>Subject Name</th>
+
+                <th>Marks</th>
+
+            </tr>
+
+        </thead>
+
+
+
+        <tbody>
+
+            @foreach (var item in ViewData["jointables"] as IEnumerable<OnlineQuizSystem.Models.showsubjectnumberClass>)
+            {
+            <tr>
+
+
+
+                <td>@Html.ActionLink(item.CategoryName.CategoryName, "showsamplequestions", new { id = item.CategoryId.CategoryId})</td>
+
+
+                <td>
+                    @item.marks.totalmarks
+                </td>
+
+
+            </tr>
+            }
+        </tbody>
+
+
+
+
+    </table>
+
+</div>

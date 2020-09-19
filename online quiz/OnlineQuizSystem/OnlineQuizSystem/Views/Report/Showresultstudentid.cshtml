@@ -1,0 +1,54 @@
+﻿@*@model OnlineQuizSystem.Models.Resultshow*@
+@{
+    ViewBag.Title = "Showresultstudentid";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+<div style="overflow:scroll">
+    <table class="table table-responsive">
+        <thead>
+            <tr>
+                <th>Student ID</th>
+                <th>Marks</th>
+            </tr>
+
+        </thead>
+
+
+
+        <tbody>
+            @foreach (var item in ViewData["jointables"] as IEnumerable<OnlineQuizSystem.ViewModel.showsubjectnumberViewModel>)
+            {
+
+
+                <tr>
+
+
+                    <td>
+
+
+                        @Html.ActionLink(item.studentfullID + "", "Studentprofileofstudent", new { id = item.studentid })
+
+
+
+                    </td>
+
+                    @*<td>@item.studentID </td>*@
+
+                    <td>@item.totalmarks </td>
+
+
+                </tr>
+
+            }
+        </tbody>
+
+
+
+
+    </table>
+
+</div>
+
+
+

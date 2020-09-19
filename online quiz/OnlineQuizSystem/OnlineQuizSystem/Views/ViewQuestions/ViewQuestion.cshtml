@@ -1,0 +1,70 @@
+﻿@model OnlineQuizSystem.Models.Category
+
+@{
+    ViewBag.Title = "ViewQuestion";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+
+<div style="overflow:scroll">
+    <table class="table table-responsive">
+        <thead>
+            <tr>
+                <th>Subject Name</th>
+
+            </tr>
+
+        </thead>
+
+
+
+        <tbody>
+            @foreach (var item in ViewData["list"] as List<OnlineQuizSystem.Models.Category>)
+            {
+
+
+                <tr>
+
+
+                    <td>@Html.ActionLink(item.CategoryName, "showquestions", new { id = item.CategoryId })</td>
+
+
+
+
+                    <td>
+
+
+                        @using (Html.BeginForm("makeavailbe", "ViewQuestions", FormMethod.Post))
+                        {
+
+                            <input type="hidden" value="@item.CategoryId" name="cid" />
+                            if (item.available == 0)
+                            {
+                                <button type="submit" value="1" name="available">Make Available</button>
+                            }
+
+                            else
+                            {
+                                <button type="submit" value="0" name="available">Make Unavailable</button>
+                            }
+
+
+                        }
+                    </td>
+
+
+
+
+
+
+                </tr>
+
+            }
+        </tbody>
+
+
+
+
+    </table>
+
+</div>

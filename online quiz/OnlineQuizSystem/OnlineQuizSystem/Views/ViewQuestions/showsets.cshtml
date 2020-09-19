@@ -1,0 +1,39 @@
+﻿@model OnlineQuizSystem.Models.SetQuestion
+
+@{
+    ViewBag.Title = "showsets";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+
+
+    <div style="overflow:scroll">
+        <table class="table table-responsive">
+            <thead>
+                <tr>
+                    <th>SET ID</th>
+
+                </tr>
+
+            </thead>
+
+
+
+            <tbody>
+                @foreach (var item in ViewData["list"] as List<OnlineQuizSystem.Models.SetQuestion>)
+                {
+                <tr>
+
+            
+
+                    <td>@Html.ActionLink(item.SetNumber, "showquestions", new { id = item.SetID })</td>
+
+
+
+                </tr>
+                }
+            </tbody>
+
+
+        </table>
+    </div>

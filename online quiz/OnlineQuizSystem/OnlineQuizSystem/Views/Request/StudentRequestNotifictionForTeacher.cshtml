@@ -1,0 +1,84 @@
+﻿
+@{
+    ViewBag.Title = "StudentRequestNotifictionForTeacherr";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+
+
+<h1 style="text-align:center;background-color:aliceblue">Student request list for teacher</h1>
+
+<h1 style="color:cornflowerblue">@TempData["msg"]</h1>
+
+
+<div style="overflow:scroll">
+    <table class="table table-responsive">
+        <thead>
+            <tr>
+                <th>Student ID</th>
+
+
+                <th>Student Name</th>
+
+                <th>Add</th>
+
+                <th>Delete</th>
+
+            </tr>
+
+        </thead>
+
+
+
+
+        <tbody>
+
+
+            @foreach (var item in ViewData["jointables"] as IEnumerable<OnlineQuizSystem.Models.AcceptStudentRequestClass>)
+            {
+                <tr>
+
+
+
+                    <td> @item.friendrequest.studentid </td>
+
+                    <td>@Html.ActionLink(item.addfriend.StudentName, "Studentprofileforteacher", new { id = item.addfriend.StudentName })</td>
+
+                    <td>
+
+                        @using (Html.BeginForm("StudentRequestNotifictionForTeacheraccept", "Request", FormMethod.Post))
+
+                        {
+                            <input type="hidden" value="@item.friendrequest.studentid" name="sid" />
+                            <span class="glyphicon glyphicon-plus"></span>
+                            <button type="submit" value="1" name="accept">Accept</button>
+                        }
+                    </td>
+
+                    <td>
+                        @using (Html.BeginForm("StudentRequestNotifictionForTeacher", "Request", FormMethod.Post))
+
+                        {
+
+                            <input type="hidden" value="@item.friendrequest.studentid" name="sid" />
+                            <span class="glyphicon glyphicon-trash"></span>
+                            <button type="submit" value="1" name="delete">Delete</button>
+                        }
+                    </td>
+
+
+
+
+
+
+                </tr>
+            }
+
+        </tbody>
+
+
+
+    </table>
+
+</div>
+

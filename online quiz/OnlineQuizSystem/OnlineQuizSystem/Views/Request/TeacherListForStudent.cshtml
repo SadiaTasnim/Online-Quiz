@@ -1,0 +1,64 @@
+﻿
+@model OnlineQuizSystem.Models.Teacher
+
+@{
+    ViewBag.Title = "TeacherListForStudent";
+    Layout = "~/Views/Shared/_Layout2studentprofile.cshtml";
+}
+
+<h1 style="text-align:center;background-color:aliceblue">Teacher List For Student</h1>
+<h1 style="color:cornflowerblue">@TempData["msg"]</h1>
+
+
+
+<div style="overflow:scroll">
+    <table class="table table-responsive">
+        <thead>
+            <tr>
+                <th>Teacher ID</th>
+
+
+                <th>Teacher Name</th>
+
+            </tr>
+
+        </thead>
+
+
+
+        <tbody>
+            @foreach (var item in ViewData["list"] as List<OnlineQuizSystem.Models.Teacher>)
+            {
+            <tr>
+                @using (Html.BeginForm("TeacherListForStudentadd", "Request", FormMethod.Post))
+                {
+                    <input type="hidden" value="@item.TeacherID" name="tid" />
+
+
+                    <td>@item.TeacherID</td>
+
+                    <td>@Html.ActionLink(item.TeacherName, "Teacherprofileforstudent", new { id = item.TeacherName })</td>
+                    
+                    <td><span class="glyphicon glyphicon-plus"></span><button type="submit">Add Teacher</button> </td>
+
+                }
+            </tr>
+            }
+        </tbody>
+
+
+    </table>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+

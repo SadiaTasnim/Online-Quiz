@@ -15,7 +15,6 @@ namespace OnlineQuizSystem.ViewModel
         public int TeacherId { get; set; }
         public int SetID { get; set; }
 
-
         [Display(Name = "Set Number")]
         [Required(ErrorMessage = "Set No. is required.")]
         public string SetNumber { get; set; }
@@ -31,7 +30,6 @@ namespace OnlineQuizSystem.ViewModel
         public string CategoryName { get; set; }
         public string AnswerText { get; set; }
 
-        
         public IEnumerable<SelectListItem> ListofCategory { get; set; }
 
         public IEnumerable<SelectListItem> ListOfSets { get; set; }

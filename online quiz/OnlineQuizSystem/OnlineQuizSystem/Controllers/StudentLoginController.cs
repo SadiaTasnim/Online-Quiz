@@ -25,7 +25,7 @@ namespace OnlineQuizSystem.Controllers
         [HttpPost]
         public ActionResult SLogin(Student s)
         {
-            Student stu = db.Students.Where(x => x.Email == s.Email && x.Passwords == s.Passwords && x.ID==s.ID).SingleOrDefault();
+            Student stu = db.Students.Where(x => x.Email == s.Email && x.Passwords == s.Passwords && x.ID == s.ID).SingleOrDefault();
             if (stu == null)
             {
                 ViewBag.msg = "Invalid Email  or Password";

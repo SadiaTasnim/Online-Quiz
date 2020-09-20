@@ -1,55 +1,108 @@
 ﻿
-
 @{
-    ViewBag.Title = "showquestions";
-    Layout = "~/Views/Shared/_Layout1.cshtml";
+    ViewBag.Title = "SetQuestion";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+
+    //Get Current Logged in User Info Dashboard
+    OnlineQuizSystem.Models.ONLINEQUIZEntities8 db = new OnlineQuizSystem.Models.ONLINEQUIZEntities8();
+    int teacherId = Convert.ToInt32(Session["TeacherID"]);
+    var CurrentUser = db.Teachers.Find(teacherId);
+}
+
+@section user_name {
+    @CurrentUser.Email
 }
 
 
-<div style="overflow:scroll">
-    <table class="table table-responsive">
-        <thead>
-            <tr>
-                <th>Ques No</th>
-                <th>Question</th>
-                <th>Answer</th>
+@section content_wrapper {
 
-            </tr>
-
-        </thead>
+    <div class="container">
 
 
 
-        <tbody>
+        <div >
+            <table class="table table-responsive">
+                <thead>
+                    <tr>
+                        <th>Ques No</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th>Question</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th>Answer</th>
+
+                    </tr>
+
+                </thead>
 
 
 
 
-            @{int i = 1;}
-
-            @foreach (var item in ViewData["jointables"] as IEnumerable<OnlineQuizSystem.ViewModel.anstextViewModel>)
-            {
-
-
-                <tr>
-
-                    <td>
-                        <span>@(i++)</span>
-                    </td>
+                <tbody>
 
 
 
-                    <td>@item.questionText</td>
-                    <td>@item.answerText</td>
+
+                    @{int i = 1;}
+
+                    @foreach (var item in ViewData["jointables"] as IEnumerable<OnlineQuizSystem.ViewModel.anstextViewModel>)
+                    {
 
 
+                    <tr>
 
-                </tr>
+                        <td>
+                            <span>@(i++)</span>
+                        </td>
+
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
 
 
-            }
-        </tbody>
+                        @using (Html.BeginForm("deleteques", "ViewQuestions", FormMethod.Post))
+                        {
+
+                            <input type="hidden" value="@item.questionId" name="qid" />
+                            <td>@item.questionText</td>
 
 
-    </table>
-</div>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+
+                            <td>@item.answerText</td>
+
+
+                        }
+
+                    </tr>
+
+
+                    }
+                </tbody>
+
+
+            </table>
+        </div>
+    </div>
+    }

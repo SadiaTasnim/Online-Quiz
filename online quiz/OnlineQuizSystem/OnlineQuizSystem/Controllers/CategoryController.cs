@@ -17,6 +17,7 @@ namespace OnlineQuizSystem.Controllers
         ONLINEQUIZEntities8 db = new ONLINEQUIZEntities8();
         // GET: Category
         [HttpGet]
+        //------------------add category for teacher ---------
         public ActionResult Addcategory()
         {
 
@@ -27,6 +28,7 @@ namespace OnlineQuizSystem.Controllers
             return View();
         }
         [HttpPost] ///fetching and showing the inserted categories
+          
         public ActionResult Addcategory(Category cat)
         {
 
@@ -43,8 +45,7 @@ namespace OnlineQuizSystem.Controllers
 
             return RedirectToAction("Addcategory", "Category");
         }
-
-       
+ 
 
     }
 }

@@ -23,6 +23,7 @@ namespace OnlineQuizSystem.Models
         }
     
         public int StudentID { get; set; }
+      
         public string StudentName { get; set; }
         public string Passwords { get; set; }
         public string Email { get; set; }

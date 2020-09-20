@@ -1,0 +1,322 @@
+﻿@{ 
+   
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>@ViewBag.Title</title>
+
+    <link href="~/Content/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+    @RenderSection("links_cdn", required: false)
+
+    <link href="~/Content/css/admin.css" rel="stylesheet">
+    @*#00ad5f*@
+</head>
+<body id="page-top">
+    @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "__AjaxAntiForgeryForm" }))
+    {
+        @Html.AntiForgeryToken()
+    }
+
+    <div class="container-fluid p-0 m-0">
+        <!-- Page Wrapper -->
+        <div id="wrapper">
+
+            @{
+                var studentId = Convert.ToInt32(Session["StudentID"]);
+                int teacherId = Convert.ToInt32(Session["TeacherID"]);
+                System.Diagnostics.Debug.WriteLine(teacherId);
+                System.Diagnostics.Debug.WriteLine(studentId);
+                if (studentId == 0)
+                {
+
+                    <!-- Sidebar -->
+                    <ul class="navbar-nav bg-dark sidebar sidebar-dark accordion " id="accordionSidebar">
+
+                        <!-- Sidebar - Brand -->
+                        <li>
+                            <div class="sidebar-brand d-flex align-items-center justify-content-center" >
+
+                                <div class="sidebar-brand-icon rotate-n-15 ">
+                                    <i class="fas fa-book-open"></i>
+                                </div>
+
+                                <div class="sidebar-brand-text mx-3"> ONLINE QUIZ SYSTEM </div>
+                            </div>
+                        </li>
+
+                        <!-- Divider -->
+                        <hr class="sidebar-divider my-0">
+
+                        <!-- Nav Item - Dashboard -->
+                        <li class="nav-item @(ViewContext.RouteData.Values["Controller"].ToString() == "TeacherProfile" ? "active" : "") ">
+                            <a class="nav-link" href="@Url.Action("TeacherProfile","TeacherProfile")">
+                                <i class="fas fa-fw fa-user"></i>
+                                <span>Profile</span>
+                            </a>
+                        </li>
+
+                        <!-- Divider -->
+                        <hr class="sidebar-divider">
+
+                        <!-- Heading -->
+                      
+
+                        <li class="nav-item @(ViewContext.RouteData.Values["Controller"].ToString() == "Category" ? "active" : "") ">
+                            <a class="nav-link" href="@Url.Action("Addcategory", "Category")">
+                                <i class="fas fa-fw fa-plus"></i>
+                                <span>Add Question Set</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item @(ViewContext.RouteData.Values["Controller"].ToString() == "SetCategory" ? "active" : "")">
+                            <a class="nav-link" href="@Url.Action("NewCategory","NewCategory")">
+                                <i class="fas fa-fw fa-plus-circle"></i>
+                                <span>Make New Question</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item @(ViewContext.RouteData.Values["Controller"].ToString() == "ViewQuestions" ? "active" : "") ">
+                            <a class="nav-link " href="@Url.Action("ViewQuestion", "ViewQuestions")">
+                                <i class="fas fa-fw fa-book"></i>
+                                <span>My Question</span>
+                            </a>
+                        </li>
+                        <li class="nav-item @(ViewContext.RouteData.Values["action"].ToString() == "StudentRequestNotifictionForTeacher" ? "active" : "") ">
+                            <a class="nav-link" href="@Url.Action("StudentRequestNotifictionForTeacher","Request")">
+                                <i class="fas fa-fw fa-bell"></i>
+                                <span>New Request</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item @(ViewContext.RouteData.Values["action"].ToString() == "Studentlistforteacher" ? "active" : "")">
+                            <a class="nav-link" href="@Url.Action("Studentlistforteacher","Request")">
+                                <i class="fas fa-fw fa-smile"></i>
+                                <span>Added Student </span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item @(ViewContext.RouteData.Values["Controller"].ToString() == "Report" ? "active" : "")">
+                            <a class="nav-link" href="@Url.Action("ShowResultToTeacher","Report")">
+                                <i class="fas fa-fw fa-book-open"></i>
+                                <span>Student Report </span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("LogOut","LogOut")">
+                                <i class="fas fa-fw fa-sign-out-alt"></i>
+                                <span> Logout </span>
+                            </a>
+                        </li>
+
+
+                        <!-- Divider -->
+
+                        @RenderSection("nav_item", required: false)
+
+                        <!-- Divider -->
+                        <hr class="sidebar-divider d-none d-md-block">
+
+                        <!-- Sidebar Toggler (Sidebar) -->
+                        <div class="text-center d-none d-md-inline">
+                            <button class="rounded-circle border-0" id="sidebarToggle"></button>
+                        </div>
+
+                    </ul>
+                    <!-- End of Sidebar -->
+                }
+                else if (studentId != 0)
+                {
+                    <!-- Sidebar -->
+        <ul class="navbar-nav bg-dark sidebar sidebar-dark accordion " id="accordionSidebar">
+
+            <!-- Sidebar - Brand -->
+            <li>
+                <a class="sidebar-brand d-flex align-items-center justify-content-center" href="@Url.Action("Index","Dashboard")">
+
+                    <div class="sidebar-brand-icon rotate-n-15 ">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+
+                    <div class="sidebar-brand-text mx-3"> ONLINE QUIZ SYSTEM </div>
+                </a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item @(ViewContext.RouteData.Values["Controller"].ToString() == "StudentProfile" ? "active" : "") ">
+                <a class="nav-link" href="@Url.Action("StudentProfile", "StudentProfile")">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Profile</span>
+                </a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Instruction
+            </div>
+
+            <li class="nav-item @(ViewContext.RouteData.Values["action"].ToString() == "TeacherListForStudent" ? "active" : "") ">
+                <a class="nav-link" href="@Url.Action("TeacherListForStudent", "Request")">
+                    <i class="fas fa-fw fa-map-marker-alt"></i>
+                    <span>Find Teachers</span>
+                </a>
+            </li>
+
+            <li class="nav-item @(ViewContext.RouteData.Values["action"].ToString() == "requestsentforstudent" ? "active" : "")">
+                <a class="nav-link" href="@Url.Action("requestsentforstudent", "Request")">
+                    <i class="fas fa-fw fa-school"></i>
+                    <span>Request Sent</span>
+                </a>
+            </li>
+
+            <li class="nav-item @(ViewContext.RouteData.Values["action"].ToString() == "FriendListForStudent" ? "active" : "") ">
+                <a class="nav-link " href="@Url.Action("FriendListForStudent", "Request")">
+                    <i class="fas fa-fw fa-chart-line"></i>
+                    <span>Teacher List</span>
+                </a>
+            </li>
+            <li class="nav-item @(ViewContext.RouteData.Values["action"].ToString() == "QuizStudent" ? "active" : "") ">
+                <a class="nav-link" href="@Url.Action("QuizStudent", "Quiz")">
+                    <i class="fas fa-fw fa-chart-pie"></i>
+                    <span>Give an exam</span>
+                </a>
+            </li>
+            @*
+            <li class="nav-item @(ViewContext.RouteData.Values["action"].ToString() == "SampleQuestion" ? "active" : "") ">
+                <a class="nav-link" href="@Url.Action("SampleQuesForStudent", "SampleQuestion")">
+                    <i class="fas fa-fw fa-chart-pie"></i>
+                    <span>Sample Questions</span>
+                </a>
+            </li>*@
+
+            
+
+            <li class="nav-item @(ViewContext.RouteData.Values["action"].ToString() == "reportstudent" ? "active" : "")">
+                <a class="nav-link" href="@Url.Action("SendResults", "Report")">
+                    <i class="fas fa-fw fa-chart-pie"></i>
+                    <span> Report </span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="@Url.Action("Logout", "LogOut")">
+                    <i class="fas fa-fw fa-chart-pie"></i>
+                    <span> Logout </span>
+                </a>
+            </li>
+
+
+            <!-- Divider -->
+
+            @RenderSection("nav_item", required: false)
+
+            <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block">
+
+            <!-- Sidebar Toggler (Sidebar) -->
+            <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div>
+
+        </ul>
+                    <!-- End of Sidebar -->
+                }
+            }
+            <!-- Content Wrapper -->
+            <div id="content-wrapper" class="d-flex flex-column bg-dark-2">
+                <!-- Main Content -->
+                <div id="content">
+
+                    <!-- Topbar -->
+                    <nav class="navbar navbar-expand navbar-light bg-dark topbar mb-4 static-top shadow">
+
+                        <!-- Sidebar Toggle (Topbar) -->
+                        <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                            <i class="fa fa-bars"></i>
+                        </button>
+
+                        <!-- Topbar Navbar -->
+                        <ul class="navbar-nav ml-auto">
+
+                        
+                            <li class="nav-item dropdown no-arrow">
+                                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span>
+                                     
+                                        @RenderSection("user_name", required: true)
+                                    </span>
+                                    <i class="fas fa-2x fa-user ml-2 rounded fa-circle"></i>
+                                </a>
+                               
+                                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+
+                      
+
+
+                            <div class="dropdown-divider"></div>
+                                   
+                                    <a class="dropdown-item" href="@Url.Action("LogOut","LogOut")">
+                                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                        Logout
+                                    </a>
+                                </div>
+                            </li>
+
+                        </ul>
+
+                    </nav>
+                    <!-- End of Topbar -->
+
+                    @RenderSection("content_wrapper", required: true)
+                </div>
+                @*@RenderBody()*@
+            </div>
+            <!-- End of Content Wrapper -->
+
+        </div>
+
+
+        <footer>
+        </footer>
+    </div>
+    @*
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    *@
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+
+
+    @RenderSection("scripts_cdn", required: false)
+
+    <script src="~/Content/js/admin.js"></script>
+
+
+
+    @RenderSection("scripts", required: false)
+
+
+    <script>
+        AOS.init();
+    </script>
+</body>
+</html>

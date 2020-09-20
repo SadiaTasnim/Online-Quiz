@@ -18,7 +18,6 @@ namespace OnlineQuizSystem.Controllers
 
 
         [HttpGet]
-        //-------------------Not Added teacher list for student
         public ActionResult TeacherListForStudent()
         {
 
@@ -120,7 +119,7 @@ namespace OnlineQuizSystem.Controllers
             return View(ViewData["jointables"]);
         }
         [HttpPost]
-        ///-------------------deleting friend request for teacher----------------
+        ///-------------------deleting friend request for teacher----------------sadia
         public ActionResult StudentRequestNotifictionForTeacher(int sid, int delete)
         {
             int sessId = Convert.ToInt32(Session["TeacherId"]);
@@ -221,7 +220,7 @@ namespace OnlineQuizSystem.Controllers
         }
 
 
-        ///-------------------deleting friend request for student---------------
+        ///-------------------deleting friend request for student----------------sadia
         public ActionResult deleterequestsentforstudent(int tid, int delete)
         {
             int sessId = Convert.ToInt32(Session["StudentId"]);

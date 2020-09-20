@@ -1,39 +1,50 @@
 ﻿@model OnlineQuizSystem.Models.SetQuestion
 
 @{
-    ViewBag.Title = "showsets";
-    Layout = "~/Views/Shared/_Layout1.cshtml";
+    ViewBag.Title = "ViewQuestion";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+
+    //Get Current Logged in User Info Dashboard
+    OnlineQuizSystem.Models.ONLINEQUIZEntities6 db = new OnlineQuizSystem.Models.ONLINEQUIZEntities6();
+    int teacherId = Convert.ToInt32(Session["TeacherID"]);
+    var CurrentUser = db.Teachers.Find(teacherId);
 }
 
+@section user_name {
+    @CurrentUser.Email
+}
 
+@section content_wrapper {
+    <div class="container">
+        <div style="overflow:scroll">
+            <table class="table table-responsive">
+                <thead>
+                    <tr>
+                        <th>SET ID</th>
 
-    <div style="overflow:scroll">
-        <table class="table table-responsive">
-            <thead>
-                <tr>
-                    <th>SET ID</th>
+                    </tr>
 
-                </tr>
-
-            </thead>
-
-
-
-            <tbody>
-                @foreach (var item in ViewData["list"] as List<OnlineQuizSystem.Models.SetQuestion>)
-                {
-                <tr>
-
-            
-
-                    <td>@Html.ActionLink(item.SetNumber, "showquestions", new { id = item.SetID })</td>
+                </thead>
 
 
 
-                </tr>
-                }
-            </tbody>
+                <tbody>
+                    @foreach (var item in ViewData["list"] as List<OnlineQuizSystem.Models.SetQuestion>)
+                    {
+                        <tr>
 
 
-        </table>
+
+                            <td>@Html.ActionLink(item.SetNumber, "showquestions", new { id = item.SetID })</td>
+
+
+
+                        </tr>
+                    }
+                </tbody>
+
+
+            </table>
+        </div>
     </div>
+}

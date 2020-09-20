@@ -21,7 +21,7 @@ namespace OnlineQuizSystem.Controllers
         public ActionResult TeacherProfile()
         {
             int teacherId = Convert.ToInt32(Session["TeacherID"]);
-            if(teacherId==0)
+            if (teacherId == 0)
             {
                 return RedirectToAction("TLogin", "TeacherLogin");
             }

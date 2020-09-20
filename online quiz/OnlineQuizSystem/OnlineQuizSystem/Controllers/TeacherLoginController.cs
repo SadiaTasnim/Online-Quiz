@@ -30,6 +30,7 @@ namespace OnlineQuizSystem.Controllers
             }
             else
                 ViewBag.msg = "Invalid username or password";
+            ViewBag.color = "red";
             return View();
         }
     }

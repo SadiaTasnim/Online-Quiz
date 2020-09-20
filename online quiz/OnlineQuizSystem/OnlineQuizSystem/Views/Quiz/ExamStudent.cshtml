@@ -1,97 +1,105 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "ExamStudent";
-    //Layout = "~/Views/Shared/_Layout2studentprofile.cshtml";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+
+    //Get Current Logged in User Info Dashboard
+    OnlineQuizSystem.Models.ONLINEQUIZEntities8 db = new OnlineQuizSystem.Models.ONLINEQUIZEntities8();
+    int studentId = Convert.ToInt32(Session["StudentID"]);
+    var CurrentUser = db.Students.Find(studentId);
 }
 
-<script src="~/Scripts/jquery-3.4.1.min.js"></script>
 
-<h2>ExamStudent</h2>
+@section user_name {
+    @CurrentUser.Email
+}
 
-<script type="text/javascript">
-    $(document).ready(function () {
-        LoadQuestion();
-        //$("#btnNext").click(function () {
-        //});
-    });
+@section content_wrapper {
+    <div class="container my-5">
+        <script src="~/Scripts/jquery-3.4.1.min.js"></script>
 
-    function SaveStudentAnswer() {
-        var answerText = "";
-        $.each($("#tblQuestionOption tr").find("td:eq(0) input[type=radio]:checked"),
-            function () {
-                answerText = $(this).val();
-                console.log("SaveStudentAnswer ", answerText)
+        <h2>ExamStudent</h2>
 
+        <script type="text/javascript">
+            $(document).ready(function () {
+                LoadQuestion();
+                //$("#btnNext").click(function () {
+                //});
             });
-        var StudentAnswer = { QuestionID: $("#txtQuestionId").val(), AnswerText: answerText }
 
-        $.ajax({
-            async: true,
-            type: 'GET',
-            dataType: 'JSON',
-            contentType: 'application/json; charset= utf-8',
-            data: StudentAnswer,
-            url: '/Quiz/SaveStudentAnswer',
-            success: function (data) {
-                if (data.success === true) {
-                    alert(data.message);
-                    window.location.href = "/Quiz/GetFinalResult";
-                }
-            },
-            error: function (data) {
-                alert(data);
+            function SaveStudentAnswer() {
+                var answerText = "";
+                $.each($("#tblQuestionOption tr").find("td:eq(0) input[type=radio]:checked"),
+                    function () {
+                        answerText = $(this).val();
+                        console.log("SaveStudentAnswer ", answerText)
+
+                    });
+                var StudentAnswer = { QuestionID: $("#txtQuestionId").val(), AnswerText: answerText }
+
+                $.ajax({
+                    async: true,
+                    type: 'GET',
+                    dataType: 'JSON',
+                    contentType: 'application/json; charset= utf-8',
+                    data: StudentAnswer,
+                    url: '/Quiz/SaveStudentAnswer',
+                    success: function (data) {
+                        if (data.success === true) {
+                            alert(data.message);
+                            window.location.href = "/Quiz/GetFinalResult";
+                        }
+                    },
+                    error: function (data) {
+                        alert(data);
+                    }
+
+
+                });
             }
 
+            function LoadQuestion() {
+                var answerText = "";
+                $.each($("#tblQuestionOption tr").find("td:eq(0) input[type=radio]:checked"),
+                    function () {
+                        answerText = $(this).val();
+                        console.log("LoadQuestion ", answerText)
+                    });
+                var StudentAnswer = { QuestionID: $("#txtQuestionId").val(), AnswerText: answerText }
 
-        });
-    }
+                $.ajax({
+                    async: true,
+                    type: 'GET',
+                    dataType: 'HTML',
+                    contentType: 'application/json; charset= utf-8',
+                    url: '/Quiz/UserQuestionAnswer',
+                    data: StudentAnswer,
+                    success: function (data) {
+                        $("#divQuestionOption").html(data);
 
-    function LoadQuestion() {
-        var answerText = "";
-        $.each($("#tblQuestionOption tr").find("td:eq(0) input[type=radio]:checked"),
-            function () {
-                answerText = $(this).val();
-                console.log("LoadQuestion ", answerText)
-            });
-        var StudentAnswer = { QuestionID: $("#txtQuestionId").val(), AnswerText: answerText }
+                    },
+                    error: function (data) {
+                        alert(data);
+                    }
 
-        $.ajax({
-            async: true,
-            type: 'GET',
-            dataType: 'HTML',
-            contentType: 'application/json; charset= utf-8',
-            url: '/Quiz/UserQuestionAnswer',
-            data: StudentAnswer,
-            success: function (data) {
-                $("#divQuestionOption").html(data);
 
-            },
-            error: function (data) {
-                alert(data);
+                });
             }
+        </script>
 
+        <script type="text/javascript">
 
-        });
-    }
+            //Disable Back Button In All Browsers.
+            function DisableBackButtonAllBrowsers() {
+                window.history.forward()
+            };
+            DisableBackButtonAllBrowsers();
+            window.onload = DisableBackButtonAllBrowsers;
+            window.onpageshow = function (evts) { if (evts.persisted) DisableBackButtonAllBrowsers(); };
+            window.onunload = function () { void (0) };
+        </script>
 
+        <div id="divQuestionOption">
 
-
-</script>
-
-
-<script type="text/javascript">
-
-    //Disable Back Button In All Browsers.
-    function DisableBackButtonAllBrowsers() {
-        window.history.forward()
-    };
-    DisableBackButtonAllBrowsers();
-    window.onload = DisableBackButtonAllBrowsers;
-    window.onpageshow = function (evts) { if (evts.persisted) DisableBackButtonAllBrowsers(); };
-    window.onunload = function () { void (0) };
-</script>
-
-<div id="divQuestionOption">
-
-</div>
-
+        </div>
+    </div>
+}

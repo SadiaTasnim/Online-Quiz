@@ -1,55 +1,70 @@
 ﻿
-
 @{
-    ViewBag.Title = "FriendListForStudent";
-    Layout = "~/Views/Shared/_Layout2studentprofile.cshtml";
+    ViewBag.Title = "ViewQuestion";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+
+    //Get Current Logged in User Info Dashboard
+    OnlineQuizSystem.Models.ONLINEQUIZEntities8 db = new OnlineQuizSystem.Models.ONLINEQUIZEntities8();
+    int studentId = Convert.ToInt32(Session["StudentID"]);
+    var CurrentUser = db.Students.Find(studentId);
 }
 
-<h1 style="text-align:center;background-color:aliceblue">Friend list</h1>
-<h1 style="color:cornflowerblue">@TempData["msg"]</h1>
+@section user_name {
+    @CurrentUser.Email
+}
 
-<div style="overflow:scroll">
-
-    <table class="table table-responsive">
-
-        <thead>
-            <tr>
-                <th>Teacher ID</th>
+@section content_wrapper {
+    <div class="container">
 
 
-                <th>Teacher Name</th>
+        <h1 style="text-align:center;background-color:aliceblue">Friend list</h1>
+        <h1 style="color:cornflowerblue">@TempData["msg"]</h1>
 
-            </tr>
+        <div style="overflow:scroll">
 
-        </thead>
-        <tbody>
+            <table class="table table-responsive">
 
-            @foreach (var item in ViewData["jointabless"] as IEnumerable<OnlineQuizSystem.Models.friendlistforstudent>)
-            {
-            <tr>
-                <td> @item.friendlist.teacherid </td>
-                <td>@Html.ActionLink(item.teacherlist.TeacherName, "Teacherprofileforstudent", new { id = item.teacherlist.TeacherName })</td>
+                <thead>
+                    <tr>
+                        <th>Teacher ID</th>
 
-                <td>
-                    @using (Html.BeginForm("deletefrndforstudent", "Request", FormMethod.Post))
 
+                        <th>Teacher Name</th>
+
+                    </tr>
+
+                </thead>
+                <tbody>
+
+                    @foreach (var item in ViewData["jointabless"] as IEnumerable<OnlineQuizSystem.Models.friendlistforstudent>)
                     {
+                        <tr>
+                            <td> @item.friendlist.teacherid </td>
+                            <td>@Html.ActionLink(item.teacherlist.TeacherName, "Teacherprofileforstudent", new { id = item.teacherlist.TeacherName })</td>
 
-                        <input type="hidden" value="@item.friendlist.teacherid" name="tid" />
-                        <span class="glyphicon glyphicon-trash"></span>
-                        <button type="submit" value="1" name="delete">Delete</button>
+                            <td>
+                                @using (Html.BeginForm("deletefrndforstudent", "Request", FormMethod.Post))
+
+                                {
+
+                                    <input type="hidden" value="@item.friendlist.teacherid" name="tid" />
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                    <button type="submit" value="1" name="delete">Delete</button>
+                                }
+                            </td>
+
+
+                        </tr>
+
                     }
-                </td>
+                </tbody>
 
 
-            </tr>
-
-            }
-        </tbody>
-
-
-    </table>
+            </table>
 
 
 
-</div>
+        </div>
+
+    </div>
+    }

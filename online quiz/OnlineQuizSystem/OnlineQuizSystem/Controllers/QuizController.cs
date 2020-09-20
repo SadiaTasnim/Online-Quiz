@@ -21,7 +21,7 @@ namespace OnlineQuizSystem.Controllers
         {
             db = new ONLINEQUIZEntities8();
         }
- 
+
         public ActionResult QuizStudent()
         {
             int sID = Convert.ToInt32(Session["StudentId"]);
@@ -29,9 +29,9 @@ namespace OnlineQuizSystem.Controllers
 
 
             objQuizViewModel.ListofCategory = (from objcat in db.Categories
-                                             
+
                                                join objfrndlist in db.FriendListForStudnets on objcat.CategoryTeacher equals objfrndlist.teacherid
-                                               where objfrndlist.studentid == sID && objfrndlist.friendlist == 1 && objcat.available ==1
+                                               where objfrndlist.studentid == sID && objfrndlist.friendlist == 1 && objcat.available == 1
                                                select new SelectListItem()
                                                {
                                                    Value = objcat.CategoryId.ToString(),
@@ -46,36 +46,36 @@ namespace OnlineQuizSystem.Controllers
 
 
         [HttpPost]
-        public ActionResult QuizStudent( int CategoryId)
+        public ActionResult QuizStudent(int CategoryId)
         {
             int sID = Convert.ToInt32(Session["StudentId"]);
 
-       
+
 
             IEnumerable<Question> qus = db.Questions.Where(u => u.QuesCategoryId == CategoryId);
 
-            foreach ( var data in qus)
+            foreach (var data in qus)
             {
                 IEnumerable<Result> resultAll = db.Results
                            .Where(u => u.ResQuesId == data.QuestionID && u.ResStudent == sID);
 
                 if (resultAll.Count() >= 1)
                 {
-                    return RedirectToAction("TLogin", "TeacherLogin");
+                    return RedirectToAction("QuizStudent", "Quiz");
                 }
 
             }
 
 
-            
 
 
-            
+
+
             Session["StdQuestionAnswer"] = null;
             ExamStudent objstudent = new ExamStudent();
             objstudent.ID = Convert.ToString(sID);
             objstudent.StuCategoryId = CategoryId;
-            
+
             db.ExamStudents.Add(objstudent);
             db.SaveChanges();
             Session["ID"] = sID;
@@ -83,17 +83,17 @@ namespace OnlineQuizSystem.Controllers
             Session["ExamineeID"] = objstudent.ExamineeID;
             return View("ExamStudent");
 
-     
+
         }
 
         int pageNumber = 0;
         public PartialViewResult UserQuestionAnswer(StudentAnswer objStudentAnswer)
         {
             bool IsLast = false;
-            if(objStudentAnswer.AnswerText != null)
+            if (objStudentAnswer.AnswerText != null)
             {
                 List<StudentAnswer> objstudentAnswers = Session["StdQuestionAnswer"] as List<StudentAnswer>;
-                if(objstudentAnswers== null)
+                if (objstudentAnswers == null)
                 {
                     objstudentAnswers = new List<StudentAnswer>();
                 }
@@ -101,11 +101,11 @@ namespace OnlineQuizSystem.Controllers
                 Session["StdQuestionAnswer"] = objstudentAnswers;
             }
 
-            int pageSize = 1;
+            //  int pageSize = 1;
             pageNumber = 0;
             int CategoryId = Convert.ToInt32(Session["StuCategoryId"]);
 
-            if(Session["StdQuestionAnswer"] == null)
+            if (Session["StdQuestionAnswer"] == null)
             {
                 pageNumber = pageNumber + 1;
             }
@@ -124,24 +124,21 @@ namespace OnlineQuizSystem.Controllers
 
             QuizAnswerViewModel objAnsViewModel = new QuizAnswerViewModel();
             Question objQuestion = new Question();
-            /*objQuestion = listOfQuestion.Skip((pageNumber - 1) * pageSize).Take(pageSize).FirstOrDefault()*/;
-            System.Diagnostics.Debug.WriteLine("pagenumber = "+pageNumber);
-            if(listOfQuestion.Count < pageNumber)
+
+            System.Diagnostics.Debug.WriteLine("pagenumber = " + pageNumber);
+            if (listOfQuestion.Count < pageNumber)
             {
                 return PartialView("asdasd");
             }
             objQuestion = listOfQuestion[pageNumber - 1];
-                
-            
 
-           
 
 
             objAnsViewModel.IsLast = IsLast;
             objAnsViewModel.QuestionID = objQuestion.QuestionID;
             objAnsViewModel.Question_Text = objQuestion.Question_Text;
 
-           
+
 
 
             objAnsViewModel.ListOfQuizOption = (from obj in db.Options
@@ -196,7 +193,7 @@ namespace OnlineQuizSystem.Controllers
                 objResult.AnswerText = item.AnswerText;
                 objResult.ResQuesId = item.QuestionID;
                 objResult.ResStudent = Convert.ToInt32(Session["StudentID"]);
-            
+
                 db.Results.Add(objResult);
                 db.SaveChanges();
             }
@@ -213,14 +210,14 @@ namespace OnlineQuizSystem.Controllers
                               join objQuestion in db.Questions on objResult.QuestionID equals objQuestion.QuestionID
                               select new ResultModel()
                               {
-                                  
+
                                   Question = objQuestion.Question_Text,
                                   Answer = objAnswer.AnswerText,
                                   AnswerByStudent = objResult.AnswerText,
-                                  Status = objAnswer.AnswerText == objResult.AnswerText ? "Correct" : "Wrong" ,
-                                  
-                             
-                                  
+                                  Status = objAnswer.AnswerText == objResult.AnswerText ? "Correct" : "Wrong",
+
+
+
                               }).ToList();
 
 
@@ -238,7 +235,7 @@ namespace OnlineQuizSystem.Controllers
 
             if (studnetId == 0 || quizCatId == 0)
             {
-                return RedirectToAction("Report", "Report");
+                return RedirectToAction("SLogin", "StudentLogin");
             }
             IEnumerable<Category> cat = db.Categories.ToList();
             int count = 0;
@@ -255,10 +252,10 @@ namespace OnlineQuizSystem.Controllers
                     {
                         IEnumerable<Result> resultAll = db.Results
                             .Where(u => u.ResQuesId == data.QuestionID && u.ResStudent == studnetId);
-                       
+
                         if (resultAll.Count() >= 2)
                         {
-                            return RedirectToAction("TLogin", "TeacherLogin");
+                            return RedirectToAction("GetFinalResult", "Quiz");
                         }
                         Result resultSingle = resultAll.First();
 
@@ -268,7 +265,7 @@ namespace OnlineQuizSystem.Controllers
 
                     if (results.Count <= 0)
                     {
-                        return RedirectToAction("TLogin", "TeacherLogin");
+                        return RedirectToAction("GetFinalResult", "Quiz");
                     }
 
                     System.Diagnostics.Debug.WriteLine(results.Count);
@@ -299,9 +296,9 @@ namespace OnlineQuizSystem.Controllers
             Category category = db.Categories.Find(quizCatId);
             if (category == null)
             {
-           
 
-                return RedirectToAction("DashBoard", "Check");
+
+                return RedirectToAction("GetFinalResult", "Quiz");
             }
             ViewBag.category = category;
             ViewBag.Count = count;
@@ -326,7 +323,7 @@ namespace OnlineQuizSystem.Controllers
         // https://localhost:44348/Quiz/SendResult?studnetId=1&quizCatId=6
         public ActionResult SendResult()
         {
-          
+
 
             int studnetId = Convert.ToInt32(Session["StudentId"]);
             int quizCatId = Convert.ToInt32(Session["StuCategoryId"]);
@@ -342,7 +339,7 @@ namespace OnlineQuizSystem.Controllers
             foreach (var allCat in cat)
             {
 
-                if(allCat.CategoryId == quizCatId)
+                if (allCat.CategoryId == quizCatId)
                 {
 
                     IEnumerable<Question> catQues = db.Questions.Where(q => q.QuesCategoryId == allCat.CategoryId);
@@ -352,7 +349,7 @@ namespace OnlineQuizSystem.Controllers
                     {
                         Result resultSingle = db.Results
                             .Where(u => u.ResQuesId == data.QuestionID && u.ResStudent == studnetId).SingleOrDefault();
-                        if(resultSingle != null)
+                        if (resultSingle != null)
                             results.Add(resultSingle);
                     }
 
@@ -371,11 +368,11 @@ namespace OnlineQuizSystem.Controllers
 
                         //System.Diagnostics.Debug.WriteLine("Student AnswerText = " + data.AnswerText);
                         //System.Diagnostics.Debug.WriteLine("Corrent ResultID = " + QuesAns.AnswerText);
-                        System.Diagnostics.Debug.WriteLine(data.AnswerText +"  "+ QuesAns.AnswerText);
+                        System.Diagnostics.Debug.WriteLine(data.AnswerText + "  " + QuesAns.AnswerText);
                         if (data.AnswerText == QuesAns.AnswerText)
                             count++;
 
-                       
+
                     }
                     System.Diagnostics.Debug.WriteLine(count);
                     break;

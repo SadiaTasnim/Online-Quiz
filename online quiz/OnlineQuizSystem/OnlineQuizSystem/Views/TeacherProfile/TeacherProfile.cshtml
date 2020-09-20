@@ -1,87 +1,132 @@
 ﻿@model OnlineQuizSystem.Models.Teacher
 
 @{
-    ViewBag.Title = "TeacherProfile";
-    Layout = "~/Views/Shared/_Layout1.cshtml";
+    ViewBag.Title = "Dashboard Index";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
 }
 
-<style>
-    .well{
-        background-color: lightblue;
-        float:none;
-        position:relative;
-        width: 70%;
-        left: 15%;
-        top: 20px;
-        border: 10px solid navy;
-        margin: 0;
-    }
-</style>
+
+@section user_name {
+    @Model.Email
+}
+
+@section content_wrapper {
 
 
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-12">
-            <h2 class="text-center">My info</h2>
-            <hr />
-            <dl class="dl-horizontal">
-                <dt>
-                    <label for="email">User Name:</label>
-                </dt>
-                <dd>
-                    @Html.TextBoxFor(x => x.TeacherName, htmlAttributes: new { @class = "form-control" })
-                </dd>
-                <br />
-
-                <dt>
-                    <label for="email">Full Name:</label>
-                </dt>
-                <dd>
-                    @Html.TextBoxFor(x => x.FullName, htmlAttributes: new { @class = "form-control" })
-                </dd>
-                <br />
-
-                <dt>
-                    <label for="email">Email ID:</label>
-                </dt>
-                <dd>
-                    @Html.TextBoxFor(x => x.Email, htmlAttributes: new { @class = "form-control" })
-                </dd>
-                <br />
-
-                <dt>
-                    <label for="email">Institution:</label>
-                    @*@Html.DisplayNameFor(model => model.Institute)*@
-                </dt>
-                <dd>
-                    @Html.TextBoxFor(x => x.Institute, htmlAttributes: new { @class = "form-control" })
-                    @*@Html.DisplayFor(model => model.Institute)*@
-                </dd>
-                <br />
-
-                <dt>
-                    <label for="email">Designation:</label>
-                </dt>
-
-                <dd>
-                    @Html.TextBoxFor(x => x.Designation, htmlAttributes: new { @class = "form-control" })
-                </dd>
-                <br />
-
-                <dt>
-                    <label for="email">Contact No.:</label>
-                </dt>
-
-                <dd>
-                    @Html.TextBoxFor(x => x.Contact, htmlAttributes: new { @class = "form-control" })
-                </dd>
+    <!-- Begin Page Content -->
+    <div class="container-fluid">
 
 
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+   
+                    <hr />
+                    <dl class="dl-horizontal">
+                        <dt>
+                            <label for="email">User Name:</label>
+                        </dt>
+                        <dd>
+                            @Html.TextBoxFor(x => x.TeacherName, htmlAttributes: new { @class = "form-control" })
+                        </dd>
+               
+
+                        <dt>
+                            <label for="email">Full Name:</label>
+                        </dt>
+                        <dd>
+                            @Html.TextBoxFor(x => x.FullName, htmlAttributes: new { @class = "form-control" })
+                        </dd>
+                   
+
+                        <dt>
+                            <label for="email">Email ID:</label>
+                        </dt>
+                        <dd>
+                            @Html.TextBoxFor(x => x.Email, htmlAttributes: new { @class = "form-control" })
+                        </dd>
+                 
+
+                        <dt>
+                            <label for="email">Institution:</label>
+                 
+                        </dt>
+                        <dd>
+                            @Html.TextBoxFor(x => x.Institute, htmlAttributes: new { @class = "form-control" })
+               
+                        </dd>
+                    
+
+                        <dt>
+                            <label for="email">Designation:</label>
+                        </dt>
+
+                        <dd>
+                            @Html.TextBoxFor(x => x.Designation, htmlAttributes: new { @class = "form-control" })
+                        </dd>
+          
+                        <dt>
+                            <label for="email">Contact No.:</label>
+                        </dt>
+                        <dd>
+                            @Html.TextBoxFor(x => x.Contact, htmlAttributes: new { @class = "form-control" })
+                        </dd>
+
+                    </dl>
+
+                </div>
 
 
-            </dl>
+            </div>
 
-       
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     </div>
+
+
+}
+<!-- Footer -->
+<footer class="sticky-footer bg-white">
+    <div class="container my-auto">
+        <div class="copyright text-center my-auto">
+            <span>Copyright &copy; Your Website 2020</span>
         </div>
+    </div>
+</footer>
+<!-- End of Footer -->
+<!-- Logout Modal-->
+@*
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="login.html">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+*@
+

@@ -15,7 +15,8 @@ namespace OnlineQuizSystem.Controllers
 {
     public class ReportController : Controller
     {
-
+     
+      
         // GET: Report
 
         private ONLINEQUIZEntities8 db;
@@ -169,7 +170,7 @@ namespace OnlineQuizSystem.Controllers
         }
 
         //----------student profile who gave exam --------
-        public ActionResult Studentprofileofstudent(int id)
+        public ActionResult Studentprofileofstudents(int id)
         {
 
             int sessId = Convert.ToInt32(Session["TeacherId"]);
@@ -184,7 +185,6 @@ namespace OnlineQuizSystem.Controllers
             return View(del);
 
         }
-
 
 
 

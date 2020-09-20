@@ -1,65 +1,66 @@
 ﻿@model OnlineQuizSystem.ViewModel.QuizAnswerViewModel
 
-@if (ViewBag.isAvabil) { 
-<style type="text/css">
-    fieldset {
-        font-family: sans-serif;
-        border: 3px solid #1f4970;
-        background: #ddd;
-        border-radius: 5px;
-        padding: 15px;
-    }
-
-        fieldset legend {
-            background: #1f4970;
-            color: #fff;
-            padding: 5px 10px 10px 20px;
-            font-size: 15px;
+@if (ViewBag.isAvabil)
+{
+    <style type="text/css">
+        fieldset {
+            font-family: sans-serif;
+            border: 3px solid #1f4970;
+            background: #ddd;
             border-radius: 5px;
-            box-shadow: 0 0 0 5px #ddd;
-            margin-left: 1px;
-            margin-right: 10px;
+            padding: 15px;
         }
-</style>
+
+            fieldset legend {
+                background: #1f4970;
+                color: #fff;
+                padding: 5px 10px 10px 20px;
+                font-size: 15px;
+                border-radius: 5px;
+                box-shadow: 0 0 0 5px #ddd;
+                margin-left: 1px;
+                margin-right: 10px;
+            }
+    </style>
 
 
- var questionId = Model.QuestionID;
- System.Diagnostics.Debug.WriteLine(questionId);
-    
-<input type="hidden" name="QuestionID" id="txtQuestionId" value="@questionId" />
+    var questionId = Model.QuestionID;
+    System.Diagnostics.Debug.WriteLine(questionId);
 
-<fieldset>
-   @* @Html.HiddenFor(model => model.QuestionID, new { @id = "txtQuestionId" }) *@
-    <legend>@Model.Question_Text</legend>
-    <table style="width: 100%" class="table table-condensed" , id="tblQuestionOption">
-        <p>@Model.ListOfQuizOption.Capacity</p>
-        @foreach (var item in @Model.ListOfQuizOption)
-        {
+    <input type="hidden" name="QuestionID" id="txtQuestionId" value="@questionId" />
+
+    <fieldset>
+        @* @Html.HiddenFor(model => model.QuestionID, new { @id = "txtQuestionId" }) *@
+        <legend>@Model.Question_Text</legend>
+        <table style="width: 100%" class="table table-condensed" , id="tblQuestionOption">
+            <p>@Model.ListOfQuizOption.Capacity</p>
+            @foreach (var item in @Model.ListOfQuizOption)
+            {
+                <tr>
+                    <td>
+                        @Html.RadioButtonFor(model => model.OptionID, @item.OptionName)@item.OptionName
+                    </td>
+
+                </tr>
+            }
             <tr>
                 <td>
-                    @Html.RadioButtonFor(model => model.OptionID, @item.OptionName)@item.OptionName
+
+                    @if (Model.IsLast)
+                    {
+                        <input type="button" name="Save" value="Save" class="btn btn-success" id="btnSave" onclick="SaveStudentAnswer()" />
+                    }
+                    else
+                    {
+                        <input type="button" name="Next" value="Next" class="btn btn-primary" id="btnNext" onclick="LoadQuestion()" />
+                    }
+
+
                 </td>
-
             </tr>
-        }
-        <tr>
-            <td>
 
-                @if (Model.IsLast)
-                {
-                    <input type="button" name="Save" value="Save" class="btn btn-success" id="btnSave" onclick="SaveStudentAnswer()" />
-                }
-                else
-                {
-                    <input type="button" name="Next" value="Next" class="btn btn-primary" id="btnNext" onclick="LoadQuestion()" />
-                }
-
-
-            </td>
-        </tr>
-
-    </table>
-</fieldset>
+        </table>
+    </fieldset>
 }
 else
 {

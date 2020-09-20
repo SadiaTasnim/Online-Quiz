@@ -1,64 +1,84 @@
 ﻿
 @model OnlineQuizSystem.Models.Teacher
 
+
 @{
-    ViewBag.Title = "TeacherListForStudent";
-    Layout = "~/Views/Shared/_Layout2studentprofile.cshtml";
+    ViewBag.Title = "StudentProfile";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+
+    //Get Current Logged in User Info Dashboard
+    OnlineQuizSystem.Models.ONLINEQUIZEntities8 db = new OnlineQuizSystem.Models.ONLINEQUIZEntities8();
+    int studentId = Convert.ToInt32(Session["StudentID"]);
+    var CurrentUser = db.Students.Find(studentId);
 }
 
-<h1 style="text-align:center;background-color:aliceblue">Teacher List For Student</h1>
-<h1 style="color:cornflowerblue">@TempData["msg"]</h1>
+
+@section user_name {
+    @CurrentUser.Email
+}
+
+@section content_wrapper {
+
+    <div class="container">
+
+
+        <h1 style="text-align:center;background-color:aliceblue">Teacher List For Student</h1>
+        <h1 style="color:cornflowerblue">@TempData["msg"]</h1>
 
 
 
-<div style="overflow:scroll">
-    <table class="table table-responsive">
-        <thead>
-            <tr>
-                <th>Teacher ID</th>
+        <div style="overflow:scroll">
+            <table class="table table-responsive">
+                <thead>
+                    <tr>
+                        <th>Teacher ID</th>
 
 
-                <th>Teacher Name</th>
+                        <th>Teacher Name</th>
 
-            </tr>
+                    </tr>
 
-        </thead>
-
-
-
-        <tbody>
-            @foreach (var item in ViewData["list"] as List<OnlineQuizSystem.Models.Teacher>)
-            {
-            <tr>
-                @using (Html.BeginForm("TeacherListForStudentadd", "Request", FormMethod.Post))
-                {
-                    <input type="hidden" value="@item.TeacherID" name="tid" />
-
-
-                    <td>@item.TeacherID</td>
-
-                    <td>@Html.ActionLink(item.TeacherName, "Teacherprofileforstudent", new { id = item.TeacherName })</td>
-                    
-                    <td><span class="glyphicon glyphicon-plus"></span><button type="submit">Add Teacher</button> </td>
-
-                }
-            </tr>
-            }
-        </tbody>
-
-
-    </table>
-</div>
+                </thead>
 
 
 
+                <tbody>
+                    @foreach (var item in ViewData["list"] as List<OnlineQuizSystem.Models.Teacher>)
+                    {
+                        <tr>
+                            @using (Html.BeginForm("TeacherListForStudentadd", "Request", FormMethod.Post))
+                            {
+                                <input type="hidden" value="@item.TeacherID" name="tid" />
 
 
+                                <td>@item.TeacherID</td>
+
+                                <td>@Html.ActionLink(item.TeacherName, "Teacherprofileforstudent", new { id = item.TeacherName })</td>
+
+                                <td><span class="glyphicon glyphicon-plus"></span>
+                            <button class="btn btn-lg bg-dark text-white" type="submit">Add Teacher</button> 
+                            </td>
+
+                            }
+                        </tr>
+                    }
+                </tbody>
 
 
+            </table>
+        </div>
+
+    </div>
 
 
 
 
 
 
+
+
+
+
+
+
+}

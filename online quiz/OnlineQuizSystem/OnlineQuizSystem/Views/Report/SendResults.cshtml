@@ -1,46 +1,55 @@
 ﻿
 @{
     ViewBag.Title = "SendResults";
-    Layout = "~/Views/Shared/_Layout2studentprofile.cshtml";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+   
+    //Get Current Logged in User Info Dashboard
+    OnlineQuizSystem.Models.ONLINEQUIZEntities8 db = new OnlineQuizSystem.Models.ONLINEQUIZEntities8();
+    int studentId = Convert.ToInt32(Session["StudentID"]);
+    var CurrentUser = db.Students.Find(studentId);
 }
+@section user_name {
+    @CurrentUser.Email
+}
+@section content_wrapper {
+    <div style="overflow:scroll">
+        <table class="table table-responsive">
+            <thead>
+                <tr>
+                    <th>Subject Name</th>
 
-<div style="overflow:scroll">
-    <table class="table table-responsive">
-        <thead>
-            <tr>
-                <th>Subject Name</th>
+                    <th>Marks</th>
 
-                <th>Marks</th>
+                </tr>
 
-            </tr>
-
-        </thead>
-
-
-
-        <tbody>
-
-            @foreach (var item in ViewData["jointables"] as IEnumerable<OnlineQuizSystem.Models.showsubjectnumberClass>)
-            {
-            <tr>
+            </thead>
 
 
 
-                <td>@Html.ActionLink(item.CategoryName.CategoryName, "showsamplequestions", new { id = item.CategoryId.CategoryId})</td>
+            <tbody>
 
-
-                <td>
-                    @item.marks.totalmarks
-                </td>
-
-
-            </tr>
-            }
-        </tbody>
+                @foreach (var item in ViewData["jointables"] as IEnumerable<OnlineQuizSystem.Models.showsubjectnumberClass>)
+                {
+                    <tr>
 
 
 
+                        <td>@Html.ActionLink(item.CategoryName.CategoryName, "showsamplequestions", new { id = item.CategoryId.CategoryId })</td>
 
-    </table>
 
-</div>
+                        <td>
+                            @item.marks.totalmarks
+                        </td>
+
+
+                    </tr>
+                }
+            </tbody>
+
+
+
+
+        </table>
+
+    </div>
+    }

@@ -1,42 +1,52 @@
 ﻿@model OnlineQuizSystem.Models.Category
 @{
     ViewBag.Title = "ShowResultToTeacher";
-    Layout = "~/Views/Shared/_Layout1.cshtml";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+    OnlineQuizSystem.Models.ONLINEQUIZEntities8 db = new OnlineQuizSystem.Models.ONLINEQUIZEntities8();
+    int teacherId = Convert.ToInt32(Session["TeacherID"]);
+    var CurrentUser = db.Teachers.Find(teacherId);
+}
+@section user_name {
+    @CurrentUser.Email
 }
 
-<div style="overflow:scroll">
-    <table class="table table-responsive">
-        <thead>
-            <tr>
-                <th>Subject Name</th>
 
-            </tr>
-
-        </thead>
-
-
-
-        <tbody>
-            @foreach (var item in ViewData["list"] as List<OnlineQuizSystem.Models.Category>)
-            {
-
-
+@section content_wrapper {
+    <div >
+        <table class="table table-responsive" >
+            <thead>
                 <tr>
-
-
-                    <td>@Html.ActionLink(item.CategoryName, "Showresultstudentid", new { id = item.CategoryId })</td>
-
-
+                    <th >Question Sets</th>
 
                 </tr>
 
-            }
-        </tbody>
+            </thead>
+
+
+
+            <tbody>
+                @foreach (var item in ViewData["list"] as List<OnlineQuizSystem.Models.Category>)
+                {
+
+
+                    <tr>
+
+
+                        <td>@Html.ActionLink(item.CategoryName, "Showresultstudentid", new { id = item.CategoryId })</td>
+
+
+
+                    </tr>
+
+                }
+            </tbody>
 
 
 
 
-    </table>
+        </table>
 
-</div>
+    </div>
 
+    }
+    

@@ -1,58 +1,61 @@
 ﻿
 @{
-    ViewBag.Title = "showsamplequestions";
-    Layout = "~/Views/Shared/_Layout2studentprofile.cshtml";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+    OnlineQuizSystem.Models.ONLINEQUIZEntities8 db = new OnlineQuizSystem.Models.ONLINEQUIZEntities8();
+    int studentId = Convert.ToInt32(Session["StudentID"]);
+    var CurrentUser = db.Students.Find(studentId);
 
 }
 
+@section user_name {
+    @CurrentUser.Email
+}
+@section content_wrapper {
+    <div style="overflow:scroll">
+        <table class="table table-responsive">
+            <thead>
+                <tr>
+                    <th>Ques No</th>
+                    <th>Question</th>
+                    <th>Answer</th>
+
+                </tr>
+
+            </thead>
+
+
+
+            <tbody>
 
 
 
 
-<div style="overflow:scroll">
-    <table class="table table-responsive">
-        <thead>
-            <tr>
-                <th>Ques No</th>
-                <th>Question</th>
-                <th>Answer</th>
+                @{int i = 1;}
 
-            </tr>
-
-        </thead>
+                @foreach (var item in ViewData["jointables"] as IEnumerable<OnlineQuizSystem.ViewModel.anstextViewModel>)
+                {
 
 
+                    <tr>
 
-        <tbody>
+                        <td>
+                            <span>@(i++)</span>
+                        </td>
 
 
 
-
-            @{int i = 1;}
-
-            @foreach (var item in ViewData["jointables"] as IEnumerable<OnlineQuizSystem.ViewModel.anstextViewModel>)
-            {
-
-
-            <tr>
-
-                <td>
-                    <span>@(i++)</span>
-                </td>
+                        <td>@item.questionText</td>
+                        <td>@item.answerText</td>
 
 
 
-                <td>@item.questionText</td>
-                <td>@item.answerText</td>
+                    </tr>
 
 
-
-            </tr>
-
-
-            }
-        </tbody>
+                }
+            </tbody>
 
 
-    </table>
-</div>
+        </table>
+    </div>
+    }

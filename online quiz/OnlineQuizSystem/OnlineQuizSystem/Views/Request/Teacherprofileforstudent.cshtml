@@ -1,82 +1,96 @@
 ﻿@model OnlineQuizSystem.Models.Teacher
+
 @{
-    ViewBag.Title = "Teacherprofileforstudent";
-    Layout = "~/Views/Shared/_Layout2studentprofile.cshtml";
+    ViewBag.Title = "StudentProfile";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+
+    //Get Current Logged in User Info Dashboard
+    OnlineQuizSystem.Models.ONLINEQUIZEntities8 db = new OnlineQuizSystem.Models.ONLINEQUIZEntities8();
+    int studentId = Convert.ToInt32(Session["StudentID"]);
+    var CurrentUser = db.Students.Find(studentId);
 }
 
 
-<style>
-    .well {
-        background-color: lightblue;
-        float: none;
-        position: relative;
-        width: 70%;
-        left: 15%;
-        top: 20px;
-        border: 10px solid navy;
-        margin: 0;
-    }
-</style>
+@section user_name {
+    @CurrentUser.Email
+}
 
 
 
-<div class="well">
-
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            <label for="email">User Name:</label>
-        </dt>
-        <dd>
-            @Html.TextBoxFor(x => x.TeacherName, htmlAttributes: new { @class = "form-control" })
-        </dd>
-        <br />
-
-        <dt>
-            <label for="email">Full Name:</label>
-        </dt>
-        <dd>
-            @Html.TextBoxFor(x => x.FullName, htmlAttributes: new { @class = "form-control" })
-        </dd>
-        <br />
-
-        <dt>
-            <label for="email">Email ID:</label>
-        </dt>
-        <dd>
-            @Html.TextBoxFor(x => x.Email, htmlAttributes: new { @class = "form-control" })
-        </dd>
-        <br />
-
-        <dt>
-            <label for="email">Institution:</label>
-            @*@Html.DisplayNameFor(model => model.Institute)*@
-        </dt>
-        <dd>
-            @Html.TextBoxFor(x => x.Institute, htmlAttributes: new { @class = "form-control" })
-            @*@Html.DisplayFor(model => model.Institute)*@
-        </dd>
-        <br />
-
-        <dt>
-            <label for="email">Designation:</label>
-        </dt>
-
-        <dd>
-            @Html.TextBoxFor(x => x.Designation, htmlAttributes: new { @class = "form-control" })
-        </dd>
-        <br />
-
-        <dt>
-            <label for="email">Contact No.:</label>
-        </dt>
-
-        <dd>
-            @Html.TextBoxFor(x => x.Contact, htmlAttributes: new { @class = "form-control" })
-        </dd>
+@section content_wrapper {
+    <style>
+        .well {
+            background-color: lightblue;
+            float: none;
+            position: relative;
+            width: 70%;
+            left: 15%;
+            top: 20px;
+            border: 10px solid navy;
+            margin: 0;
+        }
+    </style>
 
 
 
+    <div class="well">
 
-    </dl>
-</div>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                <label for="email">User Name:</label>
+            </dt>
+            <dd>
+                @Html.TextBoxFor(x => x.TeacherName, htmlAttributes: new { @class = "form-control" })
+            </dd>
+            <br />
+
+            <dt>
+                <label for="email">Full Name:</label>
+            </dt>
+            <dd>
+                @Html.TextBoxFor(x => x.FullName, htmlAttributes: new { @class = "form-control" })
+            </dd>
+            <br />
+
+            <dt>
+                <label for="email">Email ID:</label>
+            </dt>
+            <dd>
+                @Html.TextBoxFor(x => x.Email, htmlAttributes: new { @class = "form-control" })
+            </dd>
+            <br />
+
+            <dt>
+                <label for="email">Institution:</label>
+                @*@Html.DisplayNameFor(model => model.Institute)*@
+            </dt>
+            <dd>
+                @Html.TextBoxFor(x => x.Institute, htmlAttributes: new { @class = "form-control" })
+                @*@Html.DisplayFor(model => model.Institute)*@
+            </dd>
+            <br />
+
+            <dt>
+                <label for="email">Designation:</label>
+            </dt>
+
+            <dd>
+                @Html.TextBoxFor(x => x.Designation, htmlAttributes: new { @class = "form-control" })
+            </dd>
+            <br />
+
+            <dt>
+                <label for="email">Contact No.:</label>
+            </dt>
+
+            <dd>
+                @Html.TextBoxFor(x => x.Contact, htmlAttributes: new { @class = "form-control" })
+            </dd>
+
+
+
+
+        </dl>
+    </div>
+}

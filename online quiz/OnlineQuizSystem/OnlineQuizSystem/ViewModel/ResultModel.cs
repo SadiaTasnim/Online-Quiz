@@ -11,7 +11,5 @@ namespace OnlineQuizSystem.ViewModel
         public string Answer { get; set; }
         public string AnswerByStudent { get; set; }
         public string Status { get; set; }
-
-        
     }
 }

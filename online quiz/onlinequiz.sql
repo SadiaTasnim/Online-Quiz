@@ -97,7 +97,7 @@ SELECT * from Options
 SELECT * from Answers
 SELECT * from Results
 SELECT * from Resultshow
-
+SELECT * from Question
 
 
 delete from Teacher
@@ -110,3 +110,5 @@ delete from Options
 delete from Answers
 delete from Results
 delete from Resultshow
+
+delete from Category where CategoryId=8

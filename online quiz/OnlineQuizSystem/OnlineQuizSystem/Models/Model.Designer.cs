@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\Sadia\Desktop\online quiz\OnlineQuizSystem\OnlineQuizSystem\Models\Model.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\Sadia\Desktop\tumpa\Quiz Submission\online quiz\OnlineQuizSystem\OnlineQuizSystem\Models\Model.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

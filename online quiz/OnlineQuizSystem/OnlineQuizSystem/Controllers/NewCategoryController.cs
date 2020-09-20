@@ -22,15 +22,16 @@ namespace OnlineQuizSystem.Controllers
 
             int tId = Convert.ToInt32(Session["TeacherId"]);
             CategoryViewModel objCategoryViewModel = new CategoryViewModel();
-         
-             objCategoryViewModel.ListofCategory = (from objCat in db.Categories
-                                                
-                                                    where objCat.CategoryTeacher== tId
-                                                    select new SelectListItem()
-                                                    {
-                                                        Value = objCat.CategoryId.ToString(),
-                                                        Text = objCat.CategoryName
-                                                    }).ToList();
+
+            objCategoryViewModel.ListofCategory = (from objCat in db.Categories
+
+                                                   where objCat.CategoryTeacher == tId
+                                                   select new SelectListItem()
+                                                   {
+                                                       Value = objCat.CategoryId.ToString(),
+                                                       Text = objCat.CategoryName
+                                                   }).ToList();
+
 
 
             return View(objCategoryViewModel);
@@ -41,13 +42,13 @@ namespace OnlineQuizSystem.Controllers
             Question objQuestion = new Question();
             objQuestion.Question_Text = quesOption.Question_Text;
             objQuestion.QuesCategoryId = quesOption.CategoryId;
-          
+
             db.Questions.Add(objQuestion);
             db.SaveChanges();
 
             int questionid = objQuestion.QuestionID;
 
-            foreach(var item in quesOption.ListOfOptions)
+            foreach (var item in quesOption.ListOfOptions)
             {
                 Option objOption = new Option();
                 objOption.OptionName = item;
@@ -61,9 +62,10 @@ namespace OnlineQuizSystem.Controllers
 
             Answer objAns = new Answer();
             objAns.AnswerText = quesOption.AnswerText;
-            objAns.AnsQuesId = questionid; 
+            objAns.AnsQuesId = questionid;
             db.Answers.Add(objAns);
             db.SaveChanges();
+
 
 
             return Json(data:new { message = "Question Successfully Added.", success = true }, JsonRequestBehavior.AllowGet);

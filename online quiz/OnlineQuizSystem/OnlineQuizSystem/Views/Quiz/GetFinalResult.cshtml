@@ -1,103 +1,89 @@
 ﻿@model IEnumerable<OnlineQuizSystem.ViewModel.ResultModel>
 @{
     ViewBag.Title = "GetFinalResult";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+
+    //Get Current Logged in User Info Dashboard
+    OnlineQuizSystem.Models.ONLINEQUIZEntities8 db = new OnlineQuizSystem.Models.ONLINEQUIZEntities8();
+    int studentId = Convert.ToInt32(Session["StudentID"]);
+    var CurrentUser = db.Students.Find(studentId);
 }
+
     <script type="text/javascript">
 
-       function preventBack() { window.history.forward(); }  
-       setTimeout("preventBack()", 0);  
+        function preventBack() { window.history.forward(); }
+        setTimeout("preventBack()", 0);
         window.onunload = function () { null };
 
-
-
-    //Disable Back Button In All Browsers.
-    /*function DisableBackButtonAllBrowsers() {
-        window.history.forward()
-    };
-    DisableBackButtonAllBrowsers();
-    window.onload = DisableBackButtonAllBrowsers;
-    window.onpageshow = function (evts) { if (evts.persisted) DisableBackButtonAllBrowsers(); };
-    window.onunload = function () { void (0) };*/
-
-    window.onbeforeunload = function() { return "Your work will be lost."; };
+        window.onbeforeunload = function () { return "Your work will be lost."; };
     </script>
 
-<table style="width:100%" class="table table-bordered">
-    <thead>
+@section user_name {
+    @CurrentUser.Email
+}
 
-        <tr>
-            <td>
-                Question
-            </td>
-            <td>
-                Answer
-            </td>
-            <td>
-                Answer by Student
-            </td>
-            <td>
-                Status
-            </td>
-        </tr>
-    </thead>
 
-    @{int a = 0; }
 
-    @foreach (var item in Model)
-    {
-<tr>
-   
-    <td>
-       
-        @item.Question
 
-    </td>
-    <td>
-       
-        @item.Answer
-    </td>
-        <td>
-            @item.AnswerByStudent
-        </td>
-        <td>
-            @if (item.Status == "Correct")
+
+
+@section content_wrapper {
+
+
+    <div class="container my-5">
+        <table style="width:100%" class="table table-bordered">
+            <thead>
+                <tr>
+                    <td>
+                        Question
+                    </td>
+                    <td>
+                        Answer
+                    </td>
+                    <td>
+                        Answer by Student
+                    </td>
+                    <td>
+                        Status
+                    </td>
+                </tr>
+            </thead>
+
+            @{int a = 0; }
+            @foreach (var item in Model)
             {
-                a++;
-
-                <label style="color: green"> @item.Status</label>
+                <tr>
+                    <td>
+                        @item.Question
+                    </td>
+                    <td>
+                        @item.Answer
+                    </td>
+                    <td>
+                        @item.AnswerByStudent
+                    </td>
+                    <td>
+                        @if (item.Status == "Correct")
+                        {
+                            a++;
+                            <label style="color: green"> @item.Status</label>
+                        }
+                        else
+                        {
+                            <label style="color: red"> @item.Status</label>
+                        }
+                    </td>
+                </tr>
             }
-            else
-            {
-                <label style="color: red"> @item.Status</label>
-            }
-        </td>
-
-    
-    </tr>
-    }
-</table>
-
-
-
-<h4 style="color: red">
-    Score :
-</h4>
-<label style="color: red">@a</label>
-
-@*<div>
-        Count :  @ViewBag.Count;
-    </div>*@
-
-
-@*<div>
-        Student Name : @ViewBag.student.StudentName;
-    </div>
-
-    <div>
-        Student Email : @ViewBag.student.Email;
+        </table>
     </div>
 
 
-    <div>
-        CategoryName : @ViewBag.category.CategoryName;
-    </div>*@
+    <h4 style="color: red">
+        Score :
+    </h4>
+    <label style="color: red">@a</label>
+
+}
+
+

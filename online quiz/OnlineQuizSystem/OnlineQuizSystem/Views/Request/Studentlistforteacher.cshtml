@@ -1,71 +1,113 @@
 ﻿
 @{
-    ViewBag.Title = "Studentlistforteacher";
-    Layout = "~/Views/Shared/_Layout1.cshtml";
+    ViewBag.Title = "ViewQuestion";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+
+    //Get Current Logged in User Info Dashboard
+    OnlineQuizSystem.Models.ONLINEQUIZEntities8 db = new OnlineQuizSystem.Models.ONLINEQUIZEntities8();
+    int teacherId = Convert.ToInt32(Session["TeacherID"]);
+    var CurrentUser = db.Teachers.Find(teacherId);
 }
 
-<h1 style="text-align:center;background-color:aliceblue">Student  list for teacher</h1>
+@section user_name {
+    @CurrentUser.Email
+}
 
-<h1 style="color:cornflowerblue">@TempData["msg"]</h1>
+@section content_wrapper {
 
-
-<div style="overflow:scroll">
-    <table class="table table-responsive">
-        <thead>
-            <tr>
-                <th>Student ID</th>
-
-
-                <th>Student Name</th>
-
-                <th>Delete</th>
-
-            </tr>
-
-        </thead>
+    <div class="container">
 
 
 
 
-        <tbody>
+        <h1 style="color:cornflowerblue">@TempData["msg"]</h1>
 
 
-            @foreach (var item in ViewData["jointables"] as IEnumerable<OnlineQuizSystem.Models.AcceptStudentRequestClass>)
-            {
-                <tr>
+        <div >
+            <table class="table table-responsive">
+                <thead>
+                    <tr>
+                        <th>Student ID</th>
+
+                        <th></th>
+                        <th></th>
+
+                        <th>Student Name</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
 
 
+                        <th>Delete Student</th>
 
-                    <td> @item.friendrequest.studentid </td>
+                    </tr>
 
-                    <td>@Html.ActionLink(item.addfriend.StudentName, "Studentprofileforteacher", new { id = item.addfriend.StudentName })</td>
-
-
-
-                    <td>
-                        @using (Html.BeginForm("StudentRequestNotifictionForTeacher", "Request", FormMethod.Post))
-
-                        {
-
-                            <input type="hidden" value="@item.friendrequest.studentid" name="sid" />
-                            <span class="glyphicon glyphicon-trash"></span>
-                            <button type="submit" value="1" name="delete">Delete</button>
-                        }
-                    </td>
-
-
-
-
-
-
-                </tr>
-            }
-
-        </tbody>
+                </thead>
 
 
 
-    </table>
 
-</div>
+                <tbody>
+
+
+                    @foreach (var item in ViewData["jointables"] as IEnumerable<OnlineQuizSystem.Models.AcceptStudentRequestClass>)
+                    {
+                    <tr>
+
+
+
+                        <td> @item.friendrequest.studentid </td>
+                        <td></td>
+                        <td></td>
+
+                        <td>@Html.ActionLink(item.addfriend.StudentName, "Studentprofileforteacher", new { id = item.addfriend.StudentName })</td>
+
+
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            @using (Html.BeginForm("StudentRequestNotifictionForTeacher", "Request", FormMethod.Post))
+
+                            {
+
+                                <input type="hidden" value="@item.friendrequest.studentid" name="sid" />
+                                <span class="glyphicon glyphicon-trash"></span>
+                                <button type="submit" class="btn btn-dark" style="background-color:red" value="1" name="delete">Delete</button>
+                            }
+                        </td>
+
+
+
+
+
+
+                    </tr>
+                    }
+
+                </tbody>
+
+
+
+            </table>
+
+        </div>
+    </div>
+
+}
 

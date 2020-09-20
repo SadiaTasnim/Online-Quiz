@@ -50,6 +50,13 @@ namespace OnlineQuizSystem.Controllers
             return View();
         }
 
+        public ActionResult Home()
+        {
+       
+
+            return View();
+        }
+
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";

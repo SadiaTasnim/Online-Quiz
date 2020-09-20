@@ -11,7 +11,11 @@ namespace OnlineQuizSystem.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Linq;
+    using System.Web;
+    using System.ComponentModel.DataAnnotations;
+    using OnlineQuizSystem.Models;
+
     public partial class Teacher
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,7 +26,11 @@ namespace OnlineQuizSystem.Models
         }
     
         public int TeacherID { get; set; }
+        //[Required(ErrorMessage ="Enter your full name")]
+        //[Display(Name ="Full Name")]
         public string FullName { get; set; }
+        //[Required(ErrorMessage = "Enter your user name")]
+        //[Display(Name = "User Name")]
         public string TeacherName { get; set; }
         public string Email { get; set; }
         public string Passwords { get; set; }

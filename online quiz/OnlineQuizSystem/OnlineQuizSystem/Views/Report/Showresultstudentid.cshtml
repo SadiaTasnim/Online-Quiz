@@ -1,24 +1,35 @@
-﻿@*@model OnlineQuizSystem.Models.Resultshow*@
+﻿
 @{
-    ViewBag.Title = "Showresultstudentid";
-    Layout = "~/Views/Shared/_Layout1.cshtml";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+    OnlineQuizSystem.Models.ONLINEQUIZEntities8 db = new OnlineQuizSystem.Models.ONLINEQUIZEntities8();
+    int teacherId = Convert.ToInt32(Session["TeacherID"]);
+    var CurrentUser = db.Teachers.Find(teacherId);
 }
+@section user_name {
+    @CurrentUser.Email
+}
+@section content_wrapper {
+    <div >
+        <table class="table table-responsive">
+            <thead>
+                <tr>
+                    <th>Student ID</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th>Marks</th>
+                </tr>
 
-<div style="overflow:scroll">
-    <table class="table table-responsive">
-        <thead>
-            <tr>
-                <th>Student ID</th>
-                <th>Marks</th>
-            </tr>
-
-        </thead>
-
-
-
-        <tbody>
-            @foreach (var item in ViewData["jointables"] as IEnumerable<OnlineQuizSystem.ViewModel.showsubjectnumberViewModel>)
-            {
+            </thead>
+            <tbody>
+                @foreach (var item in ViewData["jointables"] as IEnumerable<OnlineQuizSystem.ViewModel.showsubjectnumberViewModel>)
+                {
 
 
                 <tr>
@@ -27,28 +38,37 @@
                     <td>
 
 
-                        @Html.ActionLink(item.studentfullID + "", "Studentprofileofstudent", new { id = item.studentid })
+                        @Html.ActionLink(item.studentfullID + "", "Studentprofileofstudents", new { id = item.studentid })
 
 
 
                     </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
 
-                    @*<td>@item.studentID </td>*@
 
                     <td>@item.totalmarks </td>
 
 
                 </tr>
 
-            }
-        </tbody>
+                }
+            </tbody>
 
 
 
 
-    </table>
+        </table>
 
-</div>
+    </div>
 
 
 
+}

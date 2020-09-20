@@ -19,36 +19,20 @@ namespace OnlineQuizSystem.Controllers
 
 
         [HttpGet]
-        //--------------------show ques set name to teacher 
         public ActionResult ViewQuestion()
         {
             int sessId = Convert.ToInt32(Session["TeacherId"]);
-            List<Category> cat = db.Categories.Where(x => x.CategoryTeacher==sessId).ToList();
-      
+            List<Category> cat = db.Categories.Where(x => x.CategoryTeacher == sessId).ToList();
+
             ViewData["list"] = cat;
             return View();
             
         }
 
+   
         [HttpGet]
-        ////--------------------show question to teacher
         public ActionResult showquestions(int id)
         {
-            //int sessId = Convert.ToInt32(Session["TeacherId"]);
-
-            //string set = "(select * from Question where QuesCategoryId = "+id+" )";
-            //var data = db.Questions.SqlQuery(set).ToList();
-
-
-            //System.Diagnostics.Debug.WriteLine(data);
-
-
-
-            //ViewData["list"] = data;
-
-
-
-
             List<Question> ques = db.Questions.Where(x => x.QuesCategoryId == id).ToList();
 
             List<Answer> ans = db.Answers.ToList();
@@ -76,23 +60,18 @@ namespace OnlineQuizSystem.Controllers
             }
 
 
-
             ViewData["jointables"] = sv;
-
-
-
-
+      
             return View(ViewData["jointables"]);
 
         }
 
         [HttpPost]
-        //-----------------make a ques available to student ------
         public ActionResult makeavailbe(int cid ,int available)
         {
-            
+
             var del = (from OnlineQuizSystem in db.Categories
-                       where OnlineQuizSystem.CategoryId == cid 
+                       where OnlineQuizSystem.CategoryId == cid
                        select OnlineQuizSystem).FirstOrDefault();
 
 
@@ -100,14 +79,14 @@ namespace OnlineQuizSystem.Controllers
 
             //if (questionCount <= 1)
             //{
-                
+
             //    return RedirectToAction("ViewQuestion");
             //}
 
-            if (available == 1 )
+            if (available == 1)
             {
 
-                if (questionCount >1)
+                if (questionCount > 1)
                 {
                     del.available = 1;
                     db.SaveChanges();
@@ -120,7 +99,7 @@ namespace OnlineQuizSystem.Controllers
             }
             else
             {
-               
+
                 del.available = 0;
                 db.SaveChanges();
                 //ViewBag.msg = "Not Available For Student";
@@ -132,10 +111,66 @@ namespace OnlineQuizSystem.Controllers
         }
 
 
+        //public ActionResult deleteques(int delete,int qid)
+        //{
+        //    int sessId = Convert.ToInt32(Session["TeacherId"]);
 
-   
+        //    var del = (from OnlineQuizSystem in db.Results
+        //               where OnlineQuizSystem.ResQuesId == qid
+        //               select OnlineQuizSystem).FirstOrDefault();
+
+
+        //    if (delete==1)
+        //    {
+        //        db.Results.Remove(del);
+        //        db.SaveChanges();
+        //    }
+
+        //    var del1 = (from OnlineQuizSystem in db.Answers
+        //               where OnlineQuizSystem.AnsQuesId == qid
+        //               select OnlineQuizSystem).FirstOrDefault();
+
+        //    if (delete == 1)
+        //    {
+        //        db.Answers.Remove(del1);
+        //        db.SaveChanges();
+        //    }
+
+        //    //var del2 = (from OnlineQuizSystem in db.Options
+        //    //            where OnlineQuizSystem.OptQuesId == qid
+        //    //            select OnlineQuizSystem).FirstOrDefault();
+
+
+        //    //foreach(var data in db.Options)
+        //    //{
+        //    //    db.Options.Remove(del2);
+        //    //    db.SaveChanges();
+        //    //}
+        //    ////if (delete == 1)
+        //    ////{
+
+        //    ////}
+        //    ///
+
+        //    string set = "(delete * from Options where OptQuesId = " + qid + " )";
+        //    var data = db.Options.SqlQuery(set).ToList();
 
 
 
-        }
+        //    var del3 = (from OnlineQuizSystem in db.Questions
+        //                where OnlineQuizSystem.QuestionID == qid
+        //                select OnlineQuizSystem).FirstOrDefault();
+
+        //    if (delete == 1)
+        //    {
+        //        db.Questions.Remove(del3);
+        //        db.SaveChanges();
+        //        ViewBag.msg = "Question Deleted";
+        //    }
+
+
+        //    return RedirectToAction("showquestions");
+        //}
+
+    }
 }

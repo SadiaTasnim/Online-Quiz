@@ -1,21 +1,35 @@
 ﻿@model OnlineQuizSystem.ViewModel.QuizCategoryViewModel
 @{
     ViewBag.Title = "QuizStudent";
-    Layout = "~/Views/Shared/_Layout2studentprofile.cshtml";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+
+    //Get Current Logged in User Info Dashboard
+    OnlineQuizSystem.Models.ONLINEQUIZEntities8 db = new OnlineQuizSystem.Models.ONLINEQUIZEntities8();
+    int studentId = Convert.ToInt32(Session["StudentID"]);
+    var CurrentUser = db.Students.Find(studentId);
 }
 
-<h2>QuizStudent</h2>
-@using (Html.BeginForm("QuizStudent", "Quiz", FormMethod.Post))
-{
-    @Html.ValidationSummary(excludePropertyErrors: true, message: null, htmlAttributes: new { @class = "text-danger" })
-<div class="container-fluid">
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.CategoryId)
-        @Html.DropDownListFor(model => model.CategoryId, Model.ListofCategory, new { @class = "form-control" })
+@section user_name {
+    @CurrentUser.Email
+}
+@section content_wrapper {
+    <div class="container my">
+
+
+      
+        @using (Html.BeginForm("QuizStudent", "Quiz", FormMethod.Post))
+        {
+            @Html.ValidationSummary(excludePropertyErrors: true, message: null, htmlAttributes: new { @class = "text-danger" })
+            <div class="container-fluid">
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.CategoryId)
+                    @Html.DropDownListFor(model => model.CategoryId, Model.ListofCategory, new { @class = "form-control" })
+                </div>
+                <input type="submit" name="Submit" value="Submit" class="btn btn-lg bg-dark text-white"  />
+            </div>
+
+        }
     </div>
-    <input type="submit" name="Submit" value="Submit" class="btn btn-primary" />
-</div>
-
 }
-

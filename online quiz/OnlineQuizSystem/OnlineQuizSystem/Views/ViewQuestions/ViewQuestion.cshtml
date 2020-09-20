@@ -2,25 +2,57 @@
 
 @{
     ViewBag.Title = "ViewQuestion";
-    Layout = "~/Views/Shared/_Layout1.cshtml";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+
+    //Get Current Logged in User Info Dashboard
+    OnlineQuizSystem.Models.ONLINEQUIZEntities8 db = new OnlineQuizSystem.Models.ONLINEQUIZEntities8();
+    int teacherId = Convert.ToInt32(Session["TeacherID"]);
+    var CurrentUser = db.Teachers.Find(teacherId);
 }
 
+@section user_name {
+    @CurrentUser.Email
+}
+@section content_wrapper {
 
-<div style="overflow:scroll">
-    <table class="table table-responsive">
-        <thead>
-            <tr>
-                <th>Subject Name</th>
+    <div >
+        <table class="table table-responsive">
+            <thead>
+                <tr>
+                    <th>Subject Name</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
 
-            </tr>
+                </tr>
 
-        </thead>
+            </thead>
 
 
 
-        <tbody>
-            @foreach (var item in ViewData["list"] as List<OnlineQuizSystem.Models.Category>)
-            {
+            <tbody>
+                @foreach (var item in ViewData["list"] as List<OnlineQuizSystem.Models.Category>)
+                {
 
 
                 <tr>
@@ -30,7 +62,8 @@
 
 
 
-
+                    <td></td> <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                    <td></td><td></td><td></td><td></td><td></td><td></td>
                     <td>
 
 
@@ -40,31 +73,28 @@
                             <input type="hidden" value="@item.CategoryId" name="cid" />
                             if (item.available == 0)
                             {
-                                <button type="submit" value="1" name="available">Make Available</button>
+                                <button type="submit" class="btn btn-dark" style="background-color:green"  value="1" name="available">Make Available</button>
                             }
 
                             else
                             {
-                                <button type="submit" value="0" name="available">Make Unavailable</button>
+                                <button type="submit" class="btn btn-dark" style="background-color:#808080" value="0" name="available">Make Unavailable</button>
                             }
-
 
                         }
                     </td>
 
 
-
-
-
-
                 </tr>
 
-            }
-        </tbody>
+                }
+            </tbody>
 
 
 
 
-    </table>
+        </table>
 
-</div>
+    </div>
+
+    }

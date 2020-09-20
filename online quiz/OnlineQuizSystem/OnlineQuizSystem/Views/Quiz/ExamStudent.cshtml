@@ -3,15 +3,15 @@
     Layout = "~/Views/Shared/_DashboardLayout.cshtml";
 
     //Get Current Logged in User Info Dashboard
-    OnlineQuizSystem.Models.ONLINEQUIZEntities8 db = new OnlineQuizSystem.Models.ONLINEQUIZEntities8();
-    int studentId = Convert.ToInt32(Session["StudentID"]);
-    var CurrentUser = db.Students.Find(studentId);
+    //OnlineQuizSystem.Models.ONLINEQUIZEntities8 db = new OnlineQuizSystem.Models.ONLINEQUIZEntities8();
+    //int studentId = Convert.ToInt32(Session["StudentID"]);
+    //var CurrentUser = db.Students.Find(studentId);
 }
 
 
-@section user_name {
+@*@section user_name {
     @CurrentUser.Email
-}
+}*@
 
 @section content_wrapper {
     <div class="container my-5">

@@ -123,17 +123,7 @@ namespace OnlineQuizSystem.Controllers
         [HttpGet]
         public ActionResult Showresultstudentid(int id )
         {
-            //int tid = Convert.ToInt32(Session["TeacherID"].ToString());
-            //string set = "( select * from  Resultshow where QuesCategoryId = "+id+")";
-            //var data = db.Resultshows.SqlQuery(set).ToList();
-
-
-            //System.Diagnostics.Debug.WriteLine(data);
-
-
-
-            //ViewData["list"] = data;
-
+            
 
             List<Resultshow> res = db.Resultshows.Where(x => x.QuesCategoryId == id).ToList();
 

@@ -1,22 +1,30 @@
 ﻿
 @{
     Layout = "~/Views/Shared/_DashboardLayout.cshtml";
-    OnlineQuizSystem.Models.ONLINEQUIZEntities8 db = new OnlineQuizSystem.Models.ONLINEQUIZEntities8();
-    int studentId = Convert.ToInt32(Session["StudentID"]);
-    var CurrentUser = db.Students.Find(studentId);
+    //OnlineQuizSystem.Models.ONLINEQUIZEntities8 db = new OnlineQuizSystem.Models.ONLINEQUIZEntities8();
+    //int studentId = Convert.ToInt32(Session["StudentID"]);
+    //var CurrentUser = db.Students.Find(studentId);
 
 }
 
-@section user_name {
+@*@section user_name {
     @CurrentUser.Email
-}
+}*@
 @section content_wrapper {
-    <div style="overflow:scroll">
+    <div>
         <table class="table table-responsive">
             <thead>
                 <tr>
                     <th>Ques No</th>
+                    <th></th>
+                    <th></th>
                     <th>Question</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
                     <th>Answer</th>
 
                 </tr>
@@ -36,20 +44,27 @@
                 {
 
 
-                    <tr>
+                <tr>
 
-                        <td>
-                            <span>@(i++)</span>
-                        </td>
+                    <td>
+                        <span>@(i++)</span>
+                    </td>
+
+                    <td></td>
+                    <td></td>
+
+                    <td>@item.questionText</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>@item.answerText</td>
 
 
 
-                        <td>@item.questionText</td>
-                        <td>@item.answerText</td>
-
-
-
-                    </tr>
+                </tr>
 
 
                 }

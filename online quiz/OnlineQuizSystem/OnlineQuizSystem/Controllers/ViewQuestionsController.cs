@@ -33,6 +33,7 @@ namespace OnlineQuizSystem.Controllers
         [HttpGet]
         public ActionResult showquestions(int id)
         {
+          
             List<Question> ques = db.Questions.Where(x => x.QuesCategoryId == id).ToList();
 
             List<Answer> ans = db.Answers.ToList();
@@ -111,66 +112,94 @@ namespace OnlineQuizSystem.Controllers
         }
 
 
-        //public ActionResult deleteques(int delete,int qid)
-        //{
-        //    int sessId = Convert.ToInt32(Session["TeacherId"]);
+        public ActionResult deleteques(int delete, int qid)
+        {
+            int sessId = Convert.ToInt32(Session["TeacherId"]);
 
-        //    var del = (from OnlineQuizSystem in db.Results
-        //               where OnlineQuizSystem.ResQuesId == qid
-        //               select OnlineQuizSystem).FirstOrDefault();
-
-
-        //    if (delete==1)
-        //    {
-        //        db.Results.Remove(del);
-        //        db.SaveChanges();
-        //    }
-
-        //    var del1 = (from OnlineQuizSystem in db.Answers
-        //               where OnlineQuizSystem.AnsQuesId == qid
-        //               select OnlineQuizSystem).FirstOrDefault();
-
-        //    if (delete == 1)
-        //    {
-        //        db.Answers.Remove(del1);
-        //        db.SaveChanges();
-        //    }
-
-        //    //var del2 = (from OnlineQuizSystem in db.Options
-        //    //            where OnlineQuizSystem.OptQuesId == qid
-        //    //            select OnlineQuizSystem).FirstOrDefault();
+            var del = (from OnlineQuizSystem in db.Results
+                       where OnlineQuizSystem.ResQuesId == qid
+                       select OnlineQuizSystem).FirstOrDefault();
 
 
-        //    //foreach(var data in db.Options)
-        //    //{
-        //    //    db.Options.Remove(del2);
-        //    //    db.SaveChanges();
-        //    //}
-        //    ////if (delete == 1)
-        //    ////{
+            if (delete == 1  && del!=null)
+            {
+                db.Results.Remove(del);
+                db.SaveChanges();
+            }
 
-        //    ////}
-        //    ///
+            var del1 = (from OnlineQuizSystem in db.Answers
+                        where OnlineQuizSystem.AnsQuesId == qid
+                        select OnlineQuizSystem).FirstOrDefault();
 
-        //    string set = "(delete * from Options where OptQuesId = " + qid + " )";
-        //    var data = db.Options.SqlQuery(set).ToList();
+            if (delete == 1)
+            {
+                db.Answers.Remove(del1);
+                db.SaveChanges();
+            }
+
+            var op = from d in db.Options
+                            where d.OptQuesId == qid
+                            select d;
+
+            foreach (var o in op)
+            {
+                db.Options.Remove(o);
+            }
+
+            db.SaveChanges();
+
+            var del3 = (from OnlineQuizSystem in db.Questions
+                        where OnlineQuizSystem.QuestionID == qid
+                        select OnlineQuizSystem).FirstOrDefault();
+
+            if (delete == 1)
+            {
+                db.Questions.Remove(del3);
+                db.SaveChanges();
+                ViewBag.msg = "Question Deleted";
+            }
+
+
+            return RedirectToAction("ViewQuestion");
+        }
 
 
 
-        //    var del3 = (from OnlineQuizSystem in db.Questions
-        //                where OnlineQuizSystem.QuestionID == qid
-        //                select OnlineQuizSystem).FirstOrDefault();
 
-        //    if (delete == 1)
-        //    {
-        //        db.Questions.Remove(del3);
-        //        db.SaveChanges();
-        //        ViewBag.msg = "Question Deleted";
-        //    }
+        public ActionResult deleteset(int delete, int qid)
+        {
+            if (delete==1)
+            {
+                var del = (from OnlineQuizSystem in db.Questions
+                           where OnlineQuizSystem.QuesCategoryId == qid
+                           select OnlineQuizSystem).FirstOrDefault();
 
 
-        //    return RedirectToAction("showquestions");
-        //}
+                int questionCount = db.Questions.Where(u => u.QuesCategoryId == qid).Count();
+
+                if (questionCount>0)
+                {
+                    return RedirectToAction("ViewQuestion");
+                }
+                else
+                {
+                    var del3 = (from OnlineQuizSystem in db.Categories
+                                where OnlineQuizSystem.CategoryId == qid
+                                select OnlineQuizSystem).FirstOrDefault();
+
+                    if (delete == 1)
+                    {
+                        db.Categories.Remove(del3);
+                        db.SaveChanges();
+                    }
+                 }
+
+            }
+            
+
+            return RedirectToAction("ViewQuestion");
+        }
+
 
     }
 }

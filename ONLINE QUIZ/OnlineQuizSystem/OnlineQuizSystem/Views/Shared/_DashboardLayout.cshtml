@@ -17,7 +17,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
-    @RenderSection("links_cdn", required: false)
+    @*@RenderSection("links_cdn", required: false)*@
 
     <link href="~/Content/css/admin.css" rel="stylesheet">
     @*#00ad5f*@
@@ -142,16 +142,14 @@
         <ul class="navbar-nav bg-dark sidebar sidebar-dark accordion " id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <li>
-                <a class="sidebar-brand d-flex align-items-center justify-content-center" href="@Url.Action("Index","Dashboard")">
+            <div class="sidebar-brand d-flex align-items-center justify-content-center">
 
-                    <div class="sidebar-brand-icon rotate-n-15 ">
-                        <i class="fas fa-book-open"></i>
-                    </div>
+                <div class="sidebar-brand-icon rotate-n-15 ">
+                    <i class="fas fa-book-open"></i>
+                </div>
 
-                    <div class="sidebar-brand-text mx-3"> ONLINE QUIZ SYSTEM </div>
-                </a>
-            </li>
+                <div class="sidebar-brand-text mx-3"> ONLINE QUIZ SYSTEM </div>
+            </div>
 
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
@@ -159,7 +157,7 @@
             <!-- Nav Item - Dashboard -->
             <li class="nav-item @(ViewContext.RouteData.Values["Controller"].ToString() == "StudentProfile" ? "active" : "") ">
                 <a class="nav-link" href="@Url.Action("StudentProfile", "StudentProfile")">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <i class="fas fa-fw fa-user"></i>
                     <span>Profile</span>
                 </a>
             </li>
@@ -168,56 +166,48 @@
             <hr class="sidebar-divider">
 
             <!-- Heading -->
-            <div class="sidebar-heading">
-                Instruction
-            </div>
+ 
 
             <li class="nav-item @(ViewContext.RouteData.Values["action"].ToString() == "TeacherListForStudent" ? "active" : "") ">
                 <a class="nav-link" href="@Url.Action("TeacherListForStudent", "Request")">
-                    <i class="fas fa-fw fa-map-marker-alt"></i>
+                    <i class="fas fa-fw fa-search"></i>
                     <span>Find Teachers</span>
                 </a>
             </li>
 
             <li class="nav-item @(ViewContext.RouteData.Values["action"].ToString() == "requestsentforstudent" ? "active" : "")">
                 <a class="nav-link" href="@Url.Action("requestsentforstudent", "Request")">
-                    <i class="fas fa-fw fa-school"></i>
-                    <span>Request Sent</span>
+                    <i class="fas fa-fw fa-smile"></i>
+                    <span>Sent Request </span>
                 </a>
             </li>
 
             <li class="nav-item @(ViewContext.RouteData.Values["action"].ToString() == "FriendListForStudent" ? "active" : "") ">
                 <a class="nav-link " href="@Url.Action("FriendListForStudent", "Request")">
-                    <i class="fas fa-fw fa-chart-line"></i>
-                    <span>Teacher List</span>
+                    <i class="fas fa-fw fa-user-friends"></i>
+                    <span>Added Teacher</span>
                 </a>
             </li>
             <li class="nav-item @(ViewContext.RouteData.Values["action"].ToString() == "QuizStudent" ? "active" : "") ">
                 <a class="nav-link" href="@Url.Action("QuizStudent", "Quiz")">
-                    <i class="fas fa-fw fa-chart-pie"></i>
-                    <span>Give an exam</span>
+                    <i class="fas fa-fw fa-book-open"></i>
+                    <span>Give a Quiz</span>
                 </a>
             </li>
-            @*
-            <li class="nav-item @(ViewContext.RouteData.Values["action"].ToString() == "SampleQuestion" ? "active" : "") ">
-                <a class="nav-link" href="@Url.Action("SampleQuesForStudent", "SampleQuestion")">
-                    <i class="fas fa-fw fa-chart-pie"></i>
-                    <span>Sample Questions</span>
-                </a>
-            </li>*@
+           
 
             
 
             <li class="nav-item @(ViewContext.RouteData.Values["action"].ToString() == "reportstudent" ? "active" : "")">
                 <a class="nav-link" href="@Url.Action("SendResults", "Report")">
-                    <i class="fas fa-fw fa-chart-pie"></i>
-                    <span> Report </span>
+                    <i class="fas fa-fw fa-book"></i>
+                    <span>Results</span>
                 </a>
             </li>
 
             <li class="nav-item">
                 <a class="nav-link" href="@Url.Action("Logout", "LogOut")">
-                    <i class="fas fa-fw fa-chart-pie"></i>
+                    <i class="fas fa-fw fa-sign-in-alt"></i>
                     <span> Logout </span>
                 </a>
             </li>
@@ -256,7 +246,7 @@
                         <ul class="navbar-nav ml-auto">
 
                         
-                            <li class="nav-item dropdown no-arrow">
+                            @*<li class="nav-item dropdown no-arrow">
                                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <span>
                                      
@@ -277,7 +267,7 @@
                                         Logout
                                     </a>
                                 </div>
-                            </li>
+                            </li>*@
 
                         </ul>
 

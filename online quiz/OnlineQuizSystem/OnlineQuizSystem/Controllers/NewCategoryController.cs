@@ -47,13 +47,13 @@ namespace OnlineQuizSystem.Controllers
             db.SaveChanges();
 
             int questionid = objQuestion.QuestionID;
-
+            System.Diagnostics.Debug.WriteLine("OPTION  11  : " + quesOption);
             foreach (var item in quesOption.ListOfOptions)
             {
                 Option objOption = new Option();
                 objOption.OptionName = item;
                 objOption.OptQuesId = questionid;
-
+                System.Diagnostics.Debug.WriteLine("OPTION  : " + objOption.OptionName);
                 db.Options.Add(objOption);
                 db.SaveChanges();
 

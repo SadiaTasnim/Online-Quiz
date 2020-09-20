@@ -2269,10 +2269,6 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Shared\_Layout1.cshtml" />
-    <Content Include="Views\Shared\_Layout2studentprofile.cshtml" />
-    <Content Include="Views\Home\Studentprofileforteacher.cshtml" />
-    <Content Include="Views\Home\Teacherprofileforstudent.cshtml" />
     <Content Include="Views\Check\DashBoard.cshtml" />
     <Content Include="Views\SRegistration\StudentRegister.cshtml" />
     <Content Include="Views\Category\Addcategory.cshtml" />
@@ -2286,12 +2282,10 @@
     <Content Include="Views\TRegistration\TeacherRegister.cshtml" />
     <Content Include="Views\TeacherProfile\TeacherProfile.cshtml" />
     <Content Include="Views\StudentProfile\StudentProfile.cshtml" />
-    <Content Include="Views\Profiles\Teacherprofileforstudent.cshtml" />
     <Content Include="Views\NewCategory\NewCategory.cshtml" />
     <Content Include="Views\ViewQuestions\ViewQuestion.cshtml" />
     <Content Include="Views\Request\Teacherprofileforstudent.cshtml" />
     <Content Include="Views\Request\Studentprofileforteacher.cshtml" />
-    <Content Include="Views\ViewQuestions\showsets.cshtml" />
     <Content Include="Views\ViewQuestions\showquestions.cshtml" />
     <Content Include="Views\Quiz\QuizStudent.cshtml" />
     <Content Include="Views\Quiz\ExamStudent.cshtml" />
@@ -2309,7 +2303,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\LogOut\" />
-    <Folder Include="Views\Profile\" />
     <Folder Include="Views\TeacherProfileForStudent\" />
   </ItemGroup>
   <ItemGroup>

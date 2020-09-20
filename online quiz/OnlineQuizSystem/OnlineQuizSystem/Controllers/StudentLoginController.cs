@@ -28,7 +28,8 @@ namespace OnlineQuizSystem.Controllers
             Student stu = db.Students.Where(x => x.Email == s.Email && x.Passwords == s.Passwords && x.ID == s.ID).SingleOrDefault();
             if (stu == null)
             {
-                ViewBag.msg = "Invalid Email  or Password";
+                ViewBag.msg = "Invalid username or ID or password";
+                ViewBag.color = "red";
             }
             else
             {

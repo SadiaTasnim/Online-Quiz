@@ -11,7 +11,7 @@ namespace OnlineQuizSystem.ViewModel
         public string Question_Text { get; set; }
         public List<string> ListOfOptions { get; set; }
         public string AnswerText { get; set; }
-        public int SetID { get; set; }
+   
 
 
     }

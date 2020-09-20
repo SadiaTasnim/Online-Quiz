@@ -72,14 +72,10 @@
                     <br />
                     if (ViewBag.msg != null)
                     {
-                        <div class="login100-form-title p-b-34">
-                            <strong>Error!</strong> @ViewBag.msg
-                        </div>
+                            <div class="login100-form-title p-b-34">
+                                 <font color="@ViewBag.color">@ViewBag.msg</font>
+                            </div>
                     }
-
-                    <div class="w-full text-center p-t-27 p-b-239">
-
-                    </div>
 
                     <div class="w-full text-center">
                         <a class="txt3" href="@Url.Action("StudentRegister" , "SRegistration")">

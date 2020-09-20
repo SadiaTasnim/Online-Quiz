@@ -47,7 +47,7 @@ namespace OnlineQuizSystem.Controllers
             AF.timedate = DateTime.UtcNow.Date;
             db.FriendListForStudnets.Add(AF);
             db.SaveChanges();
-            TempData["msg"] = "Friend successfully added!";
+            TempData["msg"] = "Teacher successfully added!";
 
             return RedirectToAction("TeacherListForStudent");
         }
@@ -131,7 +131,7 @@ namespace OnlineQuizSystem.Controllers
 
                 db.FriendListForStudnets.Remove(del);
                 db.SaveChanges();
-                TempData["msg"] = "Friend Request deleted";
+                TempData["msg"] = "Student Request deleted";
             }
 
 
@@ -151,7 +151,7 @@ namespace OnlineQuizSystem.Controllers
 
                 del.friendlist = 1;
                 db.SaveChanges();
-                TempData["msg"] = "Friend Request accepted";
+                TempData["msg"] = "Student Request accepted";
             }
 
 
@@ -192,7 +192,7 @@ namespace OnlineQuizSystem.Controllers
 
                 db.FriendListForStudnets.Remove(del);
                 db.SaveChanges();
-                TempData["msg"] = "Friend deleted";
+                TempData["msg"] = "Removed";
             }
 
 
@@ -232,7 +232,7 @@ namespace OnlineQuizSystem.Controllers
 
                 db.FriendListForStudnets.Remove(del);
                 db.SaveChanges();
-                TempData["msg"] = "Friend Request deleted";
+                TempData["msg"] = "Deleted";
             }
 
 

@@ -1,32 +1,34 @@
 ﻿@model OnlineQuizSystem.Models.Teacher
 
 @{
-    ViewBag.Title = "StudentProfile";
+    ViewBag.Title = "StudenProfile";
     Layout = "~/Views/Shared/_DashboardLayout.cshtml";
 
     //Get Current Logged in User Info Dashboard
-    OnlineQuizSystem.Models.ONLINEQUIZEntities8 db = new OnlineQuizSystem.Models.ONLINEQUIZEntities8();
-    int studentId = Convert.ToInt32(Session["StudentID"]);
-    var CurrentUser = db.Students.Find(studentId);
+    //OnlineQuizSystem.Models.ONLINEQUIZEntities8 db = new OnlineQuizSystem.Models.ONLINEQUIZEntities8();
+    //int studentId = Convert.ToInt32(Session["StudentID"]);
+    //var CurrentUser = db.Students.Find(studentId);
 }
 
 
-@section user_name {
+@*@section user_name {
     @CurrentUser.Email
-}
+}*@
 
 
 
 @section content_wrapper {
+
     <style>
         .well {
-            background-color: lightblue;
+            background-color: white;
             float: none;
             position: relative;
             width: 70%;
+            padding: 10px;
             left: 15%;
             top: 20px;
-            border: 10px solid navy;
+            border: 10px solid #42c97b;
             margin: 0;
         }
     </style>
@@ -41,53 +43,52 @@
                 <label for="email">User Name:</label>
             </dt>
             <dd>
-                @Html.TextBoxFor(x => x.TeacherName, htmlAttributes: new { @class = "form-control" })
+                @Html.TextBoxFor(x => x.TeacherName, htmlAttributes: new { @readonly = "readonly",@class = "form-control" })
             </dd>
-            <br />
+
 
             <dt>
                 <label for="email">Full Name:</label>
             </dt>
             <dd>
-                @Html.TextBoxFor(x => x.FullName, htmlAttributes: new { @class = "form-control" })
+                @Html.TextBoxFor(x => x.FullName, htmlAttributes: new { @readonly = "readonly",@class = "form-control" })
             </dd>
-            <br />
+        
 
             <dt>
                 <label for="email">Email ID:</label>
             </dt>
             <dd>
-                @Html.TextBoxFor(x => x.Email, htmlAttributes: new { @class = "form-control" })
+                @Html.TextBoxFor(x => x.Email, htmlAttributes: new { @readonly = "readonly",@class = "form-control" })
             </dd>
-            <br />
+         
 
             <dt>
                 <label for="email">Institution:</label>
                 @*@Html.DisplayNameFor(model => model.Institute)*@
             </dt>
             <dd>
-                @Html.TextBoxFor(x => x.Institute, htmlAttributes: new { @class = "form-control" })
+                @Html.TextBoxFor(x => x.Institute, htmlAttributes: new { @readonly = "readonly" ,@class = "form-control"})
                 @*@Html.DisplayFor(model => model.Institute)*@
             </dd>
-            <br />
+      
 
             <dt>
                 <label for="email">Designation:</label>
             </dt>
 
             <dd>
-                @Html.TextBoxFor(x => x.Designation, htmlAttributes: new { @class = "form-control" })
+                @Html.TextBoxFor(x => x.Designation, htmlAttributes: new { @readonly = "readonly",@class = "form-control" })
             </dd>
-            <br />
+          
 
             <dt>
                 <label for="email">Contact No.:</label>
             </dt>
 
             <dd>
-                @Html.TextBoxFor(x => x.Contact, htmlAttributes: new { @class = "form-control" })
+                @Html.TextBoxFor(x => x.Contact, htmlAttributes: new { @readonly = "readonly",@class = "form-control"})
             </dd>
-
 
 
 

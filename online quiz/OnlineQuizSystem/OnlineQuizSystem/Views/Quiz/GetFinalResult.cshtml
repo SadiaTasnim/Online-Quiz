@@ -4,23 +4,23 @@
     Layout = "~/Views/Shared/_DashboardLayout.cshtml";
 
     //Get Current Logged in User Info Dashboard
-    OnlineQuizSystem.Models.ONLINEQUIZEntities8 db = new OnlineQuizSystem.Models.ONLINEQUIZEntities8();
-    int studentId = Convert.ToInt32(Session["StudentID"]);
-    var CurrentUser = db.Students.Find(studentId);
+    //OnlineQuizSystem.Models.ONLINEQUIZEntities8 db = new OnlineQuizSystem.Models.ONLINEQUIZEntities8();
+    //int studentId = Convert.ToInt32(Session["StudentID"]);
+    //var CurrentUser = db.Students.Find(studentId);
 }
 
-    <script type="text/javascript">
+<script type="text/javascript">
 
-        function preventBack() { window.history.forward(); }
-        setTimeout("preventBack()", 0);
-        window.onunload = function () { null };
+    function preventBack() { window.history.forward(); }
+    setTimeout("preventBack()", 0);
+    window.onunload = function () { null };
 
-        window.onbeforeunload = function () { return "Your work will be lost."; };
-    </script>
+    window.onbeforeunload = function () { return "Your work will be lost."; };
+</script>
 
-@section user_name {
+@*@section user_name {
     @CurrentUser.Email
-}
+}*@
 
 
 
@@ -78,12 +78,15 @@
         </table>
     </div>
 
+    <div class="container my-5" style="float:right">
+       
+        <h2 style="color: red">
+            <b>  Score : @a </b>
+        </h2>
+        
+        @*<label style="color: red">@a</label>*@
 
-    <h4 style="color: red">
-        Score :
-    </h4>
-    <label style="color: red">@a</label>
-
-}
+    }
 
 
+    </div>

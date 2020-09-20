@@ -22,8 +22,23 @@ namespace OnlineQuizSystem.Controllers
         }
 
         [HttpPost]
-        public ActionResult StudentRegister(Student stv, HttpPostedFileBase imageFile)
+        public ActionResult StudentRegister(Student stv)
         {
+            if (stv.StudentName==null || stv.ID==null || stv.Passwords==null || stv.Email==null || stv.Department==null || stv.Semester==null || stv.Contact==null ||stv.Institute==null)
+            {
+               
+                return RedirectToAction("StudentRegister", "SRegistration");
+            }
+
+            int count = db.Students.Where(u => u.StudentName== stv.StudentName).Count();
+
+            if (count > 0)
+            {
+
+                return RedirectToAction("StudentRegister");
+            }
+
+
             Student s = new Student();
             s.StudentName = stv.StudentName;
             s.ID = stv.ID;

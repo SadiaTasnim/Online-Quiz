@@ -38,61 +38,61 @@
 
                 @using (Html.BeginForm("TeacherRegister", "TRegistration", FormMethod.Post, new { @class = "login100-form validate-form" }))
                 {
-                    @Html.ValidationSummary(true)
-                   
 
-                    @Html.LabelFor(model => model.FullName, htmlAttributes: new { @class = "" })
-                    @Html.TextBoxFor(x => x.FullName, htmlAttributes: new { @class = "input100 border" })
-                    @Html.ValidationMessageFor(model => model.FullName, "", new { @class = "focus-input100" })
 
-                    <br />
-                    <br />
-                    <br />
 
-                    @Html.LabelFor(model => model.TeacherName, htmlAttributes: new { @class = "" })
-                    @Html.TextBoxFor(x => x.TeacherName, htmlAttributes: new { @class = "input100 border" })
-                    @Html.ValidationMessageFor(model => model.TeacherName, "", new { @class = "focus-input100" })
+                    @Html.ValidationMessageFor(model => model.FullName, "Full Name ", new { @class = "focus-input100" })
+                    @Html.TextBoxFor(x => x.FullName, htmlAttributes: new { @class = "input100 border", @required = "1" })
+
 
                     <br />
                     <br />
                     <br />
 
-                    @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "" })
+                    @Html.ValidationMessageFor(model => model.TeacherName, "User Name", new { @class = "focus-input100" })
+                    @Html.TextBoxFor(x => x.TeacherName, htmlAttributes: new { @class = "input100 border", @required = "1" })
+
+
+                    <br />
+                    <br />
+                    <br />
+
+                    @Html.ValidationMessageFor(model => model.Email, "Email", new { @class = "focus-input100" })
                     @Html.TextBoxFor(x => x.Email, htmlAttributes: new { @class = "input100 border", @required = "1", @type = "email" })
-                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "focus-input100" })
-
-                    <br />
-                    <br />
-                    <br />
-
-                    @Html.LabelFor(model => model.Passwords, htmlAttributes: new { @class = "" })
-                    @Html.TextBoxFor(x => x.Passwords, htmlAttributes: new { @class = "input100 border" })
-                    @Html.ValidationMessageFor(model => model.Passwords, "", new { @class = "focus-input100" })
-
-                    <br />
-                    <br />
-                    <br />
-
-                    @Html.LabelFor(model => model.Institute, htmlAttributes: new { @class = "" })
-                    @Html.TextBoxFor(x => x.Institute, htmlAttributes: new { @class = "input100 border" })
-                    @Html.ValidationMessageFor(model => model.Institute, "", new { @class = "focus-input100" })
-
-                    <br />
-                    <br />
-                    <br />
-
-                    @Html.LabelFor(model => model.Designation, htmlAttributes: new { @class = "" })
-                    @Html.TextBoxFor(x => x.Designation, htmlAttributes: new { @class = "input100 border" })
-                    @Html.ValidationMessageFor(model => model.Designation, "", new { @class = "focus-input100" })
 
 
                     <br />
                     <br />
                     <br />
 
-                    @Html.LabelFor(model => model.Contact, htmlAttributes: new { @class = "" })
+                    @Html.ValidationMessageFor(model => model.Passwords, "Password", new { @class = "focus-input100" })
+                    @Html.TextBoxFor(x => x.Passwords, htmlAttributes: new { @class = "input100 border", @required = "1" })
+
+
+                    <br />
+                    <br />
+                    <br />
+
+                    @Html.ValidationMessageFor(model => model.Institute, "Institute", new { @class = "focus-input100" })
+                    @Html.TextBoxFor(x => x.Institute, htmlAttributes: new { @class = "input100 border", @required = "1" })
+
+
+                    <br />
+                    <br />
+                    <br />
+
+                    @Html.ValidationMessageFor(model => model.Designation, "Designation", new { @class = "focus-input100" })
+                    @Html.TextBoxFor(x => x.Designation, htmlAttributes: new { @class = "input100 border", @required = "1" })
+
+
+
+                    <br />
+                    <br />
+                    <br />
+
+                    @Html.ValidationMessageFor(model => model.Contact, "Contact No", new { @class = "focus-input100" })
                     @Html.TextBoxFor(x => x.Contact, htmlAttributes: new { @class = "input100 border", @required = "1", @type = "number" })
-                    @Html.ValidationMessageFor(model => model.Contact, "", new { @class = "focus-input100" })
+
 
 
 
@@ -100,14 +100,7 @@
                     <br />
                     <br />
 
-                    if (ViewBag.msg != null)
-                    {
-                        <div class="login100-form-title p-b-34">
-                            <strong color="@ViewBag.color">Error!</strong> @ViewBag.msg
-                            @*<font color="@ViewBag.color">@ViewBag.msg</font>*@
-                        </div>
-                    }
-
+              
                     <div class="container-login100-form-btn">
                         <button type="submit" class="login100-form-btn">
                             Sign in
@@ -119,7 +112,7 @@
 
                     <div class="w-full text-center">
                         <a class="txt3" href="@Url.Action("TLogin" , "TeacherLogin")">
-                            Login Here
+                            Do have an account? Login here
                         </a>
                         <br />
                         <br />

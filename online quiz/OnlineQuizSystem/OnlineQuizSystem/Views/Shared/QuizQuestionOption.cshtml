@@ -5,14 +5,14 @@
     <style type="text/css">
         fieldset {
             font-family: sans-serif;
-            border: 3px solid #1f4970;
+            border: 3px solid #42c97b;
             background: #ddd;
             border-radius: 5px;
             padding: 15px;
         }
 
             fieldset legend {
-                background: #1f4970;
+                background: #42c97b;
                 color: #fff;
                 padding: 5px 10px 10px 20px;
                 font-size: 15px;
@@ -33,7 +33,7 @@
         @* @Html.HiddenFor(model => model.QuestionID, new { @id = "txtQuestionId" }) *@
         <legend>@Model.Question_Text</legend>
         <table style="width: 100%" class="table table-condensed" , id="tblQuestionOption">
-            <p>@Model.ListOfQuizOption.Capacity</p>
+           
             @foreach (var item in @Model.ListOfQuizOption)
             {
                 <tr>
@@ -48,11 +48,11 @@
 
                     @if (Model.IsLast)
                     {
-                        <input type="button" name="Save" value="Save" class="btn btn-success" id="btnSave" onclick="SaveStudentAnswer()" />
+                        <input type="button" name="Save" value="Save" class="btn btn-success" style="background-color:forestgreen" id="btnSave" onclick="SaveStudentAnswer()" />
                     }
                     else
                     {
-                        <input type="button" name="Next" value="Next" class="btn btn-primary" id="btnNext" onclick="LoadQuestion()" />
+                        <input type="button" name="Next" value="Next" class="btn btn-primary" style="background-color:#42c97b" id="btnNext" onclick="LoadQuestion()" />
                     }
 
 

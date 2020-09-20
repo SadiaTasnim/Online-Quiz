@@ -4,14 +4,14 @@
     Layout = "~/Views/Shared/_DashboardLayout.cshtml";
 
     //Get Current Logged in User Info Dashboard
-    OnlineQuizSystem.Models.ONLINEQUIZEntities8 db = new OnlineQuizSystem.Models.ONLINEQUIZEntities8();
-    int teacherId = Convert.ToInt32(Session["TeacherID"]);
-    var CurrentUser = db.Teachers.Find(teacherId);
+    //OnlineQuizSystem.Models.ONLINEQUIZEntities8 db = new OnlineQuizSystem.Models.ONLINEQUIZEntities8();
+    //int teacherId = Convert.ToInt32(Session["TeacherID"]);
+    //var CurrentUser = db.Teachers.Find(teacherId);
 }
 
-@section user_name {
+@*@section user_name {
     @CurrentUser.Email
-}
+}*@
 
 @section content_wrapper {
     <div class="container">
@@ -19,7 +19,7 @@
 
    
 
-        <h1 style="color:cornflowerblue">@TempData["msg"]</h1>
+        <h6 style="color:#42c97b;">@TempData["msg"]</h6>
 
 
         <div >
@@ -93,7 +93,7 @@
 
                                 <input type="hidden" value="@item.friendrequest.studentid" name="sid" />
                                 <span class="glyphicon glyphicon-trash"></span>
-                                <button type="submit" class="btn btn-dark" style="background-color:red" value="1" name="delete">Delete</button>
+                                <button type="submit" class="btn btn-dark" style="background-color:#e03d3d" value="1" name="delete">Delete</button>
                             }
                         </td>
 

@@ -6,9 +6,9 @@
 }
 
 
-@section user_name {
+@*@section user_name {
     @Model.Email
-}
+}*@
 
 @section content_wrapper {
 
@@ -71,6 +71,12 @@
                         <dd>
                             @Html.TextBoxFor(x => x.Contact, htmlAttributes: new { @class = "form-control" })
                         </dd>
+
+                        @*<div class="container-login100-form-btn">
+                            <button type="submit" class="login100-form-btn">
+                               Update
+                            </button>
+                        </div>*@
 
                     </dl>
 

@@ -4,14 +4,14 @@
     Layout = "~/Views/Shared/_DashboardLayout.cshtml";
 
     //Get Current Logged in User Info Dashboard
-    OnlineQuizSystem.Models.ONLINEQUIZEntities8 db = new OnlineQuizSystem.Models.ONLINEQUIZEntities8();
-    int teacherId = Convert.ToInt32(Session["TeacherID"]);
-    var CurrentUser = db.Teachers.Find(teacherId);
+    //OnlineQuizSystem.Models.ONLINEQUIZEntities8 db = new OnlineQuizSystem.Models.ONLINEQUIZEntities8();
+    //int teacherId = Convert.ToInt32(Session["TeacherID"]);
+    //var CurrentUser = db.Teachers.Find(teacherId);
 }
 
-@section user_name {
+@*@section user_name {
     @CurrentUser.Email
-}
+}*@
 
 
 @section content_wrapper {
@@ -24,22 +24,11 @@
             <table class="table table-responsive">
                 <thead>
                     <tr>
-                        <th>Ques No</th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
+                        <th>No</th>
+                 
+              
                         <th>Question</th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
+           
                         <th>Answer</th>
 
                     </tr>
@@ -66,14 +55,7 @@
                             <span>@(i++)</span>
                         </td>
 
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-
+                 
 
                         @using (Html.BeginForm("deleteques", "ViewQuestions", FormMethod.Post))
                         {
@@ -82,15 +64,10 @@
                             <td>@item.questionText</td>
 
 
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
 
                             <td>@item.answerText</td>
+
+                            <td> <button type="submit" class="btn btn-icon-split" style="background-color:#e03d3d;color:white" value="1" name="delete">Delete</button></td>
 
 
                         }

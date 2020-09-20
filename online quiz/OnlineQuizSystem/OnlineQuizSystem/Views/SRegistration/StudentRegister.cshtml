@@ -4,7 +4,7 @@
 @*@model OnlineQuizSystem.Models.Teacher*@
 
 @{
-    ViewBag.Title = "TLogin";
+    ViewBag.Title = "StudentRegister";
     Layout = null;
 }
 
@@ -40,50 +40,41 @@
                 @using (Html.BeginForm("StudentRegister", "SRegistration", FormMethod.Post, new { @class = "login100-form validate-form" }))
                 {
 
-                    @Html.LabelFor(model => model.StudentName, htmlAttributes: new { @class = "" })
-                    @Html.TextBoxFor(x => x.StudentName, htmlAttributes: new { @class = "input100 border" })
-                    @Html.ValidationMessageFor(model => model.StudentName, "", new { @class = "focus-input100" })
 
-                    <br />
-                    <br />
-                    <br />
-
-                    @Html.LabelFor(model => model.ID, htmlAttributes: new { @class = "" })
-                    @Html.TextBoxFor(x => x.ID, htmlAttributes: new { @class = "input100 border" })
-                    @Html.ValidationMessageFor(model => model.ID, "", new { @class = "focus-input100" })
-
-                    <br />
-                    <br />
-                    <br />
-
-                    @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "" })
-                    @Html.TextBoxFor(x => x.Email, htmlAttributes: new { @class = "input100 border" })
-                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "focus-input100" })
-
-                    <br />
-                    <br />
-                    <br />
-
-                    @Html.LabelFor(model => model.Passwords, htmlAttributes: new { @class = "" })
-                    @Html.TextBoxFor(x => x.Passwords, htmlAttributes: new { @class = "input100 border" })
-                    @Html.ValidationMessageFor(model => model.Passwords, "", new { @class = "focus-input100" })
-
-                    <br />
-                    <br />
-                    <br />
-
-                    @Html.LabelFor(model => model.Institute, htmlAttributes: new { @class = "" })
-                    @Html.TextBoxFor(x => x.Institute, htmlAttributes: new { @class = "input100 border" })
-                    @Html.ValidationMessageFor(model => model.Institute, "", new { @class = "focus-input100" })
+                    @Html.ValidationMessageFor(model => model.StudentName, "Student Name", new { @class = "focus-input100" })
+                    @Html.TextBoxFor(x => x.StudentName, htmlAttributes: new { @class = "input100 border", @required = "1" })
 
 
                     <br />
                     <br />
                     <br />
 
-                    @Html.LabelFor(model => model.Department, htmlAttributes: new { @class = "" })
-                    @Html.TextBoxFor(x => x.Department, htmlAttributes: new { @class = "input100 border" })
-                    @Html.ValidationMessageFor(model => model.Department, "", new { @class = "focus-input100" })
+                    @Html.ValidationMessageFor(model => model.ID, "Student ID", new { @class = "focus-input100" })
+                    @Html.TextBoxFor(x => x.ID, htmlAttributes: new { @class = "input100 border" , @required = "1"})
+
+
+                    <br />
+                    <br />
+                    <br />
+
+                    @Html.ValidationMessageFor(model => model.Email, "Email", new { @class = "focus-input100" })
+                    @Html.TextBoxFor(x => x.Email, htmlAttributes: new { @class = "input100 border", @required = "1", @type = "email" })
+
+
+                    <br />
+                    <br />
+                    <br />
+
+                    @Html.ValidationMessageFor(model => model.Passwords, "Password", new { @class = "focus-input100" })
+                    @Html.TextBoxFor(x => x.Passwords, htmlAttributes: new { @class = "input100 border", @required = "1" })
+
+
+                    <br />
+                    <br />
+                    <br />
+
+                    @Html.ValidationMessageFor(model => model.Institute, "Institute", new { @class = "focus-input100" })
+                    @Html.TextBoxFor(x => x.Institute, htmlAttributes: new { @class = "input100 border" , @required = "1"})
 
 
 
@@ -91,24 +82,29 @@
                     <br />
                     <br />
 
+                    @Html.ValidationMessageFor(model => model.Department, "Department", new { @class = "focus-input100" })
+                    @Html.TextBoxFor(x => x.Department, htmlAttributes: new { @class = "input100 border" , @required = "1"})
 
 
-                    @Html.LabelFor(model => model.Semester, htmlAttributes: new { @class = "" })
-                    @Html.TextBoxFor(x => x.Semester, htmlAttributes: new { @class = "input100 border" })
-                    @Html.ValidationMessageFor(model => model.Semester, "", new { @class = "focus-input100" })
 
 
                     <br />
                     <br />
                     <br />
 
-                    @Html.LabelFor(model => model.Contact, htmlAttributes: new { @class = "" })
-                    @Html.TextBoxFor(x => x.Contact, htmlAttributes: new { @class = "input100 border" })
-                    @Html.ValidationMessageFor(model => model.Contact, "", new { @class = "focus-input100" })
+
+
+                    @Html.ValidationMessageFor(model => model.Semester, "Semester", new { @class = "focus-input100" })
+                    @Html.TextBoxFor(x => x.Semester, htmlAttributes: new { @class = "input100 border", @required = "1" })
+
+
 
                     <br />
                     <br />
                     <br />
+
+                    @Html.ValidationMessageFor(model => model.Contact, "Contact Number", new { @class = "focus-input100" })
+                    @Html.TextBoxFor(x => x.Contact, htmlAttributes: new { @class = "input100 border", @required = "1", @type = "number" })
 
 
                     <br />
@@ -123,41 +119,14 @@
                     </div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                    <br />
-                    <br />
-                    <br />
-
-                    <div class="w-full text-center p-t-27 p-b-239">
-
-                    </div>
-
                     <div class="w-full text-center">
-                        <a class="txt3" href="@Url.Action("TLogin" , "TeacherLogin")">
+                        <a class="txt3" href="@Url.Action("StudentRegister" , "SRegistration")">
                             Do have an account? Login here
                         </a>
 
                         @* @Html.ActionLink("Don't have an account? Register here", "TeacherRegister", "TRegistration", new { @class = "txt3" })*@
                     </div>
-
                 }
-
 
                 <div class="login100-more" style="background-image: url('/Content/img/login_image.jpg'); "></div>
             </div>

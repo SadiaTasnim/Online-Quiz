@@ -4,23 +4,23 @@
     Layout = "~/Views/Shared/_DashboardLayout.cshtml";
 
     //Get Current Logged in User Info Dashboard
-    OnlineQuizSystem.Models.ONLINEQUIZEntities8 db = new OnlineQuizSystem.Models.ONLINEQUIZEntities8();
-    int studentId = Convert.ToInt32(Session["StudentID"]);
-    var CurrentUser = db.Students.Find(studentId);
+    //OnlineQuizSystem.Models.ONLINEQUIZEntities8 db = new OnlineQuizSystem.Models.ONLINEQUIZEntities8();
+    //int studentId = Convert.ToInt32(Session["StudentID"]);
+    //var CurrentUser = db.Students.Find(studentId);
 }
 
-@section user_name {
+@*@section user_name {
     @CurrentUser.Email
-}
+}*@
 
 @section content_wrapper {
     <div class="container">
 
 
-        <h1 style="text-align:center;background-color:aliceblue">Friend list</h1>
-        <h1 style="color:cornflowerblue">@TempData["msg"]</h1>
 
-        <div style="overflow:scroll">
+        <h6 style="color:#e03d3d">@TempData["msg"]</h6>
+
+        <div >
 
             <table class="table table-responsive">
 
@@ -28,8 +28,18 @@
                     <tr>
                         <th>Teacher ID</th>
 
+                        <th></th>
+                        <th></th>
 
                         <th>Teacher Name</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th>ADD</th>
 
                     </tr>
 
@@ -38,23 +48,32 @@
 
                     @foreach (var item in ViewData["jointabless"] as IEnumerable<OnlineQuizSystem.Models.friendlistforstudent>)
                     {
-                        <tr>
-                            <td> @item.friendlist.teacherid </td>
-                            <td>@Html.ActionLink(item.teacherlist.TeacherName, "Teacherprofileforstudent", new { id = item.teacherlist.TeacherName })</td>
+                    <tr>
+                        <td> @item.friendlist.teacherid </td>
+                        <td></td>
+                        <td></td>
+                        <td>@Html.ActionLink(item.teacherlist.TeacherName, "Teacherprofileforstudent", new { id = item.teacherlist.TeacherName })</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+            
+                        <td>
+                            @using (Html.BeginForm("deletefrndforstudent", "Request", FormMethod.Post))
 
-                            <td>
-                                @using (Html.BeginForm("deletefrndforstudent", "Request", FormMethod.Post))
+                            {
 
-                                {
-
-                                    <input type="hidden" value="@item.friendlist.teacherid" name="tid" />
-                                    <span class="glyphicon glyphicon-trash"></span>
-                                    <button type="submit" value="1" name="delete">Delete</button>
-                                }
-                            </td>
+                                <input type="hidden" value="@item.friendlist.teacherid" name="tid" />
+                                <span class="glyphicon glyphicon-trash"></span>
+                                <button class=" btn btn-dark" style="background-color:#e03d3d" type="submit" value="1" name="delete">Delete</button>
+                            }
+                        </td>
 
 
-                        </tr>
+                    </tr>
 
                     }
                 </tbody>

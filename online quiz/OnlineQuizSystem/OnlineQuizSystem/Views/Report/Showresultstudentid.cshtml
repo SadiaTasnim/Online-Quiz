@@ -1,13 +1,14 @@
 ﻿
 @{
     Layout = "~/Views/Shared/_DashboardLayout.cshtml";
-    OnlineQuizSystem.Models.ONLINEQUIZEntities8 db = new OnlineQuizSystem.Models.ONLINEQUIZEntities8();
-    int teacherId = Convert.ToInt32(Session["TeacherID"]);
-    var CurrentUser = db.Teachers.Find(teacherId);
+    //OnlineQuizSystem.Models.ONLINEQUIZEntities8 db = new OnlineQuizSystem.Models.ONLINEQUIZEntities8();
+    //int teacherId = Convert.ToInt32(Session["TeacherID"]);
+    //var CurrentUser = db.Teachers.Find(teacherId);
 }
-@section user_name {
+@*@section user_name {
     @CurrentUser.Email
-}
+}*@
+
 @section content_wrapper {
     <div >
         <table class="table table-responsive">

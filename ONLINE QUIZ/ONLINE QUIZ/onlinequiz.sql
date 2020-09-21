@@ -1,6 +1,13 @@
+-- Creating Database --
+DROP DATABASE ONLINEQUIZ
+
+CREATE DATABASE ONLINEQUIZ
+
 USE ONLINEQUIZ
 
+--Creating Table--
 
+/*Entity 1 */
 CREATE Table Teacher
 (
 TeacherID int IDENTITY Primary key,
@@ -13,6 +20,7 @@ Designation varchar(50),
 Contact int ,
 )
 
+/*Entity 2 */
 CREATE Table Student
 (
 StudentID int IDENTITY Primary key,
@@ -26,6 +34,7 @@ Contact int,
 ID varchar(50),
 )
 
+/*Entity 3 */
 CREATE Table FriendListForStudnet
 (
 FID int IDENTITY Primary key,
@@ -35,6 +44,7 @@ timedate datetime,
 friendlist int not null default 0
 )
 
+/*Entity 4 */
 CREATE Table Category
 (
 CategoryId int IDENTITY primary key,
@@ -43,7 +53,7 @@ CategoryTeacher int Foreign Key references Teacher(TeacherID),
 available int NOT NULL DEFAULT(0)
 )
 
-
+/*Entity 5 */
 CREATE Table ExamStudent
 (
  ExamineeID int IDENTITY Primary key,
@@ -51,7 +61,7 @@ CREATE Table ExamStudent
  StuCategoryId int Foreign Key references Category(CategoryId),
 )
 
-
+/*Entity 6 */
 CREATE Table Question
 (
 QuestionID int IDENTITY Primary key,
@@ -59,16 +69,15 @@ QuesCategoryId int Foreign Key references Category(CategoryId),
 Question_Text varchar(MAX) not null,
 )
 
-
+/*Entity 7 */
 CREATE Table Options
 (
 OptionID int IDENTITY Primary key,
 OptQuesId int Foreign Key references Question(QuestionId),
 OptionName varchar(max),
-
 )
 
-
+/*Entity 8 */
 CREATE Table Answers
 (
 AnswerID int IDENTITY Primary key,
@@ -76,8 +85,8 @@ AnsQuesId int Foreign Key references Question(QuestionId),
 AnswerText varchar(max),
 )
 
-
-Create Table Results
+/*Entity 9 */
+CREATE Table Results
 (
 ResultID int IDENTITY Primary key,
 ResStudent int Foreign Key references Student(StudentID),
@@ -85,8 +94,8 @@ ResQuesId int Foreign Key references Question(QuestionId),
 AnswerText varchar(max),
 )
 
-
-create table Resultshow
+/*Entity 10 */
+CREATE table Resultshow
 (
    resultshowID int IDENTITY Primary key,
    studentID int Foreign Key references Student(StudentID),
@@ -95,21 +104,23 @@ create table Resultshow
   
 )
 
-insert into Teacher values 
+--  Data Entry --
+
+INSERT into Teacher values 
 ('Rima sultana','Rima','rima@gmail.com','1234','Ahsanullah University Of Technology','Professor',01814567890),
 ('Nusrat Jahan','Nusrat','nusrat@gmail.com','5678','Ahsanullah University Of Technology','Lecturer',01638641567),
 ('Ishrat Shipra','Shipra','shipra@gmail.com','2222','Ahsanullah University Of Technology','Professor',01814483930),
 ('Md.Haris Talukdar','Haris','haris999@gmail.com','2423','Ahsanullah University Of Technology','Associate Professor',01715757303),
 ('Mohammad Ali','Mohammad','mohammadali07@gmail.com','7890','Ahsanullah University Of Technology','Lecturer',01819186543)
 
-insert into Student  values 
+INSERT into Student  values 
 ('Sadia Tasnim','1234','sadiatasnim019@gmail.com','Ahsanullah University Of Technology','cse','3.2',01953728922,'170104037'),
 ('Tasmiya Tisha','4200','tisha07@gmail.com','Ahsanullah University Of Technology','CSE','3.2',01554306785,'170104033'),
 ('Rishad Ul Islam','3456','rishad012@gmail.com','Ahsanullah University Of Technology','CSE','3.2',01920846357,'170104047'),
 ('Farhana Tumpa','5678','tumpa@gmail.com','Ahsanullah University Of Technology','CSE','3.2',01842440053,'170104042'),
 ('Nishat Sharmin Audry','9678','audry@gmail.com','Ahsanullah University Of Technology','CSE','3.2',0183835967,'170104043')
 
-insert into Category values 
+INSERT into Category values 
 ('OS Lab Final',1,0),
 ('Physics Quiz-1',2,0),
 ('Physics Quiz-2',2,0),
@@ -124,7 +135,7 @@ insert into Category values
 ('OS Lab Quiz',1,0)
 
 
-insert into Question values 
+INSERT into Question values 
 --physics 1
 (2,'The transport phenomenon in gases is related to which of the following?'),
 (2,'The working principle of a washing machine is'),
@@ -174,7 +185,7 @@ insert into Question values
 (10,'The product layout:')
 
 
-insert into Options values 
+INSERT into Options values 
 --physics 1
 (1,'viscosity'),(1,'surface tension'),(1,'conduction'),(1,'radiation'),
 (2,'reverse osmosis'),(2,'diffusion'),(2,'centrifugation'),(2,'dialysis'),
@@ -224,7 +235,7 @@ insert into Options values
 (38,'Analysis of process chart'),(38,'Flow of material'),(38,'Ordering schedule of job'),(38,'Controlling inventory costs money'),
 (39,'Lowers overall manufacturing time'),(39,'Requires less space for placing machines'),(39,'Utilizes machine and labour better'),(39,'All of these')
 
-insert into Answers values
+INSERT into Answers values
 (1,'surface tension'),(2,'reverse osmosis'),(3,'Angstrom'),(4,'displacement'),(5,'angstrom'),
 (6,'convex lens'),(7,'in terms of none'),(8,'concave mirror'),(9,'None of these'),
 (10,'steel'),(11,'  nuclear fusion'),(12,'ohm/cm'),(13,'mercury'),(14,'Carbon dioxide'),
@@ -233,6 +244,8 @@ insert into Answers values
 (25,'Dining table'),(26,'Versatile'),(27,'Basic'),(28,'dont'),(29,'None of the above'),
 (30,'Cord'),(31,'Autophile'),(32,'None of the above'),(33,' reflexive'),(34,'Though'),
 (35,'Planning chart'),(36,'Four time estimate'),(37,'A dotted line'),(38,'Ordering schedule of job'),(39,'All of these')
+
+--  Viewing all entered Data --
 
 SELECT * from Teacher
 SELECT * from Student
@@ -247,6 +260,14 @@ SELECT * from Resultshow
 
 
 
+
+
+
+
+
+
+--  Deleting all Entries from Every Entities, if needed --
+
 delete from Teacher
 delete from Student
 delete from FriendListForStudnet
@@ -257,3 +278,16 @@ delete from Options
 delete from Answers
 delete from Results
 delete from Resultshow
+
+--  Deleting Table with all Entries, if needed --
+
+DROP Table Teacher
+DROP Table Student
+DROP Table FriendListForStudnet
+DROP Table Category
+DROP Table ExamStudent
+DROP Table Question
+DROP Table Options
+DROP Table Answers
+DROP Table Results
+DROP Table Resultshow

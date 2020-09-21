@@ -39,6 +39,9 @@
                 @using (Html.BeginForm("TeacherRegister", "TRegistration", FormMethod.Post, new { @class = "login100-form validate-form" }))
                 {
 
+                    <span class="login100-form-title p-b-34">
+                        <h2> Teacher Register </h2>
+                    </span>
 
 
                     @Html.ValidationMessageFor(model => model.FullName, "Full Name ", new { @class = "focus-input100" })
@@ -66,7 +69,7 @@
                     <br />
 
                     @Html.ValidationMessageFor(model => model.Passwords, "Password", new { @class = "focus-input100" })
-                    @Html.TextBoxFor(x => x.Passwords, htmlAttributes: new { @class = "input100 border", @required = "1"  })
+                    @Html.TextBoxFor(x => x.Passwords, htmlAttributes: new { @class = "input100 border", @required = "1" })
 
 
                     <br />
@@ -100,10 +103,10 @@
                     <br />
                     <br />
 
-              
+
                     <div class="container-login100-form-btn">
                         <button type="submit" class="login100-form-btn">
-                            Sign in
+                            Register
                         </button>
                     </div>
 

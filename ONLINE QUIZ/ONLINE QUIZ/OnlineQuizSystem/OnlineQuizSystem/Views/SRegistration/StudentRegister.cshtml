@@ -39,6 +39,9 @@
 
                 @using (Html.BeginForm("StudentRegister", "SRegistration", FormMethod.Post, new { @class = "login100-form validate-form" }))
                 {
+                    <span class="login100-form-title p-b-34">
+                        <h2> Student Register </h2>
+                    </span>
 
 
                     @Html.ValidationMessageFor(model => model.StudentName, "Student Name", new { @class = "focus-input100" })
@@ -50,7 +53,7 @@
                     <br />
 
                     @Html.ValidationMessageFor(model => model.ID, "Student ID", new { @class = "focus-input100" })
-                    @Html.TextBoxFor(x => x.ID, htmlAttributes: new { @class = "input100 border" , @required = "1"})
+                    @Html.TextBoxFor(x => x.ID, htmlAttributes: new { @class = "input100 border", @required = "1" })
 
 
                     <br />
@@ -74,7 +77,7 @@
                     <br />
 
                     @Html.ValidationMessageFor(model => model.Institute, "Institute", new { @class = "focus-input100" })
-                    @Html.TextBoxFor(x => x.Institute, htmlAttributes: new { @class = "input100 border" , @required = "1"})
+                    @Html.TextBoxFor(x => x.Institute, htmlAttributes: new { @class = "input100 border", @required = "1" })
 
 
 
@@ -83,7 +86,7 @@
                     <br />
 
                     @Html.ValidationMessageFor(model => model.Department, "Department", new { @class = "focus-input100" })
-                    @Html.TextBoxFor(x => x.Department, htmlAttributes: new { @class = "input100 border" , @required = "1"})
+                    @Html.TextBoxFor(x => x.Department, htmlAttributes: new { @class = "input100 border", @required = "1" })
 
 
 
@@ -114,13 +117,13 @@
 
                     <div class="container-login100-form-btn">
                         <button type="submit" class="login100-form-btn">
-                            Sign in
+                            Register
                         </button>
                     </div>
 
 
                     <div class="w-full text-center">
-                        <a class="txt3" href="@Url.Action("StudentRegister" , "SRegistration")">
+                        <a class="txt3" href="@Url.Action("SLogin" , "StudentLogin")">
                             Do have an account? Login here
                         </a>
 

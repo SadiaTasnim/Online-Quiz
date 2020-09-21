@@ -4,7 +4,7 @@
 To implement our project, Online Quiz System
 we have used SQL Server Management Studio (version 2014) & Microsoft Visual Studio (version 2019).
 ### Database setup:
-After downloading the whole project, the database model have to be executed. At first the sql queries of entities must be created. As we have used SQL Server Authentication, #####SetupLogin.sql file has to be executed first in Windows Authentication mode. After executing, the management studio has to restart and select SQL Server Authentication and set the Login and Password as the name in the setup file.
+After downloading the whole project, the database model have to be executed. At first the sql queries of entities must be created. As we have used SQL Server Authentication, SetupLogin.sql file has to be executed first in Windows Authentication mode. After executing, the management studio has to restart and select SQL Server Authentication and set the Login and Password as the name in the setup file.
 Now, the sql file of our project has to be executed, which is onlinequiz.sql. In the sql file, queries for database creating and entity creating is given properly. So, it won’t be any problem to create the entities for the project.
 
 ### Database model Update:

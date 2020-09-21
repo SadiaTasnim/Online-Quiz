@@ -1,0 +1,194 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Online Quiz System">
+    <meta name="keywords" content="Online Quiz System, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Online Quiz System</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Quantico:400,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&display=swap" rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="~/Content/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="~/Content/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="~/Content/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="~/Content/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="~/Content/css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="~/Content/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="~/Content/css/style.css" type="text/css">
+</head>
+
+<body>
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Header Section Begin -->
+    <header class="header-section">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="logo">
+                        <h4></h4>
+                        <a href="">
+                            <h3 style="color: #00ad5f">  ONLINE QUIZ SYSTEM </h3>
+
+                        </a>
+                    </div>
+                    <nav class="nav-menu mobile-menu">
+                        <ul>
+                            @*<li class="active"><a href="~/Views/Home/Index.cshtml">Home</a></li>*@
+                            <li><a href="@Url.Action( "Home", "Home")">Home</a></li>
+
+                            <li><a href="@Url.Action( "About", "Home")">About</a></li>
+                     
+                            <li>
+                                @Html.ActionLink("Login as Teacher", "TLogin", "TeacherLogin")
+                            </li>
+                            <li>
+                                @Html.ActionLink("Login as Student", "SLogin", "StudentLogin")
+                            </li>
+                        </ul>
+                    </nav>
+                    @*                    <div class="top-search search-switch">
+                            <i class="fa fa-search"></i>
+                        </div>
+                        <div id="mobile-menu-wrap"></div>*@
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Header End -->
+    <!-- Hero Section Begin -->
+    <section class="hero-section">
+        <div class="hs-slider owl-carousel">
+            <div class="hs-item set-bg" data-setbg="/Content/img/hero/GettyImages-663389892.jpg">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="hs-text">
+                                <h2 style="color: #000">Online Quiz System</h2>
+                                <p style="color: #000">
+                                    A  platform for giving Quizes Online
+                                </p>
+                                @*<a href="#" class="primary-btn">Contact us</a>*@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="hs-item set-bg" data-setbg="/Content/image/landnew.jpg">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="hs-text">
+                                <h2 style="color: #000">Online Quiz System</h2>
+                                <p style="color: #000">
+                                   A  platform for giving Quizes Online
+                                </p>
+                              
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Hero Section End -->
+    <!-- Services Section Begin -->
+    <section class="services-section spad">
+        <div class="container">
+            <div class="row">
+                @*  @Html.ActionLink("Login as Teacher", "TLogin", "TeacherLogin")*@
+
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <a href="@Url.Action("TLogin", "TeacherLogin")" >
+                        <div class="services-item">
+                            <img src="~/Content/img/services/test.jpg" height="450px" alt="">
+                            <h3> Creating Question </h3>
+                            
+                        </div>
+                    </a>
+                </div>
+
+
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <a href="@Url.Action("SLogin", "StudentLogin")" >
+                        <div class="services-item">
+                            <img src="~/Content/img/services/giveexam.png" height="450px" alt="">
+                            <h3>Answering questions </h3>
+                         
+                        </div>
+                    </a>
+                </div>
+
+
+
+
+            </div>
+        </div>
+    </section>
+    <!-- Services Section End -->
+    <!-- Footer Section Begin -->
+    <footer class="footer-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="fs-about">
+                        <div class="fa-logo">
+                            <a href="#">
+                                <!-- <img src="~/Content/img/f-logo.png" alt="">-->
+                            </a>
+                        </div>
+                        <p>
+                            <h3 style="color: grey">  ONLINE QUIZ SYSTEM </h3>
+                        </p>
+
+                    </div>
+                </div>
+
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="fs-widget">
+                      
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+    </footer>
+    <!-- Footer Section End -->
+    <!-- Search model Begin -->
+    <div class="search-model">
+        <div class="h-100 d-flex align-items-center justify-content-center">
+            <div class="search-close-switch">+</div>
+            <form class="search-model-form">
+                <input type="text" id="search-input" placeholder="Search here.....">
+            </form>
+        </div>
+    </div>
+    <!-- Search model end -->
+    <!-- Js Plugins -->
+    <script src="~/Content/js/jquery-3.3.1.min.js"></script>
+    <script src="~/Content/js/bootstrap.min.js"></script>
+    <script src="~/Content/js/jquery.magnific-popup.min.js"></script>
+    <script src="~/Content/js/isotope.pkgd.min.js"></script>
+    <script src="~/Content/js/masonry.pkgd.min.js"></script>
+    <script src="~/Content/js/jquery.slicknav.js"></script>
+    <script src="~/Content/js/owl.carousel.min.js"></script>
+    <script src="~/Content/js/main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,88 @@
+﻿@model OnlineQuizSystem.Models.Student
+
+
+@{
+    ViewBag.Title = "Student Profile";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+
+   
+}
+
+
+
+@section content_wrapper {
+    <div class="container">
+
+
+        <div class="well">
+
+            <hr />
+            <dl class="dl-horizontal">
+
+                <dt>
+                    <label for="email">Student ID:</label>
+                </dt>
+
+                <dd>
+                    @Html.TextBoxFor(x => x.ID, htmlAttributes: new { @class = "form-control" , @readonly = "readonly" })
+
+                </dd>
+                <br />
+                <dt>
+                    <label for="email">Full Name:</label>
+                </dt>
+
+                <dd>
+                    @Html.TextBoxFor(x => x.StudentName, htmlAttributes: new { @class = "form-control" , @readonly = "readonly"})
+                </dd>
+                <br />
+
+                <dt>
+                    <label for="email">Email ID:</label>
+                </dt>
+
+                <dd>
+                    @Html.TextBoxFor(x => x.Email, htmlAttributes: new { @class = "form-control", @readonly = "readonly" })
+                </dd>
+                <br />
+                <dt>
+                    <label for="email">Institution:</label>
+
+                </dt>
+
+                <dd>
+                    @Html.TextBoxFor(x => x.Institute, htmlAttributes: new { @class = "form-control", @readonly = "readonly" })
+                </dd>
+                <br />
+                <dt>
+                    <label for="email">Department:</label>
+
+
+                </dt>
+
+                <dd>
+                    @Html.TextBoxFor(x => x.Department, htmlAttributes: new { @class = "form-control", @readonly = "readonly" })
+                </dd>
+                <br />
+                <dt>
+                    <label for="email">Semester:</label>
+
+
+                </dt>
+
+                <dd>
+                    @Html.TextBoxFor(x => x.Semester, htmlAttributes: new { @class = "form-control" , @readonly = "readonly"})
+                </dd>
+                <br />
+                <dt>
+                    <label for="email">Contact No.:</label>
+                </dt>
+
+                <dd>
+                    @Html.TextBoxFor(x => x.Contact, htmlAttributes: new { @class = "form-control", @readonly = "readonly" })
+                </dd>
+                <br />
+            </dl>
+        </div>
+    </div>
+    }

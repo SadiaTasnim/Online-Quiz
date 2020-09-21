@@ -1,0 +1,45 @@
+﻿@model OnlineQuizSystem.ViewModel.QuizCategoryViewModel
+@{
+    ViewBag.Title = "Quiz";
+    Layout = "~/Views/Shared/_DashboardLayout.cshtml";
+
+  
+}
+
+
+
+@section content_wrapper {
+    <div class="container my">
+
+
+      
+        @using (Html.BeginForm("QuizStudent", "Quiz", FormMethod.Post))
+        {
+            @Html.ValidationSummary(excludePropertyErrors: true, message: null, htmlAttributes: new { @class = "text-danger" })
+        <div class="container-fluid">
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.CategoryId)
+                @Html.DropDownListFor(model => model.CategoryId, Model.ListofCategory, new { @class = "form-control" })
+
+
+
+            </div>
+
+            <input style="background-color:#42c97b" type="submit" id="mybutton" name="Submit" value="Start" class="btn btn-lg bg-dark text-white" />
+
+            <script>
+
+                console.log($('#CategoryId option').length);
+
+                if (($('#CategoryId option').length) == 0) {
+                    document.getElementById("mybutton").disabled = true;
+                }
+            </script>
+
+
+        </div>
+
+        }
+    </div>
+}

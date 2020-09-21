@@ -1,0 +1,117 @@
+﻿@{
+    ViewBag.Title = "About Us";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Online Quiz System">
+    <meta name="keywords" content="Online Quiz System, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Online Quiz System</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Quantico:400,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&display=swap" rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="~/Content/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="~/Content/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="~/Content/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="~/Content/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="~/Content/css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="~/Content/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="~/Content/css/style.css" type="text/css">
+</head>
+
+<body>
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Header Section Begin -->
+    <header class="header-section">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="logo">
+                        <h4></h4>
+                        <a href="">
+                            <h3 style="color: #00ad5f">  ONLINE QUIZ SYSTEM </h3>
+
+                        </a>
+                    </div>
+                    <nav class="nav-menu mobile-menu">
+                        <ul>
+                            <li><a href="@Url.Action( "Home", "Home")">Home</a></li>
+                            <li><a href="@Url.Action( "About", "Home")">About</a></li>
+                          
+                            <li>
+                                @Html.ActionLink("Login as Teacher", "TLogin", "TeacherLogin")
+                            </li>
+                            <li>
+                                @Html.ActionLink("Login as Student", "SLogin", "StudentLogin")
+                            </li>
+                        </ul>
+                    </nav>
+               
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Header End -->
+
+    <!-- Hero Section Begin -->
+    <section class="hero-section">
+        <div class="container my-5">
+
+            <!-- code here -->
+          
+
+            <p>-----A Teacher is needed to resigter for creating an account with all the information
+            required and also with an unique username
+            .After creating acount he can log in and create new question sets.
+            He/she can create question under those particular question sets 
+            and make it available for students.He can delete questions and also question sets.</p>
+            <p>-----Student can send add request to a teacher and a teacher can accept or delete.A teacher
+            have to make his Question Set available and only the added student will be able to see the available 
+            questions and can attend the quiz</p>
+            <p> -----A Student will register and then can log in to his/her account.After log in he/she can send 
+            add request to the teacher.He can attend only those quiz which are made available only by those teacher who
+            have accepted there add request.</p>
+            <p>-----A student can not give the same exam twice.</p>
+            <p>-----A student must finish his exam within the available time otherwise he/she will automaticly get zero on that 
+            particular exam.</p>
+            <p>-----After giving an exam a student will get his marks and also he can see the questions and there correct answer
+            for practice.</p>
+            <p>-----A teacher can see the student id's with their obtained marks and also can visit there profile</p>
+            <p>-----A student can also visit the proile of a teacher</p>
+
+        </div>
+    </section>
+    <!-- Hero Section End -->
+
+
+
+
+
+
+
+    <!-- Js Plugins -->
+    <script src="~/Content/js/jquery-3.3.1.min.js"></script>
+    <script src="~/Content/js/bootstrap.min.js"></script>
+    <script src="~/Content/js/jquery.magnific-popup.min.js"></script>
+    <script src="~/Content/js/isotope.pkgd.min.js"></script>
+    <script src="~/Content/js/masonry.pkgd.min.js"></script>
+    <script src="~/Content/js/jquery.slicknav.js"></script>
+    <script src="~/Content/js/owl.carousel.min.js"></script>
+    <script src="~/Content/js/main.js"></script>
+</body>
+
+</html>
+

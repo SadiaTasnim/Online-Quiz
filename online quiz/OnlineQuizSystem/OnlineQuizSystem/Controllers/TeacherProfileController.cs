@@ -28,8 +28,7 @@ namespace OnlineQuizSystem.Controllers
             return View(db.Teachers.Find(teacherId));
         }
 
-      
-
+       
 
         }
-}
+    }

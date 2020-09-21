@@ -2,7 +2,7 @@
 
 
 @{
-    ViewBag.Title = "TLogin";
+    ViewBag.Title = "Teacher Login";
     Layout = null;
 }
    
@@ -11,7 +11,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Login Teacher</title>
+    <title>Teacher Login</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -36,7 +36,7 @@
 
                 @using (Html.BeginForm("TLogin", "TeacherLogin", FormMethod.Post, new { @class = "login100-form validate-form" }))
                 {
-                    @*<form class="login100-form validate-form">*@
+           
                     <span class="login100-form-title p-b-34">
                         <h2> Account Login </h2>
                     </span>
@@ -44,15 +44,15 @@
 
 
                     @Html.AntiForgeryToken()
-                    @Html.LabelFor(model => model.TeacherName, htmlAttributes: new { @class = "" })
+                    @Html.ValidationMessageFor(model => model.TeacherName, "User Name", new { @class = "focus-input100" })
                     @Html.EditorFor(model => model.TeacherName, new { htmlAttributes = new { @class = "input100 border" } })
-                    @Html.ValidationMessageFor(model => model.TeacherName, "", new { @class = "focus-input100" })
+
                     <br />
                     <br />
                     <br />
-                    @Html.LabelFor(model => model.Passwords, htmlAttributes: new { @class = "" })
+                    @Html.ValidationMessageFor(model => model.Passwords, "Password", new { @class = "focus-input100" })
                     @Html.PasswordFor(model => model.Passwords, new { @class = "input100 border" })
-                    @Html.ValidationMessageFor(model => model.Passwords, "", new { @class = "focus-input100" })
+
 
                     <br />
                     <br />
@@ -69,10 +69,10 @@
                     <br />
                     if (ViewBag.msg != null)
                     {
-            <div class="login100-form-title p-b-34">
-                @*<strong color ="@ViewBag.color">Error!</strong> @ViewBag.msg*@
-                <font color="@ViewBag.color">@ViewBag.msg</font>
-            </div>
+                        <div class="login100-form-title p-b-34">
+                            @*<strong color ="@ViewBag.color">Error!</strong> @ViewBag.msg*@
+                            <font color="@ViewBag.color">@ViewBag.msg</font>
+                        </div>
                     }
 
                     <div class="w-full text-center">

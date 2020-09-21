@@ -2291,7 +2291,6 @@
     <Content Include="Views\Quiz\ExamStudent.cshtml" />
     <Content Include="Views\Shared\QuizQuestionOption.cshtml" />
     <Content Include="Views\Quiz\GetFinalResult.cshtml" />
-    <Content Include="Views\Quiz\SendResult.cshtml" />
     <Content Include="Views\Shared\_DashboardLayout.cshtml" />
     <Content Include="Views\Report\SendResults.cshtml" />
     <Content Include="Views\Report\Showresultstudentid.cshtml" />

@@ -34,7 +34,6 @@ namespace OnlineQuizSystem.Controllers
             return View();
         }
 
-
         //for student show students result 
         [HttpGet]
         public ActionResult SendResults()
@@ -42,7 +41,7 @@ namespace OnlineQuizSystem.Controllers
 
             int sID = Convert.ToInt32(Session["StudentId"]);
 
-            List<Resultshow> res = db.Resultshows.Where(x => x.studentID == sID).ToList();
+            List<Resultshow> res = db.Resultshows.Where(x => x.studentID == sID ).ToList();
             List<Category> cat = db.Categories.ToList();
 
             ViewData["jointables"] = from r in res
@@ -104,6 +103,10 @@ namespace OnlineQuizSystem.Controllers
         [HttpGet]
         public ActionResult ShowResultToTeacher()
         {
+            if (Session["TeacherID"]==null)
+            {
+                return RedirectToAction("SLogin", "StudentLogin");
+            }
 
             int tid = Convert.ToInt32(Session["TeacherID"].ToString());
             string set = "(select Distinct  CategoryId,CategoryName,CategoryTeacher,available from Category join Resultshow  on Category.CategoryId = Resultshow.QuesCategoryId where Category.CategoryTeacher = " + tid + ")";
@@ -162,6 +165,10 @@ namespace OnlineQuizSystem.Controllers
         //----------student profile who gave exam --------
         public ActionResult Studentprofileofstudents(int id)
         {
+            if (Session["TeacherID"] == null)
+            {
+                return RedirectToAction("SLogin", "StudentLogin");
+            }
 
             int sessId = Convert.ToInt32(Session["TeacherId"]);
 

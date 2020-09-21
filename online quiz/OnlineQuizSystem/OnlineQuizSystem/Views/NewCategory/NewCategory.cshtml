@@ -2,7 +2,7 @@
 
 
 @{
-    ViewBag.Title = "ViewQuestion";
+    ViewBag.Title = "Create New Question";
     Layout = "~/Views/Shared/_DashboardLayout.cshtml";
 
     //Get Current Logged in User Info Dashboard
@@ -172,7 +172,7 @@
             <div class=" container-fluid">
                 <br />
                 <div class="form-group">
-                    @Html.LabelFor(model => model.CategoryId)
+                    @Html.ValidationMessageFor(model => model.CategoryId, "Question Set Name", new { @class = "focus-input100" })
                     @Html.DropDownListFor(model => model.CategoryId, Model.ListofCategory, new { @class = "form-control", id = "ddCategoryId" })
 
                 </div>

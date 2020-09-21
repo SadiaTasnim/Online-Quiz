@@ -1,17 +1,12 @@
 ﻿
 @{
-    ViewBag.Title = "ViewQuestion";
+    ViewBag.Title = "New Request";
     Layout = "~/Views/Shared/_DashboardLayout.cshtml";
 
-    //Get Current Logged in User Info Dashboard
-    //OnlineQuizSystem.Models.ONLINEQUIZEntities8 db = new OnlineQuizSystem.Models.ONLINEQUIZEntities8();
-    //int teacherId = Convert.ToInt32(Session["TeacherID"]);
-    //var CurrentUser = db.Teachers.Find(teacherId);
+  
 }
 
-@*@section user_name {
-    @CurrentUser.Email
-}*@
+
 
 @section content_wrapper {
     <div class="container">
@@ -36,14 +31,12 @@
                         <th>Student Name</th>
                         <th></th>
                         <th></th>
-                        <th></th>
-                        <th></th>
+               
 
                         <th>  Add Request</th>
                         <th></th>
                         <th></th>
-                        <th></th>
-                        <th></th>
+                  
 
                         <th>  Delete Request</th>
 
@@ -70,8 +63,7 @@
                         <td>@Html.ActionLink(item.addfriend.StudentName, "Studentprofileforteacher", new { id = item.addfriend.StudentName })</td>
                         <td></td>
                         <td></td>
-                        <td></td>
-                        <td></td>
+                 
                         <td>
 
                             @using (Html.BeginForm("StudentRequestNotifictionForTeacheraccept", "Request", FormMethod.Post))
@@ -84,8 +76,7 @@
                         </td>
                         <td></td>
                         <td></td>
-                        <td></td>
-                        <td></td>
+                      
                         <td>
                             @using (Html.BeginForm("StudentRequestNotifictionForTeacher", "Request", FormMethod.Post))
 

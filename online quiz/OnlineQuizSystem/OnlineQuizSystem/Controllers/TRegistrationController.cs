@@ -38,26 +38,6 @@ namespace OnlineQuizSystem.Controllers
                 return RedirectToAction("TeacherRegister");
             }
 
-            //if (ModelState.IsValid)
-            //{
-            //    var isUserexist = db.Teachers.Any(u => u.TeacherName == tch.TeacherName);
-            //    if (isUserexist)
-            //    {
-            //        ModelState.AddModelError("TeacherName", "This user name already exists");
-            //        return View(tch);
-            //    }
-            //    Teacher t = new Teacher();
-            //    t.FullName = tch.FullName;
-            //    t.Email = tch.Email;
-            //    t.TeacherName = tch.TeacherName;
-            //    t.Passwords = tch.Passwords;
-            //    t.FullName = tch.FullName;
-            //    t.Institute = tch.Institute;
-            //    t.Designation = tch.Designation;
-            //    t.Contact = tch.Contact;
-            //    db.Teachers.Add(t);
-            //    db.SaveChanges();
-            //}
 
             Teacher t = new Teacher();
             t.FullName = tch.FullName;

@@ -1,14 +1,11 @@
 ﻿@model OnlineQuizSystem.Models.Teacher
 
 @{
-    ViewBag.Title = "Dashboard Index";
+    ViewBag.Title = "Teacher Profile";
     Layout = "~/Views/Shared/_DashboardLayout.cshtml";
 }
 
 
-@*@section user_name {
-    @Model.Email
-}*@
 
 @section content_wrapper {
 
@@ -23,13 +20,17 @@
    
                     <hr />
                     <dl class="dl-horizontal">
+
+
                         <dt>
                             <label for="email">User Name:</label>
+
                         </dt>
                         <dd>
                             @Html.TextBoxFor(x => x.TeacherName, htmlAttributes: new { @class = "form-control" })
+
                         </dd>
-               
+
 
                         <dt>
                             <label for="email">Full Name:</label>
@@ -37,7 +38,7 @@
                         <dd>
                             @Html.TextBoxFor(x => x.FullName, htmlAttributes: new { @class = "form-control" })
                         </dd>
-                   
+
 
                         <dt>
                             <label for="email">Email ID:</label>
@@ -45,17 +46,17 @@
                         <dd>
                             @Html.TextBoxFor(x => x.Email, htmlAttributes: new { @class = "form-control" })
                         </dd>
-                 
+
 
                         <dt>
                             <label for="email">Institution:</label>
-                 
+
                         </dt>
                         <dd>
                             @Html.TextBoxFor(x => x.Institute, htmlAttributes: new { @class = "form-control" })
-               
+
                         </dd>
-                    
+
 
                         <dt>
                             <label for="email">Designation:</label>
@@ -64,7 +65,7 @@
                         <dd>
                             @Html.TextBoxFor(x => x.Designation, htmlAttributes: new { @class = "form-control" })
                         </dd>
-          
+
                         <dt>
                             <label for="email">Contact No.:</label>
                         </dt>
@@ -72,11 +73,6 @@
                             @Html.TextBoxFor(x => x.Contact, htmlAttributes: new { @class = "form-control" })
                         </dd>
 
-                        @*<div class="container-login100-form-btn">
-                            <button type="submit" class="login100-form-btn">
-                               Update
-                            </button>
-                        </div>*@
 
                     </dl>
 

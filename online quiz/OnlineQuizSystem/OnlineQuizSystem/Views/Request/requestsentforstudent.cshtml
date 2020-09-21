@@ -1,7 +1,7 @@
 ﻿
 
 @{
-    ViewBag.Title = "StudentProfile";
+    ViewBag.Title = "Sent Request";
     Layout = "~/Views/Shared/_DashboardLayout.cshtml";
 
     //Get Current Logged in User Info Dashboard
@@ -18,14 +18,16 @@
 
 @section content_wrapper {
 
-    <h6 style="color:#e03d3d">@TempData["msg"]</h6>
+    
 
-    <div >
-
+    <div>
+        
         <table class="table table-responsive">
 
             <thead>
+              
                 <tr>
+                    <h6 style="color:#e03d3d">  @TempData["msg"]</h6>
                     <th>Teacher ID</th>
                     <th></th>
 
@@ -38,7 +40,7 @@
                     <th></th>
                     <th></th>
                     <th></th>
-             
+
 
                     <th>Delete</th>
 
@@ -49,32 +51,32 @@
 
                 @foreach (var item in ViewData["jointabless"] as IEnumerable<OnlineQuizSystem.Models.friendlistforstudent>)
                 {
-                <tr>
-                    <td> @item.friendlist.teacherid </td>
-                    <td></td>
-                    <td></td>
-                    <td>@Html.ActionLink(item.teacherlist.TeacherName, "Teacherprofileforstudent", new { id = item.teacherlist.TeacherName })</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-           
-                    <td>
-                        @using (Html.BeginForm("deleterequestsentforstudent", "Request", FormMethod.Post))
+                    <tr>
+                        <td> @item.friendlist.teacherid </td>
+                        <td></td>
+                        <td></td>
+                        <td>@Html.ActionLink(item.teacherlist.TeacherName, "Teacherprofileforstudent", new { id = item.teacherlist.TeacherName })</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
 
-                        {
+                        <td>
+                            @using (Html.BeginForm("deleterequestsentforstudent", "Request", FormMethod.Post))
 
-                            <input type="hidden" value="@item.friendlist.teacherid" name="tid" />
-                            <span class="glyphicon glyphicon-trash"></span>
-                            <button class="btn-dark" style="background-color:#e03d3d" type="submit" value="1" name="delete">Delete</button>
-                        }
-                    </td>
+                            {
+
+                                <input type="hidden" value="@item.friendlist.teacherid" name="tid" />
+                                <span class="glyphicon glyphicon-trash"></span>
+                                <button class="btn-dark" style="background-color:#e03d3d" type="submit" value="1" name="delete">Delete</button>
+                            }
+                        </td>
 
 
-                </tr>
+                    </tr>
 
                 }
             </tbody>

@@ -40,8 +40,17 @@ namespace OnlineQuizSystem.Controllers
             c.CategoryName = cat.CategoryName;
             c.CategoryTeacher = Convert.ToInt32(Session["TeacherID"].ToString());
 
-            db.Categories.Add(c);
-            db.SaveChanges();
+            if (c.CategoryName == null )
+            {
+                return RedirectToAction("Addcategory", "Category");
+
+            }
+            else
+            {
+                db.Categories.Add(c);
+                db.SaveChanges();
+            }
+           
 
             return RedirectToAction("Addcategory", "Category");
         }

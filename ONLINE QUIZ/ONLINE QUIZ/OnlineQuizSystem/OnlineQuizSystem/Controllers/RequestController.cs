@@ -79,7 +79,7 @@ namespace OnlineQuizSystem.Controllers
                        where OnlineQuizSystem.StudentName == id
                        select OnlineQuizSystem).FirstOrDefault();
 
-
+            System.Diagnostics.Debug.WriteLine(del.ID);
 
             return View(del);
 

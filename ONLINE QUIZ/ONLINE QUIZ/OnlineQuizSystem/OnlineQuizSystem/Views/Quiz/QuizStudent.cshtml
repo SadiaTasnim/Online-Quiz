@@ -3,8 +3,9 @@
     ViewBag.Title = "Quiz";
     Layout = "~/Views/Shared/_DashboardLayout.cshtml";
 
-  
+
 }
+
 
 
 
@@ -25,7 +26,7 @@
 
 
             </div>
-
+            
             <input style="background-color:#42c97b" type="submit" id="mybutton" name="Submit" value="Start" class="btn btn-lg bg-dark text-white" />
 
             <script>
@@ -34,6 +35,7 @@
 
                 if (($('#CategoryId option').length) == 0) {
                     document.getElementById("mybutton").disabled = true;
+                 
                 }
             </script>
 

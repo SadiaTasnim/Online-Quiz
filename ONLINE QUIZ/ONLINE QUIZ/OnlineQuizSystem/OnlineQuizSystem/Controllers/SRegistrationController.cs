@@ -30,7 +30,7 @@ namespace OnlineQuizSystem.Controllers
                 return RedirectToAction("StudentRegister", "SRegistration");
             }
 
-            int count = db.Students.Where(u => u.StudentName== stv.StudentName).Count();
+            int count = db.Students.Where(u =>  u.Email == stv.Email).Count();
 
             if (count > 0)
             {

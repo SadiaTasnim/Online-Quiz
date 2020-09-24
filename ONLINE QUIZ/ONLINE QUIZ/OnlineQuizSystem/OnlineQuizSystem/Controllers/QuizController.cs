@@ -27,7 +27,6 @@ namespace OnlineQuizSystem.Controllers
             int sID = Convert.ToInt32(Session["StudentId"]);
             QuizCategoryViewModel objQuizViewModel = new QuizCategoryViewModel();
 
-
             objQuizViewModel.ListofCategory = (from objcat in db.Categories
 
                                                join objfrndlist in db.FriendListForStudnets on objcat.CategoryTeacher equals objfrndlist.teacherid

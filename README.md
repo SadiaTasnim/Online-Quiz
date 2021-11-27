@@ -1,5 +1,4 @@
 # Online Quiz
- ISD project 3.2
  
 To implement our project, Online Quiz System
 we have used SQL Server Management Studio (version 2014) & Microsoft Visual Studio (version 2019).
